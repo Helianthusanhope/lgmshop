@@ -38,4 +38,4 @@ Route::resource('admin/webconfigs', 'Admin\WebConfigController');
 Route::resource('admin/works', 'Admin\WorkController');
 
 //测试一下能不能提交
-'假装能提交1234568';
+'假装能提交,wo R   ni  ma ';
