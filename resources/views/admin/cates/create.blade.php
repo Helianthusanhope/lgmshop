@@ -31,41 +31,13 @@
         			</div>
 
         			<div class="mws-form-row">
-        				<label class="mws-form-label">密码</label>
-        				<div class="mws-form-item">
-        					<input type="password" name="upass" class="small">
-        				</div>
-        			</div>
-
-        			<div class="mws-form-row">
-        				<label class="mws-form-label">确认密码</label>
-        				<div class="mws-form-item">
-        					<input type="password" name="repass" class="small">
-        				</div>
-        			</div>
-					
-
-					<div class="mws-form-row">
-        				<label class="mws-form-label">邮箱</label>
-        				<div class="mws-form-item">
-        					<input type="text" name="email" class="small" value="{{ old('email') }}">
-        				</div>
-        			</div>
-
-        			<div class="mws-form-row">
-        				<label class="mws-form-label">手机号</label>
-        				<div class="mws-form-item">
-        					<input type="text" name="phone" class="small" value="{{ old('phone') }}">
-        				</div>
-        			</div>
-				
-
-					<div class="mws-form-row" style="width: 450px;">
-        				<label class="mws-form-label">头像</label>
-        				<div class="mws-form-item" style="width: 450px;">
-        					<input type="file" name="profile" class="small" style="width: 440px;">
-        				</div>
-        			</div>
+                        <label class="mws-form-label">所属分类</label>
+                        <div class="mws-form-item">
+                            <select name="pid" class="small">
+                                <option value="0">--请选择--</option>
+                            </select>
+                        </div>
+                    </div>
 	
 
         		</div>

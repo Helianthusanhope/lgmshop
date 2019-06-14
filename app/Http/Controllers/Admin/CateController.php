@@ -27,7 +27,7 @@ class CateController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    { 
          // 加载页面
         return view('admin.cates.create');
     }
@@ -40,7 +40,27 @@ class CateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pid = $request->input('pid');
+
+    	if ($pid == 0) {
+    		$path = 0;
+    	} else {
+    		//获取父级数据
+    		$parent_data = 	DB::table('cates')->where('id',$pid)->first();
+
+    		$path = $parent_data->path.','.$parent_data->id;
+    	}
+
+    	$data['pid'] = $pid;
+    	$data['cname'] = $request->input('cname','');
+    	$data['path'] = $path;
+    	//将数据压入到数据库
+    	$res = DB::table('cates')->insert($data);
+    	if($res){
+            return redirect('admin/cates/index')->with('success','添加成功'); 
+        }else{
+            return back()->with('error','添加失败');
+        }
     }
 
     /**
