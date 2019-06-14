@@ -36,3 +36,6 @@ Route::resource('admin/friends', 'Admin\FriendController');
 Route::resource('admin/webconfigs', 'Admin\WebConfigController');
 // 文章
 Route::resource('admin/works', 'Admin\WorkController');
+
+//测试一下能不能提交
+'假装能提交1234568';
