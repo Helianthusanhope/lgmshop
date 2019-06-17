@@ -39,11 +39,13 @@ class CateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create(Request $request)
     {
         $cid = $request->input('cid',0);
         // 加载页面
         return view('admin.cates.create',['cid'=>$cid,'cates'=>self::getCateDate()]);
+
     }
 
     /**
