@@ -22,7 +22,7 @@
             <tbody>
                 @foreach($users as $k=>$v)
                 <tr>
-                    <td>{{ $v->id }}</td>
+                    <td>{{ $v->uid }}</td>
                     <td>{{ $v->uname }}</td>
                     <td>{{ $v->email }}</td>
                     <td>{{ $v->phone }}</td>
@@ -31,7 +31,8 @@
                     </td>
                     <td>{{ $v->created_at}}</td>
                     <td>
-                        <a href="/admin/users/{{ $v->id }}/edit" class="btn btn-warning">修改</a>
+                        {{ $v->useraddr->address or ''}}
+                        <a href="/admin/users/{{ $v->uid }}/edit" class="btn btn-warning">修改</a>
                         <form action="/admin/users/{{ $v->uid }}" method="post" style="display: inline-block;">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}

@@ -14,18 +14,18 @@
         if( $.plot ) {
             var PageViews = [],
                 Sales = [];
-            for (var i = 0; i <= 31; i++) {
+            for (var i = 1; i <= 30; i++) {
                 PageViews.push([i, 100 + Math.floor((Math.random() < 0.5 ? -1 : 1) * Math.random() * 25)]);
                 Sales.push([i, 60 + Math.floor((Math.random() < 0.5 ? -1 : 1) * Math.random() * 40)]);
             }
 
             var data = [{
                 data: PageViews,
-                label: "Page Views",
+                label: "浏览量",
                 color: "#c75d7b"
             }, {
                 data: Sales,
-                label: "Sales",
+                label: "销售量",
                 color: "#c5d52b"
             }];
 

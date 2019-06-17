@@ -8,13 +8,20 @@ class Users extends Model
 {
     // 设置表名
     public $table = 'users';
-    //重写主键名
+
     public $primaryKey = 'uid';
 
     // 配置一对一
+    
    	public function userinfo()
    	{
-   		return $this->hasOne('App\Models\UserInfos','uid');
+   		return $this->hasOne('App\Models\UserInfo','uid');
    	}
+    // 配置一对一
+    public function useraddr()
+    {
+      return $this->hasOne('App\Models\UserAddr','uid');
+    }
+
     
 }

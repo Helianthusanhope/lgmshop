@@ -16,7 +16,9 @@ Route::get('/', function () {
 });
 
 // Route::get('admin/index','IndexController@index');
+
 // 后台首页
+
 Route::resource('admin/index', 'Admin\IndexController');
 // 用户
 Route::resource('admin/users', 'Admin\UserController');
@@ -39,8 +41,8 @@ Route::resource('admin/works', 'Admin\WorkController');
 
 
 
+
 //前台首页
 Route::resource('home/index', 'Home\IndexController');
 
-//测试一下能不能提交
-'假装能提交,wo R   ni  ma ';
+

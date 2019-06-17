@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUsers;
 use App\Models\Users;
-use App\Models\UserInfos;
+use App\Models\UserInfo;
+use App\Models\UserAddr;
 use Hash;
 use DB;
 
@@ -32,12 +33,17 @@ class UserController extends Controller
             $user->email = $data['email'];
             $user->phone = $data['phone'];
             $res1 = $user->save();
-            $uid = $user->id;
+            $uid = $user->uid;
 
-            $userinfo = new UserInfos;
+            $userinfo = new UserInfo;
             $userinfo->uid = $uid;
             $userinfo->profile = $file_path;
             $res2 = $userinfo->save();
+
+            $useraddr = new UserAddr;
+            $useraddr->uid = $uid;
+            $useraddr->address = 'aaaaa';
+            $res3 = $useraddr->save();
         }
     }
 
@@ -50,9 +56,8 @@ class UserController extends Controller
     {
          
         //显示用户列表
-
-        $users = Users::all();
-
+        $users = Users::get();
+        
         // 加载页面
         return view('admin.users.index',['users'=>$users]);
     }
@@ -121,13 +126,13 @@ class UserController extends Controller
         $res1 = $user->save();
         if($res1){
             // 获取uid
-            $uid = $user->id;
+            $uid = $user->uid;
         }
 
         // DB::table()->insertGetId(); //返回最后插入id号
 
         // 压入头像
-        $userinfo = new UserInfos;
+        $userinfo = new Userinfo;
         $userinfo->uid = $uid;
         $userinfo->profile = $file_path;
         $res2 = $userinfo->save();
@@ -165,7 +170,7 @@ class UserController extends Controller
 
 
         // 加载修改页面
-        return view('admin.users.edit',['user'=>$user]); 
+        return view('admin.users.edit',['user'=>$user]);
     }
 
     /**
@@ -190,7 +195,7 @@ class UserController extends Controller
         $user->email = $request->input('email','');
         $user->phone = $request->input('phone','');
         $res1 = $user->save();
-        $userinfo = UserInfos::where('uid',$id)->first();
+        $userinfo = UserInfo::where('uid',$id)->first();
         $userinfo->profile = $file_path;
         $res2 = $userinfo->save();
 
@@ -214,7 +219,7 @@ class UserController extends Controller
         //
         DB::beginTransaction();
         $res1 = Users::destroy($id);
-        $res2 = UserInfos::where('uid',$id)->delete();
+        $res2 = UserInfo::where('uid',$id)->delete();
         // 删除用户头像
         /*
             use Illuminate\Support\Facades\Storage;

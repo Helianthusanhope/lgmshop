@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css" href="/admin/plugins/select2/select2.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/plugins/ibutton/jquery.ibutton.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/plugins/cleditor/jquery.cleditor.css" media="screen">
-<link rel="stylesheet" type="text/css" href="custom-plugins/wizard/wizard.css" media="screen">
+<link rel="stylesheet" type="text/css" href="/admin/custom-plugins/wizard/wizard.css" media="screen">
 <!-- Required Stylesheets -->
 <link rel="stylesheet" type="text/css" href="/admin/bootstrap/css/bootstrap.min.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/css/fonts/ptsans/stylesheet.css" media="screen">
