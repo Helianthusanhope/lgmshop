@@ -9,6 +9,8 @@ class Users extends Model
     // 设置表名
     public $table = 'users';
 
+    //重写主键
+    protected $primaryKey = 'uid';
     // 配置一对一
    	public function userinfo()
    	{
