@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UsersInfo extends Model
+class UserInfos extends Model
 {
     //
-    public $table = 'users_infos';
+    public $table = 'user_infos';
 }

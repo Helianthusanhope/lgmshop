@@ -12,7 +12,6 @@
                 <tr>
                     <th>分类ID</th>
                     <th>分类名</th>
-                    <th>邮箱</th>
                     <th>父级分类id</th>
                     <th>创建时间</th>
                     <th>分类路径</th>
@@ -28,16 +27,9 @@
                     <td>{{ $v->created_at }}</td>
                     <td>{{ $v->path }}</td>
                     <td>
-                        <img style="border-radius: 5px;border:1px solid #ccc;width: 50px;" src="/uploads/{{ $v->userinfo->profile}}">
-                    </td>
-                    <td>{{ $v->created_at}}</td>
-                    <td>
-                        <a href="/admin/cates/{{ $v->id }}/edit" class="btn btn-warning">修改</a>
-                        <form action="/admin/cates/{{ $v->id }}" method="post" style="display: inline-block;">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                            <input type="submit" value="删除" class="btn btn-danger">
-                        </form>
+                        @if( substr_count($v->path,',') < 2 )
+                        <a href="/admin/cates/create?cid={{ $v->cid }}" class="btn btn-warning">添加子分类</a>
+                        @endif
                     </td>
                 </tr>
                 @endforeach

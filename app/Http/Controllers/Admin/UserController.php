@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUsers;
 use App\Models\Users;
-use App\Models\UsersInfo;
+use App\Models\UserInfos;
 use Hash;
 use DB;
 
@@ -34,7 +34,7 @@ class UserController extends Controller
             $res1 = $user->save();
             $uid = $user->id;
 
-            $userinfo = new UsersInfo;
+            $userinfo = new UserInfos;
             $userinfo->uid = $uid;
             $userinfo->profile = $file_path;
             $res2 = $userinfo->save();
@@ -51,7 +51,8 @@ class UserController extends Controller
          
         //显示用户列表
 
-        $users = Users::get();
+        $users = Users::all();
+
         // 加载页面
         return view('admin.users.index',['users'=>$users]);
     }
@@ -126,7 +127,7 @@ class UserController extends Controller
         // DB::table()->insertGetId(); //返回最后插入id号
 
         // 压入头像
-        $userinfo = new UsersInfo;
+        $userinfo = new UserInfos;
         $userinfo->uid = $uid;
         $userinfo->profile = $file_path;
         $res2 = $userinfo->save();
@@ -164,7 +165,7 @@ class UserController extends Controller
 
 
         // 加载修改页面
-        return view('admin.users.edit',['user'=>$user]);
+        return view('admin.users.edit',['user'=>$user]); 
     }
 
     /**
@@ -189,7 +190,7 @@ class UserController extends Controller
         $user->email = $request->input('email','');
         $user->phone = $request->input('phone','');
         $res1 = $user->save();
-        $userinfo = UsersInfo::where('uid',$id)->first();
+        $userinfo = UserInfos::where('uid',$id)->first();
         $userinfo->profile = $file_path;
         $res2 = $userinfo->save();
 
@@ -213,7 +214,7 @@ class UserController extends Controller
         //
         DB::beginTransaction();
         $res1 = Users::destroy($id);
-        $res2 = UsersInfo::where('uid',$id)->delete();
+        $res2 = UserInfos::where('uid',$id)->delete();
         // 删除用户头像
         /*
             use Illuminate\Support\Facades\Storage;

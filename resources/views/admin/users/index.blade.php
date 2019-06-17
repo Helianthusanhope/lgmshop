@@ -27,12 +27,12 @@
                     <td>{{ $v->email }}</td>
                     <td>{{ $v->phone }}</td>
                     <td>
-                        <img style="border-radius: 5px;border:1px solid #ccc;width: 50px;" src="/uploads/{{ $v->userinfo->profile}}">
+                        <img style="border-radius: 5px;border:1px solid #ccc;width: 50px;" src="/uploads/{{ $v->userinfo->profile }}">
                     </td>
                     <td>{{ $v->created_at}}</td>
                     <td>
                         <a href="/admin/users/{{ $v->id }}/edit" class="btn btn-warning">修改</a>
-                        <form action="/admin/users/{{ $v->id }}" method="post" style="display: inline-block;">
+                        <form action="/admin/users/{{ $v->uid }}" method="post" style="display: inline-block;">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <input type="submit" value="删除" class="btn btn-danger">
