@@ -140,7 +140,10 @@
                         </ul>
                     </li>
                     <li class="active">
-                        <a href="/admin/orders"><i class="icon-bell"></i> 订单管理</a>
+                        <a href="/"><i class="icon-bell"></i> 订单管理</a>
+                        <ul>
+                            <li><a href="">订单列表</a></li>                            
+                        </ul>
                     </li>
                     <li class="active">
                         <a href="#"><i class="icon-pictures"></i> 轮播图管理</a>
