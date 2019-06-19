@@ -20,7 +20,7 @@
         	<span>用户修改</span>
         </div>
         <div class="mws-panel-body no-padding">
-        	<form class="mws-form" action="/admin/users/{{ $user->id }}" method="post" enctype="multipart/form-data">
+        	<form class="mws-form" action="/admin/users/{{ $user->uid }}" method="post" enctype="multipart/form-data">
         		{{ csrf_field() }}
         		{{ method_field('PUT') }}
         		<div class="mws-form-inline">

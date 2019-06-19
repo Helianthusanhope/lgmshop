@@ -48,8 +48,9 @@
                         <div class="mws-form-item">
                             <select class="large" name="cid" style="width: 200px;">
                                 <option>--请选择--</option>
-
-                                <option value="{{ $v->id or '1' }}">--{{ $v->cname or '1'}}--</option>
+                                @foreach($cates as $k=>$v)
+                                <option value="{{ $v->cid }}" {{substr_count($v->path,',') < 2 ? 'disabled':''}} ><font style="vertical-align: inherit;"><font style="vertical-align-align: inherit;">{{ $v->cname }}</font></font></option>
+                                @endforeach
                               </select> 
                             </select>
                         </div>
@@ -77,7 +78,7 @@
 					<div class="mws-form-row" style="width: 450px;">
         				<label class="mws-form-label">缩略图</label>
         				<div class="mws-form-item" style="width: 450px;">
-        					<input type="file" name="profile" class="small" style="width: 440px;">
+        					<input type="file" name="thumb" class="small" style="width: 440px;">
         				</div>
         			</div>
 	

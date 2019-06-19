@@ -8,7 +8,7 @@
 
 <!-- Viewport Metatag -->
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Plugin Stylesheets first to ease overrides -->
 <link rel="stylesheet" type="text/css" href="/admin/plugins/colorpicker/colorpicker.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/custom-plugins/picklist/picklist.css" media="screen">
@@ -35,15 +35,23 @@
 <!-- Theme Stylesheet -->
 <link rel="stylesheet" type="text/css" href="/admin/css/mws-theme.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/css/themer.css" media="screen">
-
-<title>MWS Admin - Form Elements</title>
+<link rel="stylesheet" href="/layui-v2.4.5/layui/css/layui.css">
+<script src="/layui-v2.4.5/layui/layui.js"></script>
+<title>LGM后台管理</title>
 
 @section('css')
 
 
 @show
 </head>
-
+<script>
+//一般直接写在一个js文件中
+layui.use(['layer', 'form'], function(){
+  var layer = layui.layer
+  ,form = layui.form;
+  
+});
+</script> 
 <body>
 
 
@@ -209,7 +217,7 @@
                        
             <!-- Footer -->
             <div id="mws-footer">
-            	Copyright Your Website 2012. All Rights Reserved.
+            	LGM后台管理 2019
             </div>
             
         </div>

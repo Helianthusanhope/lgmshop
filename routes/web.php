@@ -22,7 +22,12 @@ Route::resource('admin/index', 'Admin\IndexController');
 Route::resource('admin/users', 'Admin\UserController');
 // 分区
 Route::resource('admin/cates', 'Admin\CateController');
+// 商品库存删除
+Route::post('admin/goodstock/{id}', 'Admin\GoodController@delete');
+Route::post('admin/stockstore', 'Admin\GoodController@stockstore');
 // 商品
+// 商品快速上架
+Route::get('admin/goods/status/{id}', 'Admin\GoodController@status');
 Route::resource('admin/goods', 'Admin\GoodController');
 // 订单
 Route::resource('admin/orders', 'Admin\OrderController');

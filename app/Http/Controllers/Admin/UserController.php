@@ -10,7 +10,7 @@ use App\Models\UserInfo;
 use App\Models\UserAddr;
 use Hash;
 use DB;
-
+use Illuminate\Support\Facades\Storage;
 class UserController extends Controller
 {
     //填写测试数据
@@ -186,6 +186,8 @@ class UserController extends Controller
         DB::beginTransaction();
         // 获取头像
         if($request->hasFile('profile')){
+            // 删旧文件
+            Storage::delete($request->input('old_profile',''));
             $file_path = $request->file('profile')->store(date('Ymd'));
         }else{
             $file_path = $request->input('old_profile');

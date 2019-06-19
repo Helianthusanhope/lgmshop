@@ -34,7 +34,7 @@
                     <td>
                         {{ $v->useraddr->address or ''}}
                         <a href="/admin/users/{{ $v->uid }}/edit" class="btn btn-warning">修改</a>
-                        <form action="/admin/users/{{ $v->uid }}" method="post" style="display: inline-block;">
+                        <form action="/admin/users/{{ $v->uid }}" method="post" style="display: inline-block;" onsubmit="return checkForm()">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <input type="submit" value="删除" class="btn btn-danger">
@@ -43,6 +43,16 @@
                 </tr>
                 @endforeach
             </tbody>
+            <script type="text/javascript">
+                function checkForm()
+                {
+                    if (window.confirm('你确定要删除吗？'))  { 
+                        return true; 
+                    } else {
+                        return false; 
+                    }
+                }
+            </script>
         </table>
     </div>
 </div>
