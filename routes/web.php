@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 // Route::get('admin/index','IndexController@index');
 
+
 // 后台首页
 // 后台登录页面
 Route::get('admin/login','Admin\LoginController@login');
@@ -42,6 +43,12 @@ Route::get('admin/rbac',function(){
 	Route::resource('admin/users', 'Admin\UserController');
 	// 分区
 	Route::resource('admin/cates', 'Admin\CateController');
+	// 商品 库存 删除
+	Route::post('admin/goodstock/{id}', 'Admin\GoodController@delete');
+	// 商品 库存 添加
+	Route::post('admin/stockstore', 'Admin\GoodController@stockstore');
+	// 商品快速上架
+	Route::get('admin/goods/status/{id}', 'Admin\GoodController@status');
 	// 商品
 	Route::resource('admin/goods', 'Admin\GoodController');
 	// 订单

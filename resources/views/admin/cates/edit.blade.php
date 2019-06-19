@@ -18,6 +18,7 @@
 	<div class="mws-panel grid_8">
     	<div class="mws-panel-header">
         	<span>分区修改</span>
+
         </div>
         <div class="mws-panel-body no-padding">
         	<form class="mws-form" action="/admin/cates/{{ $user->id }}" method="post" enctype="multipart/form-data">
