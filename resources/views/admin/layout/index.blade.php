@@ -68,23 +68,22 @@
           
             <!-- User Information and functions section -->
             <div id="mws-user-info" class="mws-inset">
-            
+                @if(session('admin_user'))
             	<!-- User Photo -->
             	<div id="mws-user-photo">
-                	<img src="/admin/example/profile.jpg" alt="User Photo">
+                	<img src="{{ session('admin_user')->profile }}" alt="User Photo">
                 </div>
-                
                 <!-- Username and Functions -->
                 <div id="mws-user-functions">
                     <div id="mws-username">
-                        你好，admin
+                        Hello, {{ session('admin_user')->uname }} 
                     </div>
                     <ul>
-                    	<li><a href="#">头像</a></li>
                         <li><a href="#">修改密码</a></li>
-                        <li><a href="index.html">退出</a></li>
+                        <li><a href="/admin/outlogin">退出</a></li>
                     </ul>
                 </div>
+                @endif
             </div>
         </div>
     </div>
@@ -125,6 +124,31 @@
                             <li><a href="/admin/users/create">用户添加</a></li>
                         </ul>
                     </li>
+
+                    <li class="active">
+                        <a href="#"><i class="icon-users"></i> 管理员</a>
+                        <ul>
+                            <li><a href="/admin/adminusers">管理员列表</a></li>
+                            <li><a href="/admin/adminusers/create">管理员添加</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
+                        <a href="#"><i class="icon-users"></i> 角色管理</a>
+                        <ul>
+                            <li><a href="/admin/roles">角色列表</a></li>
+                            <li><a href="/admin/roles/create">角色添加</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
+                        <a href="#"><i class="icon-users"></i> 权限管理</a>
+                        <ul>
+                            <li><a href="/admin/nodes">权限列表</a></li>
+                            <li><a href="/admin/nodes/create">权限添加</a></li>
+                        </ul>
+                    </li>
+
                     <li class="active">
                         <a href="#"><i class="icon-list"></i> 分区管理</a>
                         <ul>

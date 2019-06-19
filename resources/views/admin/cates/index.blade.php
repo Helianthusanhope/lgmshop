@@ -4,17 +4,17 @@
 
 <div class="mws-panel grid_8">
     <div class="mws-panel-header">
-        <span><i class="icon-table"></i> Data Table with Numbered Pagination</span>
+        <span><i class="icon-table"></i>分区列表</span>
     </div>
     <div class="mws-panel-body no-padding">
         <table class="mws-datatable-fn mws-table">
             <thead>
                 <tr>
-                    <th>分类ID</th>
-                    <th>分类名</th>
-                    <th>父级分类id</th>
+                    <th>分区ID</th>
+                    <th>分区名</th>
+                    <th>父级分区id</th>
                     <th>创建时间</th>
-                    <th>分类路径</th>
+                    <th>分区路径</th>
                     <th>操作</th>
                 </tr>
             </thead>
@@ -28,7 +28,7 @@
                     <td>{{ $v->path }}</td>
                     <td>
                         @if( substr_count($v->path,',') < 2 )
-                        <a href="/admin/cates/create?cid={{ $v->cid }}" class="btn btn-warning">添加子分类</a>
+                        <a href="/admin/cates/create?cid={{ $v->cid }}" class="btn btn-warning">添加子分区</a>
                         @endif
                     </td>
                 </tr>

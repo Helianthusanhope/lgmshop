@@ -17,21 +17,21 @@
 
     <div class="mws-panel grid_8">
         <div class="mws-panel-header">
-            <span>分类添加</span>
+            <span>分区添加</span>
         </div>
         <div class="mws-panel-body no-padding">
             <form class="mws-form" action="/admin/cates" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="mws-form-inline">
                     <div class="mws-form-row">
-                        <label class="mws-form-label">分类名</label>
+                        <label class="mws-form-label">分区名</label>
                         <div class="mws-form-item">
                             <input type="text" name="cname" class="small" value="{{ old('cname') }}">
                         </div>
                     </div>
                     
                     <div class="mws-form-row">
-                        <label class="mws-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">所属分类</font></font></label>
+                        <label class="mws-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">所属分区</font></font></label>
                         <div class="mws-form-item">
                             <select class="small" name="pid">
                                 <option value="0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">--请选择--</font></font></option>

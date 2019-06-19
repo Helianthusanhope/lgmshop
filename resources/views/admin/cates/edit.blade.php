@@ -17,7 +17,7 @@
 
 	<div class="mws-panel grid_8">
     	<div class="mws-panel-header">
-        	<span>分类修改</span>
+        	<span>分区修改</span>
         </div>
         <div class="mws-panel-body no-padding">
         	<form class="mws-form" action="/admin/cates/{{ $user->id }}" method="post" enctype="multipart/form-data">
@@ -25,7 +25,7 @@
         		{{ method_field('PUT') }}
         		<div class="mws-form-inline">
         			<div class="mws-form-row">
-        				<label class="mws-form-label">分类名</label>
+        				<label class="mws-form-label">分区名</label>
         				<div class="mws-form-item">
         					<input type="text" disabled name="uname" class="small" value="{{ $user->uname }}">
         				</div>
