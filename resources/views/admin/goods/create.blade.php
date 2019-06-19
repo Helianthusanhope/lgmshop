@@ -61,7 +61,7 @@
                         <br>
                         <br>
                         <!-- 加载编辑器的容器 -->
-                        <script id="content" name="detail" type="text/plain">
+                        <script id="container" name="detail" type="text/plain">
                             {{ old('detail') }}
                         </script>
                         <!-- 配置文件 -->
@@ -70,7 +70,7 @@
                         <script type="text/javascript" src="/utf8-php/ueditor.all.js"></script>
                         <!-- 实例化编辑器 -->
                         <script type="text/javascript">
-                            var ue = UE.getEditor('content',{toolbars: [    
+                            var ue = UE.getEditor('container',{toolbars: [    
                                 ['fullscreen', 'source', 'insertimage', 'undo', 'emotion', 'redo', 'bold']
                             ]});
                         </script>

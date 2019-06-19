@@ -149,7 +149,7 @@
         <span><i class="icon-bold"></i> 商品详情</span>
     </div>
     <div class="mws-panel-body">
-        {{ $detail->detail }}
+        {!! htmlspecialchars_decode($detail->detail) !!}
     </div>
 </div>
 
@@ -195,5 +195,8 @@
 <script src="/admin/js/demo/demo.formelements.js"></script>
 <script src="/admin/js/demo/demo.table.js"></script>
 <script src="/admin/js/demo/demo.dashboard.js"></script>
+<script type="text/javascript" src="/utf8-php/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/utf8-php/ueditor.all.js"></script>
 </body>
 </html>
