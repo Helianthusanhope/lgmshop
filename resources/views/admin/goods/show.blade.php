@@ -149,7 +149,7 @@
         <span><i class="icon-bold"></i> 商品详情</span>
     </div>
     <div class="mws-panel-body">
-        {{ $detail->detail }}
+        {!! htmlspecialchars_decode($detail->detail) !!}
     </div>
 </div>
 

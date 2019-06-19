@@ -48,7 +48,6 @@
                         <label class="mws-form-label">所属分类</label>
                         <div class="mws-form-item">
                             <select class="large" name="cid" style="width: 200px;">
-                                <option>--请选择--</option>
                                 @foreach($cates as $k=>$v)
                                 <option value="{{ $v->cid }}" {{substr_count($v->path,',') < 2 ? 'disabled':''}}  {!! $good->cid == $v->cid  ? 'selected' : '' !!}><font style="vertical-align: inherit;"><font style="vertical-align-align: inherit;">{{ $v->cname }}</font></font></option>
                                 @endforeach
@@ -70,7 +69,7 @@
                         <br>
                         <!-- 加载编辑器的容器 -->
                         <script id="content" name="detail" type="text/plain">
-                            {{ $good->detail }}
+                            {!!htmlspecialchars_decode($good->detail)!!}
                         </script>
                         <!-- 配置文件 -->
                         <script type="text/javascript" src="/utf8-php/ueditor.config.js"></script>

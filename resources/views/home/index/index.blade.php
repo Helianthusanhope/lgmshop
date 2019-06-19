@@ -33,14 +33,16 @@
 <title>LGMshop</title>
 </head>
 <body>  
+    <div>{!! $data->detail !!}</div>
 <!--Begin Header Begin-->
 <div class="soubg">
 	<div class="sou">
     	<!--Begin 所在收货地区 Begin-->
+
     	<span class="s_city_b">
         	<span class="fl">送货至：</span>
             <span class="s_city">
-            	<span>四川</span>
+            	<span>四川  </span>
                 <div class="s_city_bg">
                 	<div class="s_city_t"></div>
                     <div class="s_city_c">
