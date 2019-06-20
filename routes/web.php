@@ -18,6 +18,7 @@ Route::get('/', function () {
 // Route::get('admin/index','IndexController@index');
 
 
+
 // 后台首页
 // 后台登录页面
 Route::get('admin/login','Admin\LoginController@login');
@@ -76,6 +77,5 @@ Route::get('home/register/sendPhone','Home\RegisterController@sendPhone');
 Route::post('home/register/store','Home\RegisterController@store');
 Route::post('home/register/insert','Home\RegisterController@insert');
 Route::get('home/register/changeStatus/{id}/{token}','Home\RegisterController@changeStatus');
-
 
 
