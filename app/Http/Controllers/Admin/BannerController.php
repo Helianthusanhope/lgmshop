@@ -32,7 +32,7 @@ class BannerController extends Controller
     public function create()
     {   
         //获取所有的活动
-         $actives = Actives::get();       
+        $actives = Actives::get();       
         //显示轮播图页面
         return view('admin.banners.create',['actives'=>$actives]);
     }
@@ -78,9 +78,9 @@ class BannerController extends Controller
         $res = $banner->save();
         if($res){
             
-            return redirect('admin/banners')->with('success','修改成功');
+            return redirect('admin/banners')->with('success','添加成功');
         }else{          
-            return back()->with('error','修改失败');
+            return back()->with('error','添加失败');
         }
        
 
@@ -106,12 +106,11 @@ class BannerController extends Controller
     public function edit($id)
     {
         //获取数据分配给页面
-         $banners = Banners::find($id);
-         // dd($banners);
-         $actives = Actives::where('id',$banners->active_id)->first();
-        
+        $banners = Banners::find($id);
+        //获取现在所有的活动     
+        $actives_all = Actives::get();      
         //显示修改页面
-        return view('admin.banners.edit',['banners'=>$banners,'actives'=>$actives]);
+        return view('admin.banners.edit',['banners'=>$banners,'actives_all'=>$actives_all]);
     }
 
     /**
@@ -131,13 +130,14 @@ class BannerController extends Controller
             $url = $request->input('old_url');
         }
         
+         
         $banners = Banners::find($id);
          
         $banners->title = $request->input('title','');
         $banners->desc = $request->input('desc','');
         $banners->url = $url; 
         $banners->status = $request->input('status','');
-        $banners->active_id = $banners->active_id;
+        $banners->active_id = $request->input('active_id','');
         $res = $banners->save();
 
         if($res){
