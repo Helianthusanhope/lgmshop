@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Goods;
 use App\Models\GoodStock;
 use DB;
+use App\Models\Actives;
 use App\Http\Controllers\Admin\CateController;
 use Illuminate\Support\Facades\Storage;
 class GoodController extends Controller
@@ -272,9 +273,6 @@ class GoodController extends Controller
         DB::beginTransaction();
             
         $good = Goods::find($id);
-        if ($good) {
-            # code...
-        }
         $status = abs($good->good_status-1);
         $good->good_status = "$status";
         $res = $good->save();
@@ -287,4 +285,29 @@ class GoodController extends Controller
             return back()->with('error','操作失败');
         }
     }
+    // 活动管理
+    public function goActive($id)
+    {
+        //
+        $actives = Actives::get();
+        $good = Goods::find($id);
+        return view('admin.goods.goactive',['actives'=>$actives,'good'=>$good]);
+        
+    }
+    // 参加 取消 活动执行
+    public function activeup(Request $request, $id)
+    {
+        //
+        $good = Goods::find($id);
+        $good->active_id = $request->input('active_id','');
+        $res = $good->save();
+        if($res){
+            DB::commit();
+            return back()->with('success','操作成功');
+        }else{
+            DB::rollBack();
+            return back()->with('error','操作失败');
+        }
+    }
+    // 取消参加活动
 }

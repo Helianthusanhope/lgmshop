@@ -42,7 +42,7 @@
 			.on('click', function(event) {
 				if(!!$(this).next('ul').length) {
 					$(this).next('ul').slideToggle('fast', function() {
-						$(this).toggleClass('closed');
+						$(this).toggleClass('');
 					});
 					event.preventDefault();
 				}

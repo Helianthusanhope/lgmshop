@@ -1,5 +1,7 @@
 @extends('admin.layout.index')
+@section('css')
 
+@endsection
 @section('content')
 
 <div class="mws-panel grid_8">
@@ -66,7 +68,9 @@
                         <a href="/admin/goods/status/{{ $v->gid }}" class="btn btn-success">
                             {!! $v->good_status == 0 ? '上架' : '<p style="color: #D34011">下架</p>' !!}
                         </a>
+                        <a href="javascript:;" class="btn btn-success" onclick="goActive('/admin/goactive/{{ $v->gid }}')">{!! $v->active_id == 0 ? '参加活动' : '<p style="color: #4A4F06">活动管理</p>' !!}</a>
                         @endif
+                        
                         <a href="javascript:;" style="color: #fff" class="btn btn-success" onclick="goods('{{$v->gname}}','/admin/goods/{{$v->gid}}')" >商品详情</a>
                         <a href="/admin/goods/{{ $v->gid }}/edit" class="btn btn-warning">修改</a>
                         <a href="javascript:;" onclick="del('/admin/goods/{{ $v->gid }}')" class="btn btn-danger">删除</a>
@@ -81,6 +85,16 @@
                     layer.open({
                     type: 2,
                     title: title,
+                    area: ['750px', '500px'],
+                    fixed: false,
+                    maxmin: true,
+                    content: url
+                });
+                }
+                function goActive(url){
+                    layer.open({
+                    type: 2,
+                    title: '活动列表',
                     area: ['750px', '500px'],
                     fixed: false,
                     maxmin: true,
@@ -104,4 +118,8 @@
         </table>
     </div>
 </div>
+
+@endsection
+@section('js')
+
 @endsection

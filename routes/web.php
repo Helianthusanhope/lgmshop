@@ -50,6 +50,10 @@ Route::get('admin/rbac',function(){
 	Route::post('admin/stockstore', 'Admin\GoodController@stockstore');
 	// 商品快速上架
 	Route::get('admin/goods/status/{id}', 'Admin\GoodController@status');
+	// 商品活动管理
+	Route::get('admin/goactive/{id}', 'Admin\GoodController@goActive');
+	// 参加 取消活动执行
+	Route::post('admin/activeup/{id}', 'Admin\GoodController@activeup');
 	// 商品
 	Route::resource('admin/goods', 'Admin\GoodController');
 	// 订单
