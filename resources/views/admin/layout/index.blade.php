@@ -127,7 +127,7 @@ layui.use(['layer', 'form'], function(){
                     <li class="active"><a href="/admin/index"><i class="icon-home"></i> 首页</a></li>
                     <li class="active">
                         <a href="#"><i class="icon-users"></i> 用户管理</a>
-                        <ul>
+                        <ul style="display: none;">
                             <li><a href="/admin/users">用户列表</a></li>
                             <li><a href="/admin/users/create">用户添加</a></li>
                         </ul>
@@ -135,7 +135,7 @@ layui.use(['layer', 'form'], function(){
 
                     <li class="active">
                         <a href="#"><i class="icon-users"></i> 管理员</a>
-                        <ul>
+                        <ul style="display: none;">
                             <li><a href="/admin/adminusers">管理员列表</a></li>
                             <li><a href="/admin/adminusers/create">管理员添加</a></li>
                         </ul>
@@ -143,7 +143,7 @@ layui.use(['layer', 'form'], function(){
 
                     <li class="active">
                         <a href="#"><i class="icon-users"></i> 角色管理</a>
-                        <ul>
+                        <ul style="display: none;">
                             <li><a href="/admin/roles">角色列表</a></li>
                             <li><a href="/admin/roles/create">角色添加</a></li>
                         </ul>
@@ -151,7 +151,7 @@ layui.use(['layer', 'form'], function(){
 
                     <li class="active">
                         <a href="#"><i class="icon-users"></i> 权限管理</a>
-                        <ul>
+                        <ul style="display: none;">
                             <li><a href="/admin/nodes">权限列表</a></li>
                             <li><a href="/admin/nodes/create">权限添加</a></li>
                         </ul>
@@ -159,55 +159,55 @@ layui.use(['layer', 'form'], function(){
 
                     <li class="active">
                         <a href="#"><i class="icon-list"></i> 分区管理</a>
-                        <ul>
+                        <ul style="display: none;">
                             <li><a href="/admin/cates">分区列表</a></li>
                             <li><a href="/admin/cates/create">分区添加</a></li>
                         </ul>
                     </li>
                     <li class="active">
                         <a href="#"><i class="icon-shopping-cart"></i> 商品管理</a>
-                        <ul>
+                        <ul style="display: none;">
                             <li><a href="/admin/goods">商品列表</a></li>
                             <li><a href="/admin/goods/create">商品添加</a></li>
                         </ul>
                     </li>
                     <li class="active">
                         <a href="/"><i class="icon-bell"></i> 订单管理</a>
-                        <ul>
+                        <ul style="display: none;">
                             <li><a href="">订单列表</a></li>                            
                         </ul>
                     </li>
                     <li class="active">
                         <a href="#"><i class="icon-pictures"></i> 轮播图管理</a>
-                        <ul>
+                        <ul style="display: none;">
                             <li><a href="/admin/banners">轮播图列表</a></li>
                             <li><a href="/admin/banners/create">轮播图添加</a></li>
                         </ul>
                     </li>
                     <li class="active">
                         <a href="#"><i class="icon-fire"></i> 活动管理</a>
-                        <ul>
+                        <ul style="display: none;">
                             <li><a href="/admin/actives">活动列表</a></li>
                             <li><a href="/admin/actives/create">活动添加</a></li>
                         </ul>
                     </li>
                     <li class="active">
                         <a href="#"><i class="icon-link"></i> 友情链接管理</a>
-                        <ul>
+                        <ul style="display: none;">
                             <li><a href="/admin/friends">友情链接列表</a></li>
                             <li><a href="/admin/friends/create">友情链接添加</a></li>
                         </ul>
                     </li>
                     <li class="active">
                         <a href="#"><i class="icon-cogs"></i> 网站配置管理</a>
-                        <ul>
+                        <ul style="display: none;">
                             <li><a href="/admin/webconfigs">网站配置列表</a></li>
                             <li><a href="/admin/webconfigs/create">网站配置添加</a></li>
                         </ul>
                     </li>
                     <li class="active">
                         <a href="#"><i class="icon-book"></i> 文章管理</a>
-                        <ul>
+                        <ul style="display: none;">
                             <li><a href="/admin/works">文章列表</a></li>
                             <li><a href="/admin/works/create">文章添加</a></li>
                         </ul>
