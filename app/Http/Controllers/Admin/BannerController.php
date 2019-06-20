@@ -107,9 +107,11 @@ class BannerController extends Controller
     {
         //获取数据分配给页面
          $banners = Banners::find($id);
-
+         // dd($banners);
+         $actives = Actives::where('id',$banners->active_id)->first();
+        
         //显示修改页面
-        return view('admin.banners.edit',['banners'=>$banners]);
+        return view('admin.banners.edit',['banners'=>$banners,'actives'=>$actives]);
     }
 
     /**
@@ -130,12 +132,12 @@ class BannerController extends Controller
         }
         
         $banners = Banners::find($id);
-        // dd($banners);
+         
         $banners->title = $request->input('title','');
         $banners->desc = $request->input('desc','');
         $banners->url = $url; 
         $banners->status = $request->input('status','');
-        $banners->active_id = $request->input('active_id','');
+        $banners->active_id = $banners->active_id;
         $res = $banners->save();
 
         if($res){

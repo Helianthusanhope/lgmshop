@@ -54,10 +54,8 @@
                     </div>
                      <div class="mws-form-row">
                         <label class="mws-form-label">活动名称</label>
-                            <div class="mws-form-item" style="width:570px">
-                                <select class="large" name="active_id">                                 
-                                    <option value="{{$banners->active_id}}">{{$banners->active_id}}</option>                                                       
-                                </select>
+                            <div class="mws-form-item" style="width:570px">                              
+                                 <input type="text" name="active_id" class="small" value="{{$actives->active_name}}" >            
                         </div>
                   </div>
 
