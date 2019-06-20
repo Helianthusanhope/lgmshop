@@ -58,6 +58,8 @@ Route::get('admin/rbac',function(){
 	Route::resource('admin/banners', 'Admin\BannerController');
 	// 活动
 	Route::resource('admin/actives', 'Admin\ActiveController');
+	// 友情链接快速操作
+	Route::get('admin/friends/status/{id}', 'Admin\FriendController@status');
 	// 友情链接
 	Route::resource('admin/friends', 'Admin\FriendController');
 	// 网站配置快速操作

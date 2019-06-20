@@ -13,10 +13,10 @@ class Users extends Model
 
     // 配置一对一
     
-   	public function userinfos()
-   	{
-   		return $this->hasOne('App\Models\UserInfos','uid');
-   	}
+    public function userinfos()
+    {
+        return $this->hasOne('App\Models\UserInfos','uid');
+    }
     // 配置一对一
     public function useraddr()
     {

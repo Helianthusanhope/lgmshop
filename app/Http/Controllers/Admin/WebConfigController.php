@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\webconfig;
+use App\Models\Webconfig;
 use DB;
 use Illuminate\Support\Facades\Storage;
 class WebConfigController extends Controller
@@ -17,7 +17,7 @@ class WebConfigController extends Controller
     public function index()
     {
         //
-        $webconfig = webconfig::get();
+        $webconfig = Webconfig::get();
         return view('admin.webconfigs.index',['webconfig'=>$webconfig]);
     }
 
@@ -53,7 +53,7 @@ class WebConfigController extends Controller
         $data = $request->all();
 
         // 接收数据
-        $webconfig = new webconfig;
+        $webconfig = new Webconfig;
         $webconfig->logo = $file_path;
         $webconfig->describe = $data['describe'];
         $webconfig->name = $data['name'];
@@ -91,7 +91,7 @@ class WebConfigController extends Controller
     public function edit($id)
     {
         //
-        $webconfig = webconfig::find($id);
+        $webconfig = Webconfig::find($id);
         return view('admin.webconfigs.edit',['webconfig'=>$webconfig]);
     }
 
@@ -118,7 +118,7 @@ class WebConfigController extends Controller
         $data = $request->all();
 
         // 接收数据
-        $webconfig = webconfig::find($id);
+        $webconfig = Webconfig::find($id);
         $webconfig->logo = $file_path;
         $webconfig->describe = $data['describe'];
         $webconfig->name = $data['name'];
@@ -146,7 +146,7 @@ class WebConfigController extends Controller
     {
         //
         DB::beginTransaction();
-        $webconfig = webconfig::find($id);
+        $webconfig = Webconfig::find($id);
         $status = abs($webconfig->status-1);
         $webconfig->status = "$status";
         $res = $webconfig->save();
