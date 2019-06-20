@@ -30,13 +30,13 @@
                     </td>
                     <td>{{$v->active_id}}</td>
                     @if($v->status)
-                        <td class="btn btn-success " >显示中</td>
+                        <td><span style="background:skyblue;font-size:15px">显示中</span></td>
                     @else 
-                        <td class="btn btn-info">未显示</td>
+                        <td><span style="background:#ccc; font-size:15px" >未显示</span></td>
                     @endif
                     <td>
-                        <a href="/admin/users/{{ $v->id }}/edit" class="btn btn-warning">修改</a>
-                        <form action="/admin/users/{{ $v->id }}" method="post" style="display: inline-block;">
+                        <a href="/admin/banners/{{ $v->id }}/edit" class="btn btn-warning">修改</a>
+                        <form action="/admin/banners/{{ $v->id }}" method="post" style="display: inline-block;">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <input type="submit" value="删除" class="btn btn-danger">
