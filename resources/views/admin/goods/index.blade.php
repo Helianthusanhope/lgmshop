@@ -82,24 +82,14 @@
             <script type="text/javascript">
                 
                 function goods(title,url){
-                    layer.open({
-                    type: 2,
-                    title: title,
-                    area: ['750px', '500px'],
-                    fixed: false,
-                    maxmin: true,
-                    content: url
-                });
-                }
-                function goActive(url){
-                    layer.open({
-                    type: 2,
-                    title: '活动列表',
-                    area: ['750px', '500px'],
-                    fixed: false,
-                    maxmin: true,
-                    content: url
-                });
+                        layer.open({
+                        type: 2,
+                        title: title,
+                        area: ['750px', '500px'],
+                        fixed: false,
+                        maxmin: true,
+                        content: url
+                    });
                 }
                 function del(url){
                     $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});

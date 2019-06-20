@@ -70,7 +70,7 @@ Route::get('admin/rbac',function(){
 	Route::get('admin/webconfigs/status/{id}', 'Admin\WebConfigController@status');
 	// 网站配置
 	Route::resource('admin/webconfigs', 'Admin\WebConfigController');
-	// 文章
+	// 文章(新闻)
 	Route::resource('admin/works', 'Admin\WorkController');
 
 // });
