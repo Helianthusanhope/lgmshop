@@ -32,7 +32,7 @@ class LoginController extends Controller
     	$upass = $request->input('upass','');
 
 
-    	$admin_user_data = DB::table('admin_users')->where('uname',$uname)->first();
+    	$admin_user_data = DB::table('adminusers')->where('uname',$uname)->first();
     	if(!$admin_user_data){
     		echo "<script>alert('用户名或密码错误');location.href='/admin/login';</script>";
     		exit;
@@ -72,7 +72,7 @@ class LoginController extends Controller
         // dump($admin_user_nodes);
         session(['admin_user_nodes'=>$temp]);
     	// 跳转
-    	return redirect('admin');
+    	return redirect('admin/index');
 
     }
 }
