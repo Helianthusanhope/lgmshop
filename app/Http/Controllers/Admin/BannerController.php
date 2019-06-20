@@ -125,6 +125,6 @@ class BannerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //ajwh dfoihanklfhlkanl;kan;L KJN; LKANM;KL NALK NMALK;NMD AKL;ND AK;
     }
 }
