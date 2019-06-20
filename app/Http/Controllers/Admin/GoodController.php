@@ -281,10 +281,10 @@ class GoodController extends Controller
 
         if($res){
             DB::commit();
-            return back()->with('success','上架成功');
+            return back()->with('success','操作成功');
         }else{
             DB::rollBack();
-            return back()->with('error','上架失败');
+            return back()->with('error','操作失败');
         }
     }
 }

@@ -201,8 +201,8 @@ layui.use(['layer', 'form'], function(){
                     <li class="active">
                         <a href="#"><i class="icon-cogs"></i> 网站配置管理</a>
                         <ul>
-                            <li><a href="/admin/web_configs">网站配置列表</a></li>
-                            <li><a href="/admin/web_configs/create">网站配置添加</a></li>
+                            <li><a href="/admin/webconfigs">网站配置列表</a></li>
+                            <li><a href="/admin/webconfigs/create">网站配置添加</a></li>
                         </ul>
                     </li>
                     <li class="active">
@@ -280,17 +280,21 @@ layui.use(['layer', 'form'], function(){
     <!-- Plugin Scripts -->
     <script src="/admin/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="/admin/plugins/flot/jquery.flot.min.js"></script>
-    <!-- <script src="/admin/custom-plugins/wizard/wizard.min.js"></script> -->
+    
     <!-- Core Script -->
     <script src="/admin/bootstrap/js/bootstrap.min.js"></script>
     <script src="/admin/js/core/mws.js"></script>
 
     <!-- Themer Script (Remove if not needed) -->
     <script src="/admin/js/core/themer.js"></script>
-
     <!-- Demo Scripts (remove if not needed) -->
     <script src="/admin/js/demo/demo.formelements.js"></script>
     <script src="/admin/js/demo/demo.table.js"></script>
     <script src="/admin/js/demo/demo.dashboard.js"></script>
+    <script src="/admin/js/demo/demo.widget.js"></script>
+    @section('js')
+
+
+    @show
 </body>
 </html>
