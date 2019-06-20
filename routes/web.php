@@ -59,6 +59,8 @@ Route::get('admin/rbac',function(){
 	Route::resource('admin/actives', 'Admin\ActiveController');
 	// 友情链接
 	Route::resource('admin/friends', 'Admin\FriendController');
+	// 网站配置快速操作
+	Route::get('admin/webconfigs/status/{id}', 'Admin\WebConfigController@status');
 	// 网站配置
 	Route::resource('admin/webconfigs', 'Admin\WebConfigController');
 	// 文章
@@ -68,7 +70,7 @@ Route::get('admin/rbac',function(){
 
 
 //前台首页
-Route::resource('home/index', 'Home\IndexController');
+Route::resource('/', 'Home\IndexController');
 
 //  前台注册  邮箱  手机号
 Route::get('home/register','Home\RegisterController@index');

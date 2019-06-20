@@ -1,6 +1,8 @@
 @extends('admin.layout.index')
-
-
+@section('css')
+<link rel="stylesheet" href="/admin/time/css/style.css">
+<link rel="stylesheet" href="/admin/tool/css/calendar.css">
+@endsection
 @section('content')
    <div class="mws-stat-container clearfix">
                     
@@ -23,21 +25,10 @@
                         <!-- Statistic Content -->
                         <span class="mws-stat-content">
                             <span class="mws-stat-title">Calories Burned</span>
-                            <span class="mws-stat-value down">74%</span>
+                            <span class="mws-stat-value down">74%
                         </span>
                     </a>
-
-                    <a class="mws-stat" href="#">
-                        <!-- Statistic Icon (edit to change icon) -->
-                        <span class="mws-stat-icon icol32-walk"></span>
-                        
-                        <!-- Statistic Content -->
-                        <span class="mws-stat-content">
-                            <span class="mws-stat-title">Kilometers Walked</span>
-                            <span class="mws-stat-value">14</span>
-                        </span>
-                    </a>
-                    
+                   
                     <a class="mws-stat" href="#">
                         <!-- Statistic Icon (edit to change icon) -->
                         <span class="mws-stat-icon icol32-bug"></span>
@@ -60,14 +51,7 @@
                         </span>
                     </a>
                 </div>
-                <div class="mws-panel grid_5">
-                    <div class="mws-panel-header">
-                        <span><i class="icon-graph"></i> 近30天销售情况</span>
-                    </div>
-                    <div class="mws-panel-body">
-                        <div id="mws-dashboard-chart" style="height: 222px;"></div>
-                    </div>
-                </div>
+              
                 
                 <div class="mws-panel grid_3">
                     <div class="mws-panel-header">
@@ -88,9 +72,11 @@
                                 </span>
                             </li>
                             <li>
-                                <span class="key"><i class="icon-key"></i> 本次登录时间</span>
+                                <span class="key"><i class="icon-key"></i> 现在时间</span>
                                 <span class="val">
-                                    <span class="text-nowrap">September 21, 2012</span>
+                                    <span class="text-nowrap"><div class='center'>
+                            <p></p>
+                        </div></span>
                                 </span>
                             </li>
                             <li>
@@ -102,5 +88,14 @@
                         </ul>
                     </div>
                 </div>
-    
+                <div id="calendar" class="calendar"></div>
+
+            
+              
+@endsection
+@section('js')
+<script src='/admin/time/js/jquery.min.js'></script>
+<script  src="/admin/time/js/index.js"></script>
+<script src="/admin/tool/js/jquery.min.js"></script>
+            <script src="/admin/tool/js/calendar.js"></script>
 @endsection

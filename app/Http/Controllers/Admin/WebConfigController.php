@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
-class WebController extends Controller
+use App\Models\webconfig;
+use DB;
+use Illuminate\Support\Facades\Storage;
+class WebConfigController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +17,8 @@ class WebController extends Controller
     public function index()
     {
         //
+        $webconfig = webconfig::get();
+        return view('admin.webconfigs.index',['webconfig'=>$webconfig]);
     }
 
     /**
@@ -25,6 +29,7 @@ class WebController extends Controller
     public function create()
     {
         //
+        return view('admin.webconfigs.create');
     }
 
     /**
@@ -36,6 +41,34 @@ class WebController extends Controller
     public function store(Request $request)
     {
         //
+        DB::beginTransaction();
+
+        if($request->hasFile('logo')){
+
+            // 创建文件上传对象
+            $file_path = $request->file('logo')->store(date('Ymd'));
+        }else{
+            $file_path = '';
+        }
+        $data = $request->all();
+
+        // 接收数据
+        $webconfig = new webconfig;
+        $webconfig->logo = $file_path;
+        $webconfig->describe = $data['describe'];
+        $webconfig->name = $data['name'];
+        $webconfig->filing = $data['filing'];
+        $webconfig->telephone = $data['telephone'];
+        $res = $webconfig->save();
+
+
+        if($res){
+            DB::commit();
+            return redirect('admin/webconfigs')->with('success','添加成功');
+        }else{
+            DB::rollBack();
+            return back()->with('error','添加失败');
+        }
     }
 
     /**
@@ -58,6 +91,8 @@ class WebController extends Controller
     public function edit($id)
     {
         //
+        $webconfig = webconfig::find($id);
+        return view('admin.webconfigs.edit',['webconfig'=>$webconfig]);
     }
 
     /**
@@ -70,16 +105,58 @@ class WebController extends Controller
     public function update(Request $request, $id)
     {
         //
+        DB::beginTransaction();
+
+        if($request->hasFile('logo')){
+            // 删旧文件
+            Storage::delete($request->input('old_profile',''));
+            // 创建文件上传对象
+            $file_path = $request->file('logo')->store(date('Ymd'));
+        }else{
+            $file_path = $request->input('old_logo');
+        }
+        $data = $request->all();
+
+        // 接收数据
+        $webconfig = webconfig::find($id);
+        $webconfig->logo = $file_path;
+        $webconfig->describe = $data['describe'];
+        $webconfig->name = $data['name'];
+        $webconfig->filing = $data['filing'];
+        $webconfig->telephone = $data['telephone'];
+        $res = $webconfig->save();
+
+
+        if($res){
+            DB::commit();
+            return redirect('admin/webconfigs')->with('success','修改成功');
+        }else{
+            DB::rollBack();
+            return back()->with('error','修改失败');
+        }
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 快速开启
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function status($id)
     {
         //
+        DB::beginTransaction();
+        $webconfig = webconfig::find($id);
+        $status = abs($webconfig->status-1);
+        $webconfig->status = "$status";
+        $res = $webconfig->save();
+
+        if($res){
+            DB::commit();
+            return back()->with('success','操作成功');
+        }else{
+            DB::rollBack();
+            return back()->with('error','操作失败');
+        }
     }
 }
