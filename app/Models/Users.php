@@ -13,9 +13,9 @@ class Users extends Model
 
     // 配置一对一
     
-   	public function userinfo()
+   	public function userinfos()
    	{
-   		return $this->hasOne('App\Models\UserInfo','uid');
+   		return $this->hasOne('App\Models\UserInfos','uid');
    	}
     // 配置一对一
     public function useraddr()

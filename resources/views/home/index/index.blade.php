@@ -33,7 +33,6 @@
 <title>LGMshop</title>
 </head>
 <body>  
-    <div>{!! $data->detail !!}</div>
 <!--Begin Header Begin-->
 <div class="soubg">
 	<div class="sou">

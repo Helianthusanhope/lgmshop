@@ -79,7 +79,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUsers $request)
     {
         // 验证数据
        /* $this->validate($request, [
@@ -102,6 +102,17 @@ class UserController extends Controller
             'phone.regex'=>'手机号格式不正确',
             'profile.required'=>'头像必填',
         ]);*/
+
+        // 验证数据
+        $this->validate($request, [
+            'upass' => 'required|regex:/^[\w]{6,18}$/',
+            'repass' => 'required|same:upass',
+        ],[
+            'upass.required'=>'密码必填',
+            'upass.regex'=>'密码格式错误',
+            'repass.required'=>'确认密码必填',
+            'repass.same'=>'俩次密码不一致',
+        ]);
 
         DB::beginTransaction();
             
@@ -180,7 +191,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUsers $request, $id)
     {
         //
         DB::beginTransaction();

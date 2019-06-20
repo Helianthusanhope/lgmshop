@@ -47,9 +47,9 @@
         				</div>
         			</div>
 			
-					<img src="/uploads/{{ $user->userinfo->profile }}">
+					<img src="/uploads/{{ $user->userinfos->profile }}">
 						
-					<input type="hidden" name="old_profile" value="{{ $user->userinfo->profile }}">
+					<input type="hidden" name="old_profile" value="{{ $user->userinfos->profile }}">
 					<div class="mws-form-row" style="width: 450px;">
         				<label class="mws-form-label">头像</label>
         				<div class="mws-form-item" style="width: 450px;">
