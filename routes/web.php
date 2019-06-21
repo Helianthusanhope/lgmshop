@@ -35,7 +35,7 @@ Route::get('admin/rbac',function(){
 	//后台首页
 	Route::resource('admin/index', 'Admin\IndexController');
 	// 后台 管理员
-	Route::resource('admin/adminusers','Admin\AdminuserController');
+	Route::resource(' admin/adminusers','Admin\AdminuserController');
 	// 后台  角色
 	Route::resource('admin/roles','Admin\RolesController');
 	// 后台 权限
