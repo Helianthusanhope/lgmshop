@@ -191,7 +191,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreUsers $request, $id)
+    public function update(Request $request, $id)
     {
         //
         DB::beginTransaction();
@@ -231,8 +231,11 @@ class UserController extends Controller
     {
         //
         DB::beginTransaction();
+        $profile = UserInfo::find($id)->profile;
+        Storage::delete($profile);
         $res1 = Users::destroy($id);
         $res2 = UserInfo::where('uid',$id)->delete();
+
         // 删除用户头像
         /*
             use Illuminate\Support\Facades\Storage;

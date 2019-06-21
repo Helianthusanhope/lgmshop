@@ -97,5 +97,5 @@
 <script src='/admin/time/js/jquery.min.js'></script>
 <script  src="/admin/time/js/index.js"></script>
 <script src="/admin/tool/js/jquery.min.js"></script>
-            <script src="/admin/tool/js/calendar.js"></script>
+<script src="/admin/tool/js/calendar.js"></script>
 @endsection

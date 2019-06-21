@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Actives;
 use App\Models\Goods;
+use App\Models\Banners;
+use DB;
 
 class ActiveController extends Controller
 {
@@ -168,7 +170,8 @@ class ActiveController extends Controller
         $res = Actives::destroy($id);
 
         if($res){
-            
+            $active_id = 0;
+            $good = DB::table('goods')->where('active_id',$id)->update(['active_id'=>$active_id]);
             return redirect('admin/actives')->with('success','删除成功');
         }else{
             
