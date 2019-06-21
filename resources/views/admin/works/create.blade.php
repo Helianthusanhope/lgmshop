@@ -30,6 +30,12 @@
                         </div>
                     </div>
                     <div class="mws-form-row">
+                        <label class="mws-form-label">文章作者</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="writer" class="small" value="{{ old('writer') }}" placeholder="请填写10个字以内">
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
                         <label class="mws-form-label">文章描述</label>
                         <div class="mws-form-item">
                             <input type="text" name="wdesc" class="small" value="{{ old('wdesc') }}"

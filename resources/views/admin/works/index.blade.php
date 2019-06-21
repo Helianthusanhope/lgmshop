@@ -12,6 +12,7 @@
                 <tr>
                     <th>ID</th>
                     <th>文章标题</th>
+                    <th>文章作者</th>
                     <th>文章描述</th>
                     <th>文章状态</th>
                     <th>操作</th>
@@ -22,9 +23,8 @@
                 @foreach($works_data as $k=>$v)
                 <tr>
                     <td>{{ $v->wid }}</td>
-                    <td >
-                        <div> {{ $v->wtitle }}</div>                                   
-                    </td>
+                    <td >{{ $v->wtitle }}</td>
+                    <td >{{ $v->writer }}</td>
                     <td>{{ $v->wdesc}}</td>
 
                     @if($v->status)

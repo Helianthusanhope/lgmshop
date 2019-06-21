@@ -16,9 +16,6 @@ class WorkController extends Controller
     public function index()
     {
         $works_data = Work::get();
-        foreach ($works_data as $k => $v) {
-            $v->wcontent = htmlspecialchars_decode($v->wcontent);
-        }
         //显示文章列表
         return view('admin.works.index',['works_data'=>$works_data]);
     }
@@ -48,6 +45,7 @@ class WorkController extends Controller
         // 接收数据
         $work = new Work;
         $work->wtitle = $data['wtitle'];
+        $work->writer = $data['writer'];
         $work->wdesc = $data['wdesc'];
         $work->wcontent = $data['wcontent'];
         $res = $work->save();
@@ -96,7 +94,18 @@ class WorkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Work = Work::find($id);
+        $Work->wtitle = $request->input('wtitle','');
+        $Work->writer = $request->input('writer','');
+        $Work->wdesc = $request->input('wdesc','');
+        $Work->wcontent = $request->input('wcontent','');
+        $res = $Work->save();
+
+        if($res){
+            return redirect('admin/works')->with('success','修改成功');
+        }else{
+            return back()->with('error','修改失败');
+        }
     }
 
     /**
