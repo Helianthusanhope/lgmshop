@@ -53,82 +53,57 @@
 {{ session('success') }}
 </div>
 @endif 
-<div class="mws-panel grid_8">
+<div class="mws-panel grid_8" style="margin: auto;">
     <div class="mws-panel-header">
-        <span><i class="icon-table"></i> 活动列表</span>
+        <span><i class="icon-table"></i> 商品库存</span>
     </div>
+    
     <div class="mws-panel-body no-padding">
         <table class="mws-datatable-fn mws-table">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>活动名称</th>
-                    <th>活动折扣</th>
-                    <th>活动展示图</th>
-                    <th>背景图</th>
-                    <th>操作</th>
+                    <th>库存ID</th>
+                    <th>商品名</th>
+                    <th>规格</th>
+                    <th>大小</th>
+                    <th>缩略图</th>
+                    <th>评论</th>
+                    <th>库存量</th>
+                    <th>发货数量</th>
                 </tr>
             </thead>
             <tbody>
-                @if($good->active_id == 0)
-                @foreach($actives as $k=>$v)
+                @foreach($goodstock as $k=>$v)
                 <tr>
-                    <td>{{ $v->id }}</td>
-                    <td>{{ $v->active_name }}</td>
-                    <td>{{ $v->discount }}</td>
-                    <td>
-                        <img src="/uploads/{{ $v->active_thumb }}" width="50px">
-                    </td>
-                    <td>
-                        <img src="/uploads/{{ $v->background }}" width="50px">
-                    </td>
-                    <td>
-                        <form action="/admin/activeup/{{ $good->gid }}" method="post" style="display: inline-block;" onsubmit="return checkForm()">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="active_id" value="{{ $v->id }}">
-                            <input type="submit" value="参加活动" class="btn btn-warning">
-                        </form>
-                    </td>
+                    <td>{{ $v['stid'] }}</td>
+                    <td>{{ $v['gname'] }}</td>
+                    <td>{{ $v['color'] }}</td>
+                    <td>{{ $v['size'] }}</td>
+                    <td><img src="/uploads/{{ $v['thumb'] }}" style="width: 50px;"></td>
+                    <td>{{ $v['comment'] or '无' }}</td>
+                    <td>{{ $v['stock'] }}</td>
+                    <td>{{ $v['number'] }}</td>
                 </tr>
                 @endforeach
-                @else
-                <tr>
-                    <td>{{ $actives->id }}</td>
-                    <td>{{ $actives->active_name }}</td>
-                    <td>{{ $actives->discount }}</td>
-                    <td>
-                        <img src="/uploads/{{ $actives->active_thumb }}" width="50px">
-                    </td>
-                    <td>
-                        <img src="/uploads/{{ $actives->background }}" width="50px">
-                    </td>
-                    <td>
-                        <form action="/admin/activeup/{{ $good->gid }}" method="post" style="display: inline-block;" onsubmit="return checkup()">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="active_id" value="0">
-                            <input type="submit" value="取消活动" class="btn btn-danger">
-                        </form>
-                    </td>
-                </tr>
-                @endif
             </tbody>
+
             <script type="text/javascript">
+                
                 function checkForm()
                 {
-                    if(!window.confirm('确定要参加活动吗?')){
-                        return false;
+                    if (window.confirm('你确定要发货吗？'))  { 
+                        return true; 
+                    } else {
+                        return false; 
                     }
                 }
-                function checkup()
-                {
-                    if(!window.confirm('确定要取消活动吗?')){
-                        return false;
-                    }
-                }
+                
             </script>
         </table>
     </div>
 </div>
+
+
 
 
 

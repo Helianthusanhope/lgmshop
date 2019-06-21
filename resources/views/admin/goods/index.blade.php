@@ -1,7 +1,4 @@
 @extends('admin.layout.index')
-@section('css')
-
-@endsection
 @section('content')
 
 <div class="mws-panel grid_8">
@@ -118,8 +115,4 @@
         </table>
     </div>
 </div>
-
-@endsection
-@section('js')
-
 @endsection

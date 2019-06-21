@@ -197,6 +197,8 @@ class GoodController extends Controller
         //
         DB::beginTransaction();
         if (GoodStock::where('gid', $id)->first()) {
+            $thumb = Goods::find($id)->thumb;
+            Storage::delete($thumb);
             $res1 = Goods::destroy($id);
             $res2 = GoodStock::where('gid',$id)->delete();
             if ($res1 && $res2) {
@@ -205,6 +207,8 @@ class GoodController extends Controller
                 $res = 0;
             }
         } else {
+            $thumb = Goods::find($id)->thumb;
+            Storage::delete($thumb);
             $res = Goods::destroy($id);
         }
         // 删除用户头像
@@ -291,6 +295,9 @@ class GoodController extends Controller
         //
         $actives = Actives::get();
         $good = Goods::find($id);
+        if ($good->active_id != 0) {
+            $actives = Actives::find($good->active_id);
+        }
         return view('admin.goods.goactive',['actives'=>$actives,'good'=>$good]);
         
     }

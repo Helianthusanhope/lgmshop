@@ -174,7 +174,7 @@ layui.use(['layer', 'form'], function(){
                     <li class="active">
                         <a href="/"><i class="icon-bell"></i> 订单管理</a>
                         <ul style="display: none;">
-                            <li><a href="">订单列表</a></li>                            
+                            <li><a href="/admin/orders">订单列表</a></li>                            
                         </ul>
                     </li>
                     <li class="active">
@@ -279,7 +279,7 @@ layui.use(['layer', 'form'], function(){
     <script src="/admin/plugins/cleditor/jquery.cleditor.icon.min.js"></script>
     <!-- Plugin Scripts -->
     <script src="/admin/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="/admin/plugins/flot/jquery.flot.min.js"></script>
+    <!-- <script src="/admin/plugins/flot/jquery.flot.min.js"></script> -->
     
     <!-- Core Script -->
     <script src="/admin/bootstrap/js/bootstrap.min.js"></script>
