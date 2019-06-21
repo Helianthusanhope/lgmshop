@@ -185,7 +185,7 @@
             });
             $("#mws-jui-dialog-btn").bind("click", function (event) {
                 $("#mws-jui-dialog").dialog("option", {
-                    modal: false
+                    modal: true
                 }).dialog("open");
                 event.preventDefault();
             });

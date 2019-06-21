@@ -59,7 +59,7 @@
                     <div class="mws-form-row">
                         <label class="mws-form-label">文章状态</label>                      
                             开启<input type="radio" name="status" class="small" value="1">
-                            关闭<input type="radio" name="status" class="small" value="0">
+                            关闭<input type="radio" name="status" class="small" checked value="0">
                     </div>
 
 

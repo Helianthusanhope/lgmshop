@@ -70,6 +70,8 @@ Route::get('admin/rbac',function(){
 	Route::get('admin/webconfigs/status/{id}', 'Admin\WebConfigController@status');
 	// 网站配置
 	Route::resource('admin/webconfigs', 'Admin\WebConfigController');
+	// 友情链接快速操作
+	Route::get('admin/works/status/{id}', 'Admin\WorkController@status');
 	// 文章(新闻)
 	Route::resource('admin/works', 'Admin\WorkController');
 
