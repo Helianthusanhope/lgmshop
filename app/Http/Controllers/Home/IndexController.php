@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cates;
+use App\Models\Work;
 use DB;
 
 class IndexController extends Controller
@@ -26,11 +27,8 @@ class IndexController extends Controller
     public function index()
     {
         //已共享 $common_cates_data
-        // $data = DB::table('goods')->where('gid',39)->first();
-
-        // return view('home.index.index',['data'=>$data]);
-        
-        return view('home.index.index');
+        $works_data = Work::select('wid','wtitle')->get();
+        return view('home.index.index',['works_data'=>$works_data]);        
     }
 
     /**
