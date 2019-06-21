@@ -89,3 +89,12 @@ Route::post('home/register/insert','Home\RegisterController@insert');
 Route::get('home/register/changeStatus/{id}/{token}','Home\RegisterController@changeStatus');
 
 
+//前台登陆
+Route::get('home/login', 'Home\LoginController@login');
+//验证登录
+Route::post('home/dologin', 'Home\LoginController@dologin');
+
+
+
+//显示活动界面
+Route::get('home/active', 'Home\ActiveController@index');
