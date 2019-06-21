@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Actives;
-
+use App\Models\Goods;
 
 class ActiveController extends Controller
 {
@@ -47,12 +47,13 @@ class ActiveController extends Controller
       
        $this->validate($request, [
             'active_name' => 'required',
-            'discount' => 'required:',                
+            'discount' => 'required|regex:/^[1-9]{1,2}$/',                
             'active_thumb' => 'required',
             'background' => 'required',
         ],[
-            'active_name.required'=>'活动名称必填',           
-            'discount.required'=>'折扣必填',                      
+            'active_name.required'=>'活动名称必填',
+            'discount.required'=>'折扣必填',
+            'discount.regex'=>'折扣格式不对',                                        
             'active_thumb.required'=>'展示图必填',
             'background.required' =>'背景图必填' ,
         ]);

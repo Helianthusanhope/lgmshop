@@ -26,9 +26,11 @@ class IndexController extends Controller
     public function index()
     {
         //已共享 $common_cates_data
-        $data = DB::table('goods')->where('gid',39)->first();
+        // $data = DB::table('goods')->where('gid',39)->first();
 
-        return view('home.index.index',['data'=>$data]);
+        // return view('home.index.index',['data'=>$data]);
+        
+        return view('home.index.index');
     }
 
     /**

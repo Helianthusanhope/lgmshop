@@ -32,7 +32,7 @@
                     <div class="mws-form-row">
                         <label class="mws-form-label">活动折扣</label>
                         <div class="mws-form-item">
-                            <input type="number" name="discount" class="small" value="{{ old('discount')}}">
+                            <input type="number" name="discount" class="small"   value="{{ old('discount')}}">
                         </div>
                     </div>
                     

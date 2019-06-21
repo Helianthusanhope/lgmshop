@@ -33,7 +33,7 @@
                     <div class="mws-form-row">
                         <label class="mws-form-label">活动折扣</label>
                         <div class="mws-form-item">
-                            <input type="number" name="discount" class="small" value="{{ $actives->discount }}">
+                            <input type="number" name="discount" class="small" step="0.1" value="{{ $actives->discount }}">
                         </div>
                     </div>
                     
