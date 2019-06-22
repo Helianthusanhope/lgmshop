@@ -39,6 +39,8 @@ class RegisterController extends Controller
         $user = new Users;
         $user->upass = Hash::make($upass);
         $user->email = $email;
+        //压入默认用户名
+        $user->uname = '用户'.rand(1,2000);
         $user->token = $token;
         $res1 = $user->save();
         if($res1){
@@ -121,6 +123,8 @@ class RegisterController extends Controller
         $user = new Users;
         $user->upass = Hash::make($data['upass']);
         $user->phone = $data['phone'];
+         //压入默认用户名
+        $user->uname = '用户'.rand(1,2000);
         $res1 = $user->save();
         if($res1){
             // 获取uid

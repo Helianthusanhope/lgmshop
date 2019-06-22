@@ -93,6 +93,15 @@ Route::get('home/register/changeStatus/{id}/{token}','Home\RegisterController@ch
 Route::get('home/login', 'Home\LoginController@login');
 //验证登录
 Route::post('home/dologin', 'Home\LoginController@dologin');
+//登录退出
+Route::get('home/loginout', 'Home\LoginController@loginout');
+
+//个人中心
+//显示个人中心首页
+Route::get('home/myself', 'Home\MyselfController@index');
+//个人信息页面
+Route::get('home/information', 'Home\InformationController@index');
+
 
 
 

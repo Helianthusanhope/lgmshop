@@ -13,21 +13,28 @@
 
 		<link rel="stylesheet" href="/ho/AmazeUI-2.4.2/assets/css/amazeui.css" />
 		<link href="/ho/css/dlstyle.css" rel="stylesheet" type="text/css">
+		
 	</head>
 
 	<body>
-
+	
 		<div class="login-boxtitle">
 			<a href="home.html"><img alt="logo" src="/ho/images/logobig.png" /></a>
+
 		</div>
 
+	
 		<div class="login-banner">
+
 			<div class="login-main">
-				<div class="login-banner-bg"><span></span><img src="/ho/images/big.jpg" /></div>
+				
+				<div class="login-banner-bg"><span></span><img src="/ho/images/big.jpg" />
+				</div>
+			
 				<div class="login-box">
-
+					
 							<h3 class="title">登录商城</h3>
-
+							
 							<div class="clear"></div>
 						
 						<div class="login-form">
