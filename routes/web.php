@@ -81,6 +81,7 @@ Route::get('admin/rbac',function(){
 //前台首页
 Route::resource('/', 'Home\IndexController');
 
+
 //  前台注册  邮箱  手机号
 Route::get('home/register','Home\RegisterController@index');
 Route::get('home/register/sendPhone','Home\RegisterController@sendPhone');
@@ -98,3 +99,5 @@ Route::post('home/dologin', 'Home\LoginController@dologin');
 
 //显示活动界面
 Route::get('home/active', 'Home\ActiveController@index');
+//显示商品列表
+Route::get('home/goodlist','Home\GoodlistController@index');

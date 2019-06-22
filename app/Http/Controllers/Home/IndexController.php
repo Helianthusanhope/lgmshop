@@ -6,10 +6,25 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cates;
 use App\Models\Work;
+use App\Models\Friends;
+use App\Models\Webconfig;
 use DB;
 
 class IndexController extends Controller
 {
+    //得到所有的友情链接
+    public static function gerFriendsData()
+    {
+        $friends_data = Friends::get();
+        return $friends_data;
+    }
+
+    public static function getWebconfigsData()
+    {
+        $webconfigs_data = Webconfig::get();
+        return $webconfigs_data;
+
+    }
     public static function getPidCatesData($pid = 0)
     {
         $data = Cates::where('pid',$pid)->get();

@@ -1,60 +1,19 @@
 <!--网站头部开始-->
 @include('home.public.head')
 <!---网站头部结束-->
-            <div class="banner">
-                      <!--轮播图开始-->
-                        <div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
-                            <ul class="am-slides">
-                                <li class="banner1"><a href="introduction.html"><img src="/ho/images/ad1.jpg" /></a></li>
-                                <li class="banner2"><a><img src="/ho/images/ad2.jpg" /></a></li>
-                                <li class="banner3"><a><img src="/ho/images/ad3.jpg" /></a></li>
-                                <li class="banner4"><a><img src="/ho/images/ad4.jpg" /></a></li>
-
-                            </ul>
-                        </div>
-                        <!--轮播图结束-->
-                        <div class="clear"></div>   
-            </div>
-            <div class="shopNav">
-                <div class="slideall">
-                    
-                       <div class="long-title"><span class="all-goods">全部分类</span></div>
-                       <div class="nav-cont">
-                            <ul>
-                                <li class="index"><a href="#">首页</a></li>
-                                <li class="qc"><a href="#">闪购</a></li>
-                                <li class="qc"><a href="#">限时抢</a></li>
-                                <li class="qc"><a href="#">团购</a></li>
-                                <li class="qc last"><a href="#">大包装</a></li>
-                            </ul>
-                            <div class="nav-extra">
-                                <i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
-                                <i class="am-icon-angle-right" style="padding-left: 10px;"></i>
-                            </div>
-                        </div>                  
+<!-- header 开始 -->
+@include('home.public.header')
+<!-- header 结束 -->
+<!-- 轮播图 开始 -->
+@include('home.public.banners')
+<!-- 轮播图 结束 -->
+<!-- 搜索,导航 开始-->
+@include('home.public.search')
+<!-- 搜索,导航 结束-->
 <!--商品分类开始-->
 @include('home.public.cates')
 <!--商品分类结束-->     
-                       
                         
-                        <!--轮播-->
-                        
-                        <script type="text/javascript">
-                            (function() {
-                                $('.am-slider').flexslider();
-                            });
-                            $(document).ready(function() {
-                                $("li").hover(function() {
-                                    $(".category-content .category-list li.first .menu-in").css("display", "none");
-                                    $(".category-content .category-list li.first").removeClass("hover");
-                                    $(this).addClass("hover");
-                                    $(this).children("div.menu-in").css("display", "block")
-                                }, function() {
-                                    $(this).removeClass("hover")
-                                    $(this).children("div.menu-in").css("display", "none")
-                                });
-                            })
-                        </script>
 
 
 
@@ -187,49 +146,18 @@
                         </span>
                         </div>
                       <div class="am-g am-g-fixed ">
+                        @foreach( $common_actives_data as $k=>$v )
                         <div class="am-u-sm-3 ">
                             <div class="icon-sale one "></div>  
-                                <h4>秒杀</h4>                         
+                                <h4>{{ $v->active_name }}</h4>                         
                             <div class="activityMain ">
-                                <img src="/ho/images/activity1.jpg "></img>
+                                <img src="/uploads/{{ $v->active_thumb }}"></img>
                             </div>
                             <div class="info ">
-                                <h3>春节送礼优选</h3>
+                                <h3>{{ $v->active_desc }}</h3>
                             </div>                                                      
                         </div>
-                        
-                        <div class="am-u-sm-3 ">
-                          <div class="icon-sale two "></div>    
-                            <h4>特惠</h4>
-                            <div class="activityMain ">
-                                <img src="/ho/images/activity2.jpg "></img>
-                            </div>
-                            <div class="info ">
-                                <h3>春节送礼优选</h3>                             
-                            </div>                          
-                        </div>                      
-                        
-                        <div class="am-u-sm-3 ">
-                            <div class="icon-sale three "></div>
-                            <h4>团购</h4>
-                            <div class="activityMain ">
-                                <img src="/ho/images/activity3.jpg "></img>
-                            </div>
-                            <div class="info ">
-                                <h3>春节送礼优选</h3>
-                            </div>                          
-                        </div>                      
-
-                        <div class="am-u-sm-3 last ">
-                            <div class="icon-sale "></div>
-                            <h4>超值</h4>
-                            <div class="activityMain ">
-                                <img src="/ho/images/activity.jpg "></img>
-                            </div>
-                            <div class="info ">
-                                <h3>春节送礼优选</h3>
-                            </div>                                                  
-                        </div>
+                        @endforeach
 
                       </div>
                    </div>

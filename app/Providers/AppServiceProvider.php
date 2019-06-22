@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\Home\IndexController;
+use App\Http\Controllers\Home\ActiveController;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
     {
 
         View::share('common_cates_data',IndexController::getPidCatesData());
+        View::share('common_actives_data',ActiveController::getActivesAll());
+        View::share('common_friends_data',IndexController::gerFriendsData());
+        View::share('commoon_Webconfigs_data',IndexController::getWebconfigsData());
 
     }
 

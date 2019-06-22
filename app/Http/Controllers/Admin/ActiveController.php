@@ -49,11 +49,13 @@ class ActiveController extends Controller
       
        $this->validate($request, [
             'active_name' => 'required',
+            'active_desc' => 'required',
             'discount' => 'required|regex:/^[1-9]{1,2}$/',                
             'active_thumb' => 'required',
             'background' => 'required',
         ],[
             'active_name.required'=>'活动名称必填',
+            'active_desc.required'=>'活动描述必填',
             'discount.required'=>'折扣必填',
             'discount.regex'=>'折扣格式不对',                                        
             'active_thumb.required'=>'展示图必填',
@@ -69,6 +71,7 @@ class ActiveController extends Controller
             $data = $request->all();
             $actives = new Actives;
             $actives->active_name = $data['active_name'];
+            $actives->active_desc = $data['active_desc'];
             $actives->discount = $data['discount'];
             $actives->active_thumb =  $active_thumb;
             $actives->background = $background; 
@@ -135,6 +138,7 @@ class ActiveController extends Controller
         $actives = Actives::find($id);
         //接受修改数据
         $actives->active_name = $request->input('active_name','');
+        $actives->active_desc = $request->input('active_desc','');
         $actives->discount = $request->input('discount','');
         $actives->active_thumb =  $active_thumb;
         $actives->background = $background;

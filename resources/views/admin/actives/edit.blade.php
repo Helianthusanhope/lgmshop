@@ -31,6 +31,12 @@
                         </div>
                     </div>
                     <div class="mws-form-row">
+                        <label class="mws-form-label">活动描述</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="active_desc" class="small" value="{{ old('active_desc') }}" placeholder="请填写30个字以内">
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
                         <label class="mws-form-label">活动折扣</label>
                         <div class="mws-form-item">
                             <input type="number" name="discount" class="small" step="0.1" value="{{ $actives->discount }}">

@@ -12,6 +12,7 @@
                 <tr>
                     <th>ID</th>
                     <th>活动名称</th>
+                    <th>活动描述</th>
                     <th>活动折扣</th>
                     <th>活动展示图</th>
                     <th>背景图</th>
@@ -19,10 +20,11 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($actives as $k=>$v)
+                @foreach($common_actives_data as $k=>$v)
                 <tr>
                     <td>{{ $v->id }}</td>
                     <td>{{ $v->active_name}}</td>
+                    <td>{{ $v->active_desc}}</td>
                     <td>{{ $v->discount}}</td>
                     <td>
                         <img src="/uploads/{{$v->active_thumb}}" width="50px">
