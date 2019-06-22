@@ -98,6 +98,6 @@ Route::post('home/dologin', 'Home\LoginController@dologin');
 
 
 //显示活动界面
-Route::get('home/active', 'Home\ActiveController@index');
+Route::get('home/active/{id}', 'Home\ActiveController@index');
 //显示商品列表
 Route::get('home/goodlist','Home\GoodlistController@index');

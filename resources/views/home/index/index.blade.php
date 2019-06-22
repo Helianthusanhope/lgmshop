@@ -151,7 +151,9 @@
                             <div class="icon-sale one "></div>  
                                 <h4>{{ $v->active_name }}</h4>                         
                             <div class="activityMain ">
+                                <a href="/home/active/{{ $v->id }}">
                                 <img src="/uploads/{{ $v->active_thumb }}"></img>
+                                </a>
                             </div>
                             <div class="info ">
                                 <h3>{{ $v->active_desc }}</h3>

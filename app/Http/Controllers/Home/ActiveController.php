@@ -17,7 +17,7 @@ class ActiveController extends Controller
 	}
 	
     //显示一个活动页面
-    public function index()
+    public function index($id)
     {
     	return view('home.active.index');
     }
