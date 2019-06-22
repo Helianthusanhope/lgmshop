@@ -18,5 +18,3 @@
         <script src="/ho/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
 
     </head>
-
-                        

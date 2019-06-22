@@ -17,15 +17,56 @@ class LoginController extends Controller
     //执行验证登录
     public function dologin(Request $request)
     {
-    // 	$uname = $request->input('uname','');
-    // 	$upass = $request->input('upass','');
+    	$uname = $request->input('uname','');
+    	$upass = $request->input('upass','');
     	
-    // 	//验证获取的数据
-    // 	if( !  DB::table('users')->where('uname',$uname)->first() ){
+    	//验证获取的数据
+    	//在数据查看验证用户名
+    	if( DB::table('users')->where('uname',$uname)->first() ){
 
-    // 		   DB::table('users')->where('uname',$uname)->first()
-    // 	}else if(){
+    		$users_data = DB::table('users')->where('uname',$uname)->first();
 
-    // 	} 
-    // }	
+    	} else if ( DB::table('users')->where('email',$uname)->first() ){
+
+    		$users_data = DB::table('users')->where('email',$uname)->first();
+
+    	} else {
+
+    		$users_data = DB::table('users')->where('phone',$uname)->first();
+    	}
+
+
+    	//如果登录名不正确
+    	if(empty($users_data)){
+
+    		echo "<script>alert('用户名或密码错误');location.href='/home/login';</script>";
+    		exit;
+    	}
+    	//验证密码是否正确
+    	if( !Hash::check( $upass,$users_data->upass)){
+
+    		echo "<script>alert('用户名或密码错误');location.href='/home/login';</script>";
+    		exit;
+    	}
+
+    	//执行登录
+    	// 执行登录
+    	session(['home_login'=>true]);
+    	session(['home_user'=>$users_data]);
+
+
+    	//执行跳转到首页
+    	return redirect('/');
+    	
+    }
+
+    public function loginout()
+    {
+    	//执行退出
+    	session(['home_login'=>false]);
+    	session(['home_user'=>null]);
+
+    	return redirect('/');
+
+    }	
 }
