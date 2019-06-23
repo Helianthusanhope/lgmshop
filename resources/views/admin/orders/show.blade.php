@@ -57,7 +57,7 @@
     <div class="mws-panel-header">
         <span><i class="icon-table"></i> 商品库存</span>
     </div>
-    
+     
     <div class="mws-panel-body no-padding">
         <table class="mws-datatable-fn mws-table">
             <thead>
@@ -84,27 +84,42 @@
                     <td>{{ $v['stock'] }}</td>
                     <td>{{ $v['number'] }}</td>
                 </tr>
+                
                 @endforeach
             </tbody>
-
-            <script type="text/javascript">
-                
-                function checkForm()
-                {
-                    if (window.confirm('你确定要发货吗？'))  { 
-                        return true; 
-                    } else {
-                        return false; 
-                    }
-                }
-                
-            </script>
         </table>
     </div>
 </div>
+<div class="mws-panel grid_4" style="margin: auto;">
+    <div class="mws-panel-header">
+        <span><i class="icon-comment"></i>操作</span>
+    </div>
+    <div class="mws-panel-body" style="text-align: center">
+        <div style="margin-bottom:16px;">
+            <div class="btn-toolbar">
+                @if(($status == 1) && ($orders->order_status == 1))
+                <a href="/admin/orders/deliver/{{ $orders->id }}"  onclick="return checkForm()" class="btn btn-success" style="width: 100%">发货</a>
+                @elseif($orders->order_status == 2)
+                <a class="btn btn-success">物流详情</a>
+                @elseif($orders->order_status == 3)
+                <button type="button" class="btn" disabled="disabled">待评价</button>
+                @elseif($orders->order_status == 4)
+                <button type="button" class="btn" disabled="disabled">订单已完成</button>
+                @elseif($status == 0)
+                <button type="button" class="btn" disabled="disabled">库存不足不能发货</button>
+                @endif
+            </div>
+        </div>
+    </div>      
+</div>
 
-
-
+<script type="text/javascript">
+    function checkForm(){
+        if(!window.confirm('你确定要发货吗?')){
+            return false;
+        }
+    }
+</script>
 
 
 <script src="/admin/js/libs/jquery-1.8.3.min.js"></script>
@@ -133,7 +148,6 @@
 <script src="/admin/plugins/cleditor/jquery.cleditor.icon.min.js"></script>
 <!-- Plugin Scripts -->
 <script src="/admin/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="/admin/plugins/flot/jquery.flot.min.js"></script>
 <!-- <script src="/admin/custom-plugins/wizard/wizard.min.js"></script> -->
 <!-- Core Script -->
 <script src="/admin/bootstrap/js/bootstrap.min.js"></script>
@@ -146,8 +160,5 @@
 <script src="/admin/js/demo/demo.formelements.js"></script>
 <script src="/admin/js/demo/demo.table.js"></script>
 <script src="/admin/js/demo/demo.dashboard.js"></script>
-<script type="text/javascript" src="/utf8-php/ueditor.config.js"></script>
-<!-- 编辑器源码文件 -->
-<script type="text/javascript" src="/utf8-php/ueditor.all.js"></script>
 </body>
 </html>

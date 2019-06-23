@@ -46,7 +46,9 @@ Route::get('admin/rbac',function(){
 	Route::resource('admin/cates', 'Admin\CateController');
 	// 商品 库存 删除
 	Route::post('admin/goodstock/{id}', 'Admin\GoodController@delete');
-	// 商品 库存 添加
+	// 库存增加
+	Route::post('admin/stockadd/{id}', 'Admin\GoodController@stockadd');
+	// 商品 库存 添加 新的库存类型
 	Route::post('admin/stockstore', 'Admin\GoodController@stockstore');
 	// 商品快速上架
 	Route::get('admin/goods/status/{id}', 'Admin\GoodController@status');
@@ -56,6 +58,8 @@ Route::get('admin/rbac',function(){
 	Route::post('admin/activeup/{id}', 'Admin\GoodController@activeup');
 	// 商品
 	Route::resource('admin/goods', 'Admin\GoodController');
+	// 发货
+	Route::get('admin/orders/deliver/{id}', 'Admin\OrderController@deliver');
 	// 订单
 	Route::resource('admin/orders', 'Admin\OrderController');
 	// 轮播图
