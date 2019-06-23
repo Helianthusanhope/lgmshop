@@ -48,7 +48,7 @@
                         <div class="demo">
                             <ul>
                                 @foreach( $works_data as $k=>$v )                              
-                                <li><a target="_blank" href="#"><span>[特惠]</span>{{ $v->wtitle }}</a></li>
+                                <li><a target="_blank" href="/home/work/{{ $v->wid }}">{{ $v->wtitle }}</a></li>
                                 @endforeach
                                 <div class="mod-vip">
                                     <div class="m-baseinfo">
