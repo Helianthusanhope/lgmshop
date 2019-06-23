@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cates;
 use App\Models\Friends;
 use App\Models\Webconfig;
+use App\Models\Banners;
 use DB;
 
 class IndexController extends Controller
@@ -33,6 +34,7 @@ class IndexController extends Controller
 
         return $data;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -42,7 +44,8 @@ class IndexController extends Controller
     {
         //已共享 $common_cates_data
         $works_data = WorkController::getWorksAll();
-        return view('home.index.index',['works_data'=>$works_data]);        
+        $banners_data = Banners::get();
+        return view('home.index.index',['works_data'=>$works_data,'banners_data'=>$banners_data]);        
     }
 
     /**
