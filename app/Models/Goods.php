@@ -16,9 +16,19 @@ class Goods extends Model
    	{
    		return $this->hasMany('App\Models\Goodcomment','gid');
    	}
-    // 配置一对一
+    // 配置一对多
     public function goodstock()
     {
       	return $this->hasMany('App\Models\GoodStock','gid');
+    }
+    // 配置一对多 反向
+    public function goodactive()
+    {
+        return $this->belongsTo('App\Models\Actives','active_id');
+    }
+    // 配置一对多 反向
+    public function goodcates()
+    {
+        return $this->belongsTo('App\Models\Cates','cid','cid');
     }
 }

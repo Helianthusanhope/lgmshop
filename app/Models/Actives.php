@@ -14,4 +14,8 @@ class Actives extends Model
 	{
 	   return $this->hasOne('App\Models\Banners','active_id');
 	}
+	public function goods()
+	{
+	   return $this->hasMany('App\Models\Goods','active_id');
+	}
 }
