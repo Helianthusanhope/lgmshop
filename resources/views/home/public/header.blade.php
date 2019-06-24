@@ -1,5 +1,4 @@
 <body>
-        <div class="hmtop">
             <!--顶部导航条 -->
             <div class="am-container header">
                 <ul class="message-l">
@@ -29,4 +28,4 @@
                     <div class="topMessage favorite">
                         <div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
                 </ul>
-                </div>
+            </div>

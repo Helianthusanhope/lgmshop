@@ -7,42 +7,17 @@
 <!-- 轮播图 开始 -->
 @include('home.public.banners')
 <!-- 轮播图 结束 -->
-<!-- 搜索,导航 开始-->
+<!-- 搜索, 开始-->
 @include('home.public.search')
 <!-- 搜索,导航 结束-->
+<!-- 导航 开始-->
+@include('home.public.nav')
+<!-- 导航 结束-->
 <!--商品分类开始-->
 @include('home.public.cates')
-<!--商品分类结束-->     
-                        
-
-
-
-                    <!--小导航 -->
-                    <div class="am-g am-g-fixed smallnav">
-                        <div class="am-u-sm-3">
-                            <a href="sort.html"><img src="/ho/images/navsmall.jpg" />
-                                <div class="title">商品分类</div>
-                            </a>
-                        </div>
-                        <div class="am-u-sm-3">
-                            <a href="#"><img src="/ho/images/huismall.jpg" />
-                                <div class="title">大聚惠</div>
-                            </a>
-                        </div>
-                        <div class="am-u-sm-3">
-                            <a href="#"><img src="/ho/images/mansmall.jpg" />
-                                <div class="title">个人中心</div>
-                            </a>
-                        </div>
-                        <div class="am-u-sm-3">
-                            <a href="#"><img src="/ho/images/moneysmall.jpg" />
-                                <div class="title">投资理财</div>
-                            </a>
-                        </div>
-                    </div>
+<!--商品分类结束-->
 
                     <!--走马灯 -->
-
                     <div class="marqueen">
                         <span class="marqueen-title">商城头条</span>
                         <div class="demo">
@@ -51,25 +26,55 @@
                                 <li><a target="_blank" href="/home/work/{{ $v->wid }}">{{ $v->wtitle }}</a></li>
                                 @endforeach
                                 <div class="mod-vip">
+                                    @if(session('home_login')) 
                                     <div class="m-baseinfo">
                                         <a href="person/index.html">
                                             <img src="/ho/images/getAvatar.do.jpg">
                                         </a>
                                         <em>
-                                            Hi,<span class="s-name">小叮当</span>
-                                            <a href="#"><p>点击更多优惠活动</p></a>                                 
+                                            Hi,<span class="s-name">
+                                            {{session('home_user')->uname}}
+                                    
+                                            
+                                            </span>
+                                            <a href="#"><p>点击更多优惠活动</p></a>
                                         </em>
                                     </div>
+                                    <div>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <a href="order.html"><i><img src="/ho/images/pay.png"/></i><span>待付款[1]</span></a>
+                                                </td>
+                                                <td>
+                                                    <a href="order.html"><i><img src="/ho/images/send.png"/></i><span>待发货[2]</span></a>
+                                                </td>
+                                                <td>
+                                                    <a href="order.html"><i><img src="/ho/images/receive.png"/></i><span>待收货[4]</span></a>
+                                                </td>
+                                                <td>
+                                                    <a href="order.html"><i><img src="/ho/images/comment.png"/></i><span>待评价[1]</span></a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    @else
+                                    <div class="m-baseinfo">
+                                        <a href="person/index.html">
+                                            <img src="/ho/images/getAvatar.do.jpg">
+                                        </a>
+                                        <em>
+                                            Hi,<span class="s-name">小叮当                                    
+                                            </span>
+                                            <a href="#"><p>点击更多优惠活动</p></a>
+                                        </em>
+                                    </div>
+                                            
                                     <div class="member-logout">
                                         <a class="am-btn-warning btn" href="/home/login">登录</a>
                                         <a class="am-btn-warning btn" href="/home/register">注册</a>
                                     </div>
-                                    <div class="member-login">
-                                        <a href="#"><strong>0</strong>待收货</a>
-                                        <a href="#"><strong>0</strong>待发货</a>
-                                        <a href="#"><strong>0</strong>待付款</a>
-                                        <a href="#"><strong>0</strong>待评价</a>
-                                    </div>
+                                    @endif
                                     <div class="clear"></div>   
                                 </div>
                             </ul>

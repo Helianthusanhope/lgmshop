@@ -17,13 +17,9 @@
 		<script type="text/javascript" src="/ho/basic/js/jquery-1.7.min.js"></script>
 		<script type="text/javascript" src="/ho/js/script.js"></script>
 	</head>
-
-	<body>
-
 <!-- header 开始 -->
 @include('home.public.header')
 <!-- header 结束 -->
-
 			<!--悬浮搜索框-->
 
 			<div class="nav white">
@@ -34,8 +30,8 @@
 
 				<div class="search-bar pr">
 					<a name="index_none_header_sysc" href="#"></a>
-					<form>
-						<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+					<form action="/home/goodlist" method="get">
+						<input id="searchInput" name="search" type="text" placeholder="搜索" autocomplete="off">
 						<input id="ai-topsearch" class="submit am-btn"  value="搜索" index="1" type="submit">
 					</form>
 				</div>
@@ -141,7 +137,7 @@
 								<div class="clear"></div>
 
 								<ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
-									@foreach($goods as $k => $v)
+									@foreach($data as $k => $v)
 									
 									<li>
 										<div class="i-pic limit">
@@ -150,11 +146,7 @@
 											<p class="title fl">{{ $v->gname }}</p>
 											<p class="price fl">
 												<b>¥</b>
-												@if($v->active_id !=0)
-												<strong>{{ $v->price/$v->goodactive->discount }}</strong>
-												@else
 												<strong>{{ $v->price }}</strong>
-												@endif
 											</p>
 											<p class="number fl">
 												销量<span>{{ $v->sale }}</span>
