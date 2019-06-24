@@ -10,4 +10,9 @@ class GoodComment extends Model
     public $table = 'good_comments';
 
     public $primaryKey = 'coid';
+
+    public function usercomment()
+    {
+    	return $this->hasOne('App\Models\Users','uid','uid');
+    }
 }
