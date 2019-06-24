@@ -99,9 +99,12 @@ Route::get('home/loginout', 'Home\LoginController@loginout');
 
 //个人中心
 //显示个人中心首页
-Route::get('home/myself', 'Home\MyselfController@index');
-//个人信息页面
-Route::get('home/information', 'Home\InformationController@index');
+Route::get('home/personal', 'Home\PersonalController@index');
+//显示个人信息修改页面页面
+Route::get('home/information/edit', 'Home\InformationController@edit');
+//执行信息修改
+Route::post('home/information/update', 'Home\InformationController@update');
+
 
 
 
