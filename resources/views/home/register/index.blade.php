@@ -15,6 +15,10 @@
 		<script src="/ho/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
 		<script src="/ho/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
 
+		<link rel="stylesheet" href="/layui-v2.4.5/layui/css/layui.css">
+		<script src="/layui-v2.4.5/layui/layui.js"></script>
+		
+
 	</head>
 
 	<body>
@@ -36,25 +40,26 @@
 
 							<div class="am-tabs-bd">
 								<div class="am-tab-panel am-active">
-								  <form method="post" action="/home/register/insert">
+								  <form method="post" action="/home/register/insert" class="layui-form" lay-filter="test1" >
 								  	{{ csrf_field() }}
 								    <div class="user-email">
 								      <label for="email">
 								        <i class="am-icon-envelope-o"></i>
 								      </label>
-								      <input type="email" name="email" id="email" placeholder="请输入邮箱账号"></div>
+								      <input type="email" name="email" id="email" lay-verify="required|email" placeholder="请输入邮箱账号"></div>
 								    <div class="user-pass">
 								      <label for="password">
 								        <i class="am-icon-lock"></i>
 								      </label>
-								      <input type="password" name="upass" id="password" placeholder="设置密码"></div>
+								      <input type="password" name="upass" lay-verify="pass" id="password"  placeholder="设置密码"></div>
 								    <div class="user-pass">
 								      <label for="passwordRepeat">
 								        <i class="am-icon-lock"></i>
 								      </label>
-								      <input type="password" name="repass" id="passwordRepeat" placeholder="确认密码"></div>
+								      <input type="password" name="repass" lay-verify="repass" id="passwordRepeat" placeholder="确认密码"></div>
 								  	 <div class="am-cf">
-								    	<input type="submit"  value="注册bbbb" class="am-btn am-btn-primary am-btn-sm am-fl">
+								  	 	<button lay-submit lay-filter="goemail" class="am-btn am-btn-primary am-btn-sm am-fl">注册</button>  
+								    	<!-- <input type="submit"  lay-filter="goemail" value="注册bbbb" class="am-btn am-btn-primary am-btn-sm am-fl"> -->
 									</div>
 								  </form>
 								  <div class="login-links">
@@ -63,18 +68,18 @@
 								</div>
 
 								<div class="am-tab-panel">
-									<form method="post" action="/home/register/store">
+									<form method="post" action="/home/register/store" class="layui-form" lay-filter="test2">
 										{{ csrf_field() }}
 									  <div class="user-phone">
 									    <label for="phone">
 									      <i class="am-icon-mobile-phone am-icon-md"></i>
 									    </label>
-									    <input type="tel" name="phone" id="phone" placeholder="请输入手机号"></div>
+									    <input type="tel" name="phone" id="phone" lay-verify="required|phone|number" placeholder="请输入手机号"></div>
 									  <div class="verification">
 									    <label for="code">
 									      <i class="am-icon-code-fork"></i>
 									    </label>
-									    <input type="tel" name="code" id="code" placeholder="请输入验证码">
+									    <input type="tel" name="code" id="code" lay-verify="code" placeholder="请输入验证码">
 									    <a class="btn" href="javascript:void(0);" onClick="sendMobileCode(this);" id="sendMobileCode">
 									      <span id="dyMobileButton">获取</span></a>
 									  </div>
@@ -82,14 +87,15 @@
 									    <label for="password">
 									      <i class="am-icon-lock"></i>
 									    </label>
-									    <input type="password" name="upass" id="password" placeholder="设置密码"></div>
+									    <input type="password" name="upass" lay-verify="pass" id="password" placeholder="设置密码"></div>
 									  <div class="user-pass">
 									    <label for="passwordRepeat">
 									      <i class="am-icon-lock"></i>
 									    </label>
-									    <input type="password" name="repass" id="passwordRepeat" placeholder="确认密码"></div>
+									    <input type="password" name="repass" lay-verify="repass" id="passwordRepeat" placeholder="确认密码"></div>
 										<div class="am-cf">
-											<input type="submit" name="" value="注册aaa" class="am-btn am-btn-primary am-btn-sm am-fl">
+											<button lay-submit lay-filter="gophone" class="am-btn am-btn-primary am-btn-sm am-fl">注册</button>
+											<!-- <input type="submit" name="" value="注册aaa" class="am-btn am-btn-primary am-btn-sm am-fl"> -->
 										</div>
 									</form>
 									 <div class="login-links">
@@ -108,16 +114,58 @@
 									  })
 								</script>
 								<script type="text/javascript">
+			
+									//一般直接写在一个js文件中
+									layui.use(['layer', 'form'], function(){
+										var layer = layui.layer
+										,form = layui.form;
+
+										form.verify({
+										  pass: [
+										    /^[\S]{6,12}$/
+										    ,'密码必须6到12位，且不能出现空格'
+										  ]
+										  ,repass: [
+										    /^[\S]{6,12}$/
+										    ,'请填写正确的确认密码'
+										  ]
+										  ,code: [
+										    /^[\S]{4}$/
+										    ,'请输入4位验证码'
+										  ] 
+										});
+										//验证两次密码是否一致
+										let pass = $('#pass').val();
+										let repass = $('#repass').val();
+										if( pass !== repass ){
+											layer.msg('两次密码不一致');
+											return false;
+										}
+										form.on('submit(goemail)', function(data){
+											if(data.form){
+												
+												layer.msg('注册成功,请尽快完善个人信息');
+											}
+										  // console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+										  // console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+										  // console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+										  // return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+										});
+									});
+									
+
+									      
+								</script>
+								<script type="text/javascript">
 										function sendMobileCode(obj)
-										{
-											// 获取用户的验证码
+										{										
+											// 获取用户的手机号
 											let phone = $('#phone').val();
 											// 验证格式
 											let phone_preg = /^1{1}[3-9]{1}[\d]{9}$/;
 
 											if(!phone_preg.test(phone)){
-												alert('手机号格式不正确')
-
+												layer.msg('手机号格式不正确')
 												return false;
 											}
 
@@ -144,17 +192,12 @@
 												// 发送ajax  发送验证码
 												$.get('/home/register/sendPhone',{phone},function(res){
 													if(res.error_code == 0){
-														alert('发送成功，验证码10分钟有效');
+														layer.msg('发送成功，验证码10分钟有效');
 													}else{
-														alert('发送失败');
+														layer.msg('发送失败');
 													}
 												},'json');
-
-
 											}
-
-											
-
 										}	
 								</script>
 							</div>

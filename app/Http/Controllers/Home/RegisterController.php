@@ -21,6 +21,19 @@ class RegisterController extends Controller
     // 执行邮箱注册 操作
     public function insert(Request $request)
     {
+         // 验证数据
+        $this->validate($request, [
+            'upass' => 'required|regex:/^[\w]{6,18}$/',
+            'repass' => 'required|same:upass',
+            'email' => 'required|email',
+        ],[
+            'upass.required'=>'密码必填',
+            'upass.regex'=>'密码格式错误',
+            'repass.required'=>'确认密码必填',
+            'repass.same'=>'俩次密码不一致',
+            'email.required'=>'邮箱必填',
+            'email.email'=>'邮箱格式错误',
+        ]);
         DB::beginTransaction();
 
         $upass = $request->input('upass');
@@ -94,9 +107,22 @@ class RegisterController extends Controller
 
 
 
-    // 执行注册 手机号
-   public function store(Request $request)
-   {      
+        // 执行注册 手机号
+        public function store(Request $request)
+        {
+            // 验证数据
+            $this->validate($request, [
+                'upass' => 'required|regex:/^[\w]{6,18}$/',
+                'repass' => 'required|same:upass',
+                'phone' => 'required|regex:/^1{1}[3-9]{1}[\d]{9}$/',
+            ],[
+                'upass.required'=>'密码必填',
+                'upass.regex'=>'密码格式错误',
+                'repass.required'=>'确认密码必填',
+                'repass.same'=>'俩次密码不一致',
+                'phone.required'=>'手机号必填',
+                'phone.regex'=>'手机号格式不正确',
+            ]);      
 
         // 验证手机验证码 用户输入
         $phone = $request->input('phone',0);
