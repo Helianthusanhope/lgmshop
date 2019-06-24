@@ -316,5 +316,23 @@ class GoodController extends Controller
             return back()->with('error','操作失败');
         }
     }
-    // 取消参加活动
+    // 原有库存基础上增加减少
+    public function stockadd(Request $request, $id)
+    {
+        //
+        $goodstock = GoodStock::find($id);
+        $a = $goodstock->stock + $request->input('stock','');
+        if ($a < 0) {
+           $a = 0;
+        }
+        $goodstock->stock = $a;
+        $res = $goodstock->save();
+        if($res){
+            DB::commit();
+            return back()->with('success','增加成功');
+        }else{
+            DB::rollBack();
+            return back()->with('error','操作失败');
+        }
+    }
 }

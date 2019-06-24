@@ -44,7 +44,6 @@
                         @if($v->order_status != 0)
                         <a href="javascript:;" style="color: #fff" class="btn btn-success" onclick="orders('{{$v->oname}}','{{$v->id}}')" >订单详情</a>
                         @endif
-                        <a href="javascript:;" style="color: #fff" class="btn btn-success" onclick="orders('{{$v->oname}}','{{$v->id}}')" >订单详情</a>
                     </td>
                 </tr>
                 @endforeach

@@ -8,7 +8,7 @@
 
 <!-- Viewport Metatag -->
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Plugin Stylesheets first to ease overrides -->
 <link rel="stylesheet" type="text/css" href="/admin/plugins/colorpicker/colorpicker.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/custom-plugins/picklist/picklist.css" media="screen">
@@ -67,7 +67,7 @@
                     <th>大小</th>
                     <th>库存量</th>
                     <th>创建时间</th>
-                    <th>操作</th>
+                    <th style="width: 20%;">操作</th>
                 </tr>
             </thead>
             <tbody>
@@ -79,12 +79,12 @@
                     <td>{{ $v->stock }}</td>
                     <td>{{ $v->created_at}}</td>
                     <td>
-                        <form action="/admin/goodstock/{{ $v->stid }}" method="post" style="display: inline-block;" onsubmit="return checkForm()">
+                        <a href="javascript:;" onclick="del('/admin/goodstock/{{ $v->stid }}')" class="btn btn-danger">删除</a>
+                        <form action="/admin/stockadd/{{ $v->stid }}" method="post" style="display: inline-block;" onsubmit="return checkAdd()">
                             {{ csrf_field() }}
-                            
-                            <input type="submit" value="删除" class="btn btn-danger">
+                            <input type="text" class="mws-spinner" name="stock" >
+                            <input type="submit" value="增减库存" class="btn btn-warning">
                         </form>
-                        
                     </td>
                 </tr>
                 @endforeach
@@ -92,15 +92,27 @@
 
             <script type="text/javascript">
                 
-                function checkForm()
+                function checkAdd()
                 {
-                    if (window.confirm('你确定要删除吗？'))  { 
+                    if (window.confirm('你确定要增加/减少吗？'))  { 
                         return true; 
                     } else {
                         return false; 
                     }
                 }
-                
+                function del(url){
+                    $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+
+                    if(!window.confirm('你确定要删除吗?')){
+                        return false;
+                    }
+
+                    $.ajax({
+                        type: 'DELETE',
+                        url: url,
+                    });
+                    window.location.reload();
+                }
             </script>
         </table>
     </div>
