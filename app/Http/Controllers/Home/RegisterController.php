@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Users;
-use App\Models\UserInfos;
+use App\Models\UserInfo;
 use Hash;
 use Mail;
 use DB;
@@ -52,14 +52,14 @@ class RegisterController extends Controller
         }
 
         // 压入默认头像
-        $userinfo = new Userinfos;
+        $userinfo = new Userinfo;
         $userinfo->uid = $user->uid;
         $userinfo->profile = '/20190619/M7RFskFynbNHZX6sbz0mn6wjAB9Lf5iTXHNfaxzv.png';
         $res2 = $userinfo->save();
 
         if($res1 && $res2){
             DB::commit();
-            return redirect('home/index')->with('success','注册成功');
+            return redirect('home/login')->with('success','注册成功');
         }else{
             DB::rollBack();
             return back()->with('error','注册失败');
@@ -132,14 +132,14 @@ class RegisterController extends Controller
         }
 
         // 压入默认头像
-        $userinfo = new Userinfos;
+        $userinfo = new Userinfo;
         $userinfo->uid = $uid;
         $userinfo->profile = '/20190619/M7RFskFynbNHZX6sbz0mn6wjAB9Lf5iTXHNfaxzv.png';
         $res2 = $userinfo->save();
 
         if($res1 && $res2){
             DB::commit();
-            return redirect('home/index')->with('success','注册成功');
+            return redirect('home/login')->with('success','注册成功');
         }else{
             DB::rollBack();
             return back()->with('error','注册失败');
