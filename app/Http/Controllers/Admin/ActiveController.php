@@ -19,7 +19,7 @@ class ActiveController extends Controller
     public function index()
     {
 
-        //活动首页显示
+        //活动列表显示
         $actives = Actives::get();
         return view('admin.actives.index',['actives'=>$actives]);
        
@@ -182,5 +182,21 @@ class ActiveController extends Controller
             return back()->with('error','删除失败');
         }
 
+    }
+
+    // 快速上推荐位
+    public function status($id)
+    {
+        //找到要上推荐的一条
+        $active = Actives::find($id);
+        $status = abs($active->status-1);
+        $active->status = $status;
+        $res = $active->save();
+
+        if($res){
+            return back()->with('success','操作成功');
+        }else{
+            return back()->with('error','操作失败');
+        }
     }
 }

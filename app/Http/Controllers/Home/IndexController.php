@@ -44,8 +44,11 @@ class IndexController extends Controller
     {
         //已共享 $common_cates_data
         $works_data = WorkController::getWorksAll();
+        $actives_commend = ActiveController::getActivesCommend();
+        $actives_not_commend = ActiveController::getActivesNotcommend();
+
         $banners_data = Banners::get();
-        return view('home.index.index',['works_data'=>$works_data,'banners_data'=>$banners_data]);        
+        return view('home.index.index',['actives_not_commend'=>$actives_not_commend,'actives_commend'=>$actives_commend,'works_data'=>$works_data,'banners_data'=>$banners_data]);        
     }
 
     /**

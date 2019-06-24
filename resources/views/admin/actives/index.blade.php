@@ -16,6 +16,7 @@
                     <th>活动折扣</th>
                     <th>活动展示图</th>
                     <th>背景图</th>
+                    <th>推荐状态</th>
                     <th>操作</th>
                 </tr>
             </thead>
@@ -31,8 +32,16 @@
                     </td>
                     <td>
                         <img src="/uploads/{{$v->background}}" width="50px">
-                    </td> 
-                    <td>                
+                    </td>
+                    @if($v->status == 0)
+                    <td><span style="background:#ccc;font-size:15px">未上推荐</span></td>
+                    @else
+                    <td><span style="background:skyblue; font-size:15px" >已上推荐</span></td>
+                    @endif
+                    <td>
+                        <a href="/admin/actives/status/{{ $v->id }}" class="btn btn-success">
+                            {!! $v->status == 0 ? '上推荐位' : '<p style="color: #D34011">下推荐位</p>' !!}
+                        </a>                
                         <a href="/admin/actives/{{ $v->id }}/edit" class="btn btn-warning">修改</a>
                         <form action="/admin/actives/{{ $v->id }}" method="post" style="display: inline-block;">
                             {{ csrf_field() }}

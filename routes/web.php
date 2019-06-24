@@ -34,16 +34,19 @@ Route::get('admin/rbac',function(){
 // Route::group(['middleware'=>['login']],function(){
 	//后台首页
 	Route::resource('admin/index', 'Admin\IndexController');
+	
 	// 后台 管理员
 	Route::resource(' admin/adminusers','Admin\AdminuserController');
 	// 后台  角色
 	Route::resource('admin/roles','Admin\RolesController');
 	// 后台 权限
 	Route::resource('admin/nodes','Admin\NodesController');
+	
 	// 用户
 	Route::resource('admin/users', 'Admin\UserController');
 	// 分区
 	Route::resource('admin/cates', 'Admin\CateController');
+	
 	// 商品 库存 删除
 	Route::post('admin/goodstock/{id}', 'Admin\GoodController@delete');
 	// 库存增加
@@ -62,19 +65,26 @@ Route::get('admin/rbac',function(){
 	Route::get('admin/orders/deliver/{id}', 'Admin\OrderController@deliver');
 	// 订单
 	Route::resource('admin/orders', 'Admin\OrderController');
+	
 	// 轮播图
 	Route::resource('admin/banners', 'Admin\BannerController');
+	
+	// 活动快速上推荐位
+	Route::get('admin/actives/status/{id}', 'Admin\ActiveController@status');
 	// 活动
 	Route::resource('admin/actives', 'Admin\ActiveController');
-	// 友情链接快速操作
+
+	// 友情链接添加快速操作
 	Route::get('admin/friends/status/{id}', 'Admin\FriendController@status');
 	// 友情链接
 	Route::resource('admin/friends', 'Admin\FriendController');
+
 	// 网站配置快速操作
 	Route::get('admin/webconfigs/status/{id}', 'Admin\WebConfigController@status');
 	// 网站配置
 	Route::resource('admin/webconfigs', 'Admin\WebConfigController');
-	// 友情链接快速操作
+	
+	// 文章链接显示快速操作
 	Route::get('admin/works/status/{id}', 'Admin\WorkController@status');
 	// 文章(新闻)
 	Route::resource('admin/works', 'Admin\WorkController');
