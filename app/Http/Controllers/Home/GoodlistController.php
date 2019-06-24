@@ -39,11 +39,11 @@ class GoodlistController extends Controller
 	}
 
 	 //显示商品列表页
-    public function sort($id)
+    public function show($id)
     {
     	$goods = Goods::where('cid',$id)->where('good_status','1')->select('gid','gname','price','cid','thumb','active_id','sale')->get();
-    	// echo "商品列表";
-    	return view('home.goodlist.index',['goods'=>$goods]);
+    	echo "分类id访问商品列表";
+    	return view('home.goodlist.index',['data'=>$goods]);
     }
 
 
@@ -51,7 +51,7 @@ class GoodlistController extends Controller
     public function index(Request $request)
     {
     	// $_SESSION['car'] = null;
-    	$this->dataWord();
+    	// $this->dataWord();
     	// $str = '倍混合变焦麒麟980芯片屏内指纹';
     	// $str = '荣耀8X 千元屏 霸91% 屏占比';
     	// $str = '小辣椒 红辣椒7X 4+64GB 学生智能手机 美颜双摄 微Q多开 人脸识别 移动联通电';

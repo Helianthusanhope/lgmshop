@@ -127,9 +127,7 @@ Route::post('home/information/update', 'Home\InformationController@update');
 Route::get('home/active/{id}', 'Home\ActiveController@index');
 //显示新闻详情页
 Route::get('home/work/{id}', 'Home\WorkController@index');
-//分类显示商品列表
-Route::get('home/goodlist/{id}','Home\GoodlistController@sort');
 //全局搜索显示
-Route::get('home/goodlist','Home\GoodlistController@index');
+Route::resource('home/goodlist','Home\GoodlistController');
 // 显示商品
 Route::resource('home/goods','Home\GoodController');
