@@ -21,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
 
         View::share('common_cates_data',IndexController::getPidCatesData());
         View::share('common_actives_data',ActiveController::getActivesAll());
+        View::share('actives_not_commend',ActiveController::getActivesNotcommend());
         View::share('common_friends_data',IndexController::gerFriendsData());
         View::share('commoon_Webconfigs_data',IndexController::getWebconfigsData());
 

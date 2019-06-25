@@ -45,8 +45,8 @@
 						   <div class="nav-cont">
 							<ul>
                                 <li class="index"><a href="/">首页</a></li>
-                                @foreach( $common_actives_data as $k=>$v )
-                                <li class="qc"><a href="#">{{ $v->active_name }}</a></li>
+                                @foreach( $actives_not_commend as $k=>$v )
+                                <li class="qc"><a href="/home/active/{{ $v->id }}">{{ $v->active_name }}</a></li>
                                 @endforeach
                             </ul>
 							    <div class="nav-extra">
@@ -68,7 +68,7 @@
 								@endforeach
 								@else
 								<span class=商品规格<"font-pale">所有结果：</span>
-								<a title="商品规格" href="#">/a>
+								<a title="商品规格" href="#">ssss</a>
 								@endif
 							</div>
 							<ul class="select">

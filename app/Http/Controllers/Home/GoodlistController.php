@@ -79,11 +79,11 @@ class GoodlistController extends Controller
 
     	if(!empty($search)){
     		if(preg_match('/[\w]/',$search)){
-    			echo "this is mysql like ....";
+    			// echo "this is mysql like ....";
     			// dump(preg_match('/[\w]/',$search));
     			$goods = DB::table('goods')->where('gname','like','%'.$search.'%')->get();
     		}else{
-    			echo "this is 中文分词 ....";
+    			// echo "this is 中文分词 ....";
 	    		$gid = DB::table('view_goods_word')->select('gid')->where('word',$search)->get();
 		    	// dump($gid);
 		    	$gids = [];
