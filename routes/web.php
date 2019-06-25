@@ -119,6 +119,11 @@ Route::get('home/information/edit', 'Home\InformationController@edit');
 //执行信息修改
 Route::post('home/information/update', 'Home\InformationController@update');
 
+//显示地址页面
+Route::get('home/address', 'Home\AddressController@index');
+//执行地址添加
+Route::post('home/address/store', 'Home\AddressController@store');
+
 
 
 

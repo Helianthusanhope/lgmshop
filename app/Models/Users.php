@@ -20,7 +20,7 @@ class Users extends Model
     // 配置一对一
     public function useraddr()
     {
-      return $this->hasOne('App\Models\UserAddr','uid');
+      return $this->hasMany('App\Models\UserAddr','uid');
     }
 
     

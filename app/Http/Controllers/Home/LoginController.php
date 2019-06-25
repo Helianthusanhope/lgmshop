@@ -47,8 +47,7 @@ class LoginController extends Controller
 
     		echo "<script>alert('用户名或密码错误');location.href='/home/login';</script>";
     		exit;
-    	}
-
+    	}     
     	//执行登录
     	// 执行登录
     	session(['home_login'=>true]);
@@ -64,8 +63,8 @@ class LoginController extends Controller
     {
     	//执行退出
     	session(['home_login'=>false]);
-    	session(['home_user'=>null]);
-
+    	session(['home_user'=>null]);   
+        
     	return redirect('/');
 
     }	
