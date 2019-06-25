@@ -60,7 +60,7 @@ class GoodController extends Controller
         } else {
             $active = 1;
         }
-        $goodcomment = $good->goodcomment;
+        $goodcomment = GoodComment::where('gid',$id)->Paginate(2);
         return view('home.good.show',['good'=>$good,'like'=>$like,'active'=>$active,'goodcomment'=>$goodcomment]);
     }
 
