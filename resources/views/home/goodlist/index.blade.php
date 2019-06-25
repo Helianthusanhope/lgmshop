@@ -36,7 +36,11 @@
 					</form>
 				</div>
 			</div>
-			<div class="nav-table"  >
+			<div class="clear"></div>
+			<b class="line"></b>
+           <div class="search">
+			<div class="search-list">
+				<div class="nav-table"  >
 						   <div class="long-title"><span class="all-goods">全部分类</span></div>
 						   <div class="nav-cont">
 							<ul>
@@ -50,14 +54,7 @@
 							    	<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
 							    </div>
 							</div>
-				</div>
-
-			<div class="clear"></div>
-
-			<b class="line"></b>
-           <div class="search">
-			<div class="search-list">
-				
+				</div>	
 			
 				
 					<div class="am-g am-g-fixed">

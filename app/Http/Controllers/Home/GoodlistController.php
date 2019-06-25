@@ -54,7 +54,6 @@ class GoodlistController extends Controller
     public function show($id)
     {
     	$goods = Goods::where('cid',$id)->where('good_status','1')->select('gid','gname','price','cid','thumb','active_id','sale')->get();
-    	echo "分类id访问商品列表";
     	$cate_nav = self::getCateNav($id);
     	return view('home.goodlist.index',['data'=>$goods,'cate_nav'=>$cate_nav]);
     }
