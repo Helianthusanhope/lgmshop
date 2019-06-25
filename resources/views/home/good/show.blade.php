@@ -12,15 +12,14 @@
 		<link href="/ho/basic/css/demo.css" rel="stylesheet" type="text/css" />
 		<link type="text/css" href="/ho/css/optstyle.css" rel="stylesheet" />
 		<link type="text/css" href="/ho/css/style.css" rel="stylesheet" />
-
+		<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
 		<script type="text/javascript" src="/ho/basic/js/jquery-1.7.min.js"></script>
 		<script type="text/javascript" src="/ho/basic/js/quick_links.js"></script>
-
 		<script type="text/javascript" src="/ho/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
 		<script type="text/javascript" src="/ho/js/jquery.imagezoom.min.js"></script>
 		<script type="text/javascript" src="/ho/js/jquery.flexslider.js"></script>
 		<script type="text/javascript" src="/ho/js/list.js"></script>
-
+		
 	</head>
 
 	<body>
@@ -484,7 +483,7 @@
 											<h4>商品细节</h4>
 										</div>
 										<div class="twlistNews">
-											{{ $good->detail }}
+											{!! htmlspecialchars_decode($good->detail) !!}
 										</div>
 									</div>
 									<div class="clear"></div>
@@ -588,15 +587,7 @@
 									<div class="clear"></div>
 
 									<!--分页 -->
-									<ul class="am-pagination am-pagination-right">
-										<li class="am-disabled"><a href="#">&laquo;</a></li>
-										<li class="am-active"><a href="#">1</a></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#">4</a></li>
-										<li><a href="#">5</a></li>
-										<li><a href="#">&raquo;</a></li>
-									</ul>
+									<div style="float: right;">{{ $goodcomment->links() }}</div>
 									<div class="clear"></div>
 
 									<div class="tb-reviewsft">
