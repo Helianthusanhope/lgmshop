@@ -478,9 +478,9 @@
 						<a href="/home/personal">个人中心</a>
 					</li>
 					<li class="person">
-						<a href="/home/personal">个人资料</a>
+						
 						<ul>
-							<li> <a href="/home/information/edit">个人信息</a></li>
+							<li> <a href="/home/information/edit">个人资料</a></li>
 							<li> <a href="/home/safety">安全设置</a></li>
 							<li> <a href="/home/address">收货地址</a></li>
 						</ul>

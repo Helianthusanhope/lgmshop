@@ -1,25 +1,15 @@
+<!--网站样式开始-->
+@section('css')
 
-<!DOCTYPE html>
-<html>
 
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+@show
 
-		<title>个人资料</title>
+<!--网站样式结束-->
 
-		<link href="/ho/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
-		<link href="/ho/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
-
-		<link href="/ho/css/personal.css" rel="stylesheet" type="text/css">
-		<link href="/ho/css/infstyle.css" rel="stylesheet" type="text/css">
-		<script src="/ho/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
-		<script src="/ho/AmazeUI-2.4.2/assets/js/amazeui.js" type="text/javascript"></script>
-			
-	</head>
 <!--网站导航开始-->
 @include('home.public.header')
 <!--网站导航结束-->
+
 <!--悬浮搜索框开始-->
 
 						<div class="nav white">
@@ -55,9 +45,12 @@
 						    	<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
 						    	<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
 						    </div>
-						</div>
-
+						</div>						
 <!--搜索框结束-->
+
+
+
+
 
 			</div>
 			<b class="line"></b>
@@ -66,42 +59,11 @@
 				<div class="main-wrap">
 
 					<div class="user-info">
-						<!--标题 -->
-						<div class="am-cf am-padding">
-							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">个人资料</strong> / <small>Personal&nbsp;information</small></div>
-						</div>
-						<hr/>
-
-						<!--头像 -->
-						<div class="user-infoPic">
-
-							<div class="filePic">
-								<input type="file" class="inputPic" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*">
-								<img class="am-circle am-img-thumbnail" src="/ho/images/getAvatar.do.jpg" alt="" />
-							</div>
-
-							<p class="am-form-help">头像</p>
-
-							<div class="info-m">
-								<div><b>用户名：<i>{{ session('home_user')->uname }}</i></b></div>
-								<div class="u-level">
-									<span class="rank r2">
-							             <s class="vip1"></s><a class="classes" href="#">铜牌会员</a>
-						            </span>
-								</div>
-								<div class="u-safety">
-									<a href="safety.html">
-									 账户安全
-									<span class="u-profile"><i class="bc_ee0000" style="width: 60px;" width="0">60分</i></span>
-									</a>
-								</div>
-							</div>
-						</div>
-<!--重写部分开始-->
-@section('content')
-						
-@show
-<!--重写部分结束-->
+							<!--重写部分开始-->
+							@section('content')
+													
+							@show
+							<!--重写部分结束-->
 					</div>
 
 				</div>
@@ -136,9 +98,9 @@
 						<a href="/home/personal">个人中心</a>
 					</li>
 					<li class="person">
-						<a href="/home/personal">个人资料</a>
+						
 						<ul>
-							<li class="active"> <a href="/home/information/edit">个人信息</a></li>
+							<li class="active"> <a href="/home/information/edit">个人资料</a></li>
 							<li> <a href="/home/safety">安全设置</a></li>
 							<li> <a href="/home/address">收货地址</a></li>
 						</ul>
