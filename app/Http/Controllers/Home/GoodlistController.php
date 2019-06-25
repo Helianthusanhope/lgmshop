@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Goods;
+use App\Models\Cates;
 use DB;
 class GoodlistController extends Controller
 {
@@ -37,19 +38,32 @@ class GoodlistController extends Controller
 		}
 
 	}
+	//获取分类导航数据
+	public static function getCateNav($id)
+	{
+		//第三级分类导航
+    	$cate_data = DB::table('cates')->where('cid',$id)->select('cid','cname','path')->first();
+    	$cids = explode(',', $cate_data->path);
+    	//获取父级分类
+    	$cate_nav = DB::table('cates')->whereIn('cid',$cids)->select('cid','cname','path')->get();
+    	$cate_nav[] =$cate_data ;
+    	return $cate_nav;
+	}
 
 	 //显示商品列表页
     public function show($id)
     {
     	$goods = Goods::where('cid',$id)->where('good_status','1')->select('gid','gname','price','cid','thumb','active_id','sale')->get();
     	echo "分类id访问商品列表";
-    	return view('home.goodlist.index',['data'=>$goods]);
+    	$cate_nav = self::getCateNav($id);
+    	return view('home.goodlist.index',['data'=>$goods,'cate_nav'=>$cate_nav]);
     }
 
 
     //
     public function index(Request $request)
     {
+    	$cate_nav = null;
     	// $_SESSION['car'] = null;
     	// $this->dataWord();
     	// $str = '倍混合变焦麒麟980芯片屏内指纹';
@@ -87,7 +101,7 @@ class GoodlistController extends Controller
 
     	/* 中文分词 结束  */
 
-    	return view('home.goodlist.index',['data'=>$goods,'countCar'=>$countCar]);
+    	return view('home.goodlist.index',['data'=>$goods,'countCar'=>$countCar,'cate_nav'=>$cate_nav]);
     }
 
     public function word($text)
