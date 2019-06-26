@@ -8,6 +8,7 @@ use App\Models\Cates;
 use App\Models\Friends;
 use App\Models\Webconfig;
 use App\Models\Banners;
+use App\Models\Goods;
 use DB;
 
 class IndexController extends Controller
@@ -18,13 +19,14 @@ class IndexController extends Controller
         $friends_data = Friends::get();
         return $friends_data;
     }
-
+    //获取所有哦的网站配置
     public static function getWebconfigsData()
     {
         $webconfigs_data = Webconfig::get();
         return $webconfigs_data;
 
     }
+    //获取 所有的分类 排版 成可三级分类 的形式
     public static function getPidCatesData($pid = 0)
     {
         $data = Cates::where('pid',$pid)->get();
@@ -33,6 +35,19 @@ class IndexController extends Controller
         }
 
         return $data;
+    }
+
+    //获取所有商品对应的 顶级分类
+    public static function getCateGoods()
+    {
+        //获取商品所对应的的所有分类
+        $cids = Goods::pluck('cid','gid');
+        $categoods = DB::table('cates')->select('path')->whereIn('cid',$cids)->get();
+        $cates_top = [];
+        foreach ($categoods as $k => $v) {
+             $cates_top[] = explode(',', $v->path)[1];
+        }
+        return $cates_top;
     }
 
     /**
@@ -48,7 +63,9 @@ class IndexController extends Controller
         $actives_not_commend = ActiveController::getActivesNotcommend();
 
         $banners_data = Banners::get();
-        return view('home.index.index',['actives_not_commend'=>$actives_not_commend,'actives_commend'=>$actives_commend,'works_data'=>$works_data,'banners_data'=>$banners_data]);        
+        $data = Goods::get();
+        $categoods = self::getCateGoods();
+        return view('home.index.index',['categoods'=>$categoods,'data'=>$data,'actives_not_commend'=>$actives_not_commend,'actives_commend'=>$actives_commend,'works_data'=>$works_data,'banners_data'=>$banners_data]);        
     }
 
     /**

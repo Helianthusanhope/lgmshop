@@ -83,7 +83,7 @@ class GoodlistController extends Controller
     			// echo "this is mysql like ....";
     			// dump(preg_match('/[\w]/',$search));
 
-    			$goods = Goods::where('gname','like','%'.$search.'%')->orderBy('sale','desc')->paginate(5);
+    			$goods = Goods::where('gname','like','%'.$search.'%')->orderBy('sale','desc')->paginate(12);
 
     		}else{
     			// echo "this is 中文分词 ....";
@@ -96,15 +96,15 @@ class GoodlistController extends Controller
 		    	// dump($gids);
 		    	// dump($data2);
 
-		    	$goods = Goods::whereIn('gid',$gids)->orderBy('sale','desc')->paginate(5);
+		    	$goods = Goods::whereIn('gid',$gids)->orderBy('sale','desc')->paginate(12);
 	    	}
     	}else{
-    		$goods = Goods::orderBy('sale','desc')->paginate(5);
+    		$goods = Goods::orderBy('sale','desc')->paginate(12);
     	}
 
     	/* 中文分词 结束  */
 
-    	return view('home.goodlist.index',['data'=>$goods,'countCar'=>$countCar,'cate_nav'=>$cate_nav]);
+    	return view('home.goodlist.index',['search'=>$search,'data'=>$goods,'countCar'=>$countCar,'cate_nav'=>$cate_nav]);
     }
 
     public function word($text)
