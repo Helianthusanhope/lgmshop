@@ -118,11 +118,11 @@ $(document).ready(function() {
 	$('#min').attr('disabled', true);
 	//数量增加操作
 	$("#add").click(function() {
-			t.val(parseInt(t.val()) + 1)
+			t.val(parseInt(t.val()) + 1);
 			if (parseInt(t.val()) != 1) {
 				$('#min').attr('disabled', false);
 			}
-
+			
 		})
 		//数量减少操作
 	$("#min").click(function() {
@@ -130,6 +130,7 @@ $(document).ready(function() {
 		if (parseInt(t.val()) == 1) {
 			$('#min').attr('disabled', true);
 		}
+		
 
 	})
 

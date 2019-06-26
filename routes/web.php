@@ -136,3 +136,6 @@ Route::get('home/work/{id}', 'Home\WorkController@index');
 Route::resource('home/goodlist','Home\GoodlistController');
 // 显示商品
 Route::resource('home/goods','Home\GoodController');
+// 订单页
+Route::get('home/orders/buy', 'Home\OrderController@index');
+Route::resource('home/orders','Home\OrderController');

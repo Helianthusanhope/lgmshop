@@ -81,7 +81,7 @@ class GoodlistController extends Controller
     		if(preg_match('/[\w]/',$search)){
     			// echo "this is mysql like ....";
     			// dump(preg_match('/[\w]/',$search));
-    			$goods = DB::table('goods')->where('gname','like','%'.$search.'%')->get();
+    			$goods = Goods::where('gname','like','%'.$search.'%')->get();
     		}else{
     			// echo "this is 中文分词 ....";
 	    		$gid = DB::table('view_goods_word')->select('gid')->where('word',$search)->get();
@@ -92,13 +92,12 @@ class GoodlistController extends Controller
 		    	}
 		    	// dump($gids);
 		    	// dump($data2);
-		    	$goods = DB::table('goods')->whereIn('gid',$gids)->get();
+		    	$goods = Goods::whereIn('gid',$gids)->get();
 	    	}
     	}else{
-    		$goods = DB::table('goods')->get();
+    		$goods = Goods::get();
     	}
-
-    	/* 中文分词 结束  */
+    	
 
     	return view('home.goodlist.index',['data'=>$goods,'countCar'=>$countCar,'cate_nav'=>$cate_nav]);
     }
