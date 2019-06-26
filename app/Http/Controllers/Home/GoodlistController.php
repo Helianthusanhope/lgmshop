@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Goods;
+use App\Models\Actives;
 use App\Models\Cates;
 use DB;
 class GoodlistController extends Controller
@@ -64,7 +65,7 @@ class GoodlistController extends Controller
     {
     	$cate_nav = null;
     	// $_SESSION['car'] = null;
-    	// $this->dataWord();
+    	$this->dataWord();
     	// $str = '倍混合变焦麒麟980芯片屏内指纹';
     	// $str = '荣耀8X 千元屏 霸91% 屏占比';
     	// $str = '小辣椒 红辣椒7X 4+64GB 学生智能手机 美颜双摄 微Q多开 人脸识别 移动联通电';
@@ -81,7 +82,7 @@ class GoodlistController extends Controller
     		if(preg_match('/[\w]/',$search)){
     			// echo "this is mysql like ....";
     			// dump(preg_match('/[\w]/',$search));
-    			$goods = DB::table('goods')->where('gname','like','%'.$search.'%')->get();
+    			$goods = Goods::where('gname','like','%'.$search.'%')->get();
     		}else{
     			// echo "this is 中文分词 ....";
 	    		$gid = DB::table('view_goods_word')->select('gid')->where('word',$search)->get();
@@ -92,10 +93,10 @@ class GoodlistController extends Controller
 		    	}
 		    	// dump($gids);
 		    	// dump($data2);
-		    	$goods = DB::table('goods')->whereIn('gid',$gids)->get();
+		    	$goods = Goods::whereIn('gid',$gids)->get();
 	    	}
     	}else{
-    		$goods = DB::table('goods')->get();
+    		$goods = Goods::get();
     	}
 
     	/* 中文分词 结束  */
