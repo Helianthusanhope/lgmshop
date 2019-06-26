@@ -132,7 +132,7 @@ Route::post('home/address/store', 'Home\AddressController@store');
 Route::get('home/active/{id}', 'Home\ActiveController@index');
 //显示新闻详情页
 Route::get('home/work/{id}', 'Home\WorkController@index');
-//全局搜索显示
+// 显示商品
 Route::resource('home/goodlist','Home\GoodlistController');
 // 显示商品
 Route::resource('home/goods','Home\GoodController');

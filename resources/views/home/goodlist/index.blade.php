@@ -16,6 +16,8 @@
 		<link href="/ho/css/skin.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="/ho/basic/js/jquery-1.7.min.js"></script>
 		<script type="text/javascript" src="/ho/js/script.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
 	</head>
 <!-- header 开始 -->
 @include('home.public.header')
@@ -166,62 +168,43 @@
 							<div class="search-side">
 
 								<div class="side-title">
-									经典搭配
+									猜你喜欢
 								</div>
-
+								@foreach( $data as $k=>$v )
 								<li>
 									<div class="i-pic check">
-										<img src="/ho/images/cp.jpg" />
-										<p class="check-title">萨拉米 1+1小鸡腿</p>
+										<img src="/uploads/{{ $v->thumb }}" />
+										<p class="title fl">{{ $v->gname }}</p>
 										<p class="price fl">
 											<b>¥</b>
-											<strong>29.90</strong>
+											@if($v->active_id != 0)
+											<strong>{{ $v->price * $v->goodactive->discount / 10}}</strong>
+											@elseif($v->active_id == 0)
+											<strong>{{ $v->price }}</strong>
+											@endif
 										</p>
 										<p class="number fl">
-											销量<span>1110</span>
+											销量<span>{{ $v->sale }}</span>
 										</p>
 									</div>
 								</li>
-								<li>
-									<div class="i-pic check">
-										<img src="/ho/images/cp2.jpg" />
-										<p class="check-title">ZEK 原味海苔</p>
-										<p class="price fl">
-											<b>¥</b>
-											<strong>8.90</strong>
-										</p>
-										<p class="number fl">
-											销量<span>1110</span>
-										</p>
-									</div>
-								</li>
-								<li>
-									<div class="i-pic check">
-										<img src="/ho/images/cp.jpg" />
-										<p class="check-title">萨拉米 1+1小鸡腿</p>
-										<p class="price fl">
-											<b>¥</b>
-											<strong>29.90</strong>
-										</p>
-										<p class="number fl">
-											销量<span>1110</span>
-										</p>
-									</div>
-								</li>
+								@break($loop->iteration == 3)
+								@endforeach
 
 							</div>
 							<div class="clear"></div>
 							<!--分页 -->
-							<ul class="am-pagination am-pagination-right">
+							<!-- <ul class="am-pagination am-pagination-right">
 								<li class="am-disabled"><a href="#">&laquo;</a></li>
-								<li class="am-active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">&raquo;</a></li>
-							</ul>
-
+								<li class="am-active"><a href="">1</a></li>
+								<li><a href=" ">2</a></li>
+								<li><a href="">3</a></li>
+								<li><a href="">4</a></li>
+								<li><a href="">5</a></li>
+								<li><a href="">&raquo;</a></li>
+							</ul> -->
+							
+							{{ $data->links() }}
 						</div>
 					</div>
 

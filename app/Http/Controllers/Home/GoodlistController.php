@@ -8,6 +8,8 @@ use App\Models\Goods;
 use App\Models\Actives;
 use App\Models\Cates;
 use DB;
+// use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 class GoodlistController extends Controller
 {
     public function __construct()
@@ -54,7 +56,7 @@ class GoodlistController extends Controller
 	 //显示商品列表页
     public function show($id)
     {
-    	$goods = Goods::where('cid',$id)->where('good_status','1')->select('gid','gname','price','cid','thumb','active_id','sale')->get();
+    	$goods = Goods::where('cid',$id)->where('good_status','1')->select('gid','gname','price','cid','thumb','active_id','sale')->paginate(5);
     	$cate_nav = self::getCateNav($id);
     	return view('home.goodlist.index',['data'=>$goods,'cate_nav'=>$cate_nav]);
     }
@@ -82,7 +84,7 @@ class GoodlistController extends Controller
     		if(preg_match('/[\w]/',$search)){
     			// echo "this is mysql like ....";
     			// dump(preg_match('/[\w]/',$search));
-    			$goods = Goods::where('gname','like','%'.$search.'%')->get();
+    			$goods = Goods::where('gname','like','%'.$search.'%')->orderBy('sale','desc')->paginate(5);
     		}else{
     			// echo "this is 中文分词 ....";
 	    		$gid = DB::table('view_goods_word')->select('gid')->where('word',$search)->get();
@@ -93,14 +95,13 @@ class GoodlistController extends Controller
 		    	}
 		    	// dump($gids);
 		    	// dump($data2);
-		    	$goods = Goods::whereIn('gid',$gids)->get();
+		    	$goods = Goods::whereIn('gid',$gids)->orderBy('sale','desc')->paginate(5);
 	    	}
     	}else{
-    		$goods = Goods::get();
+    		$goods = Goods::orderBy('sale','desc')->paginate(5);
     	}
 
     	/* 中文分词 结束  */
-
     	return view('home.goodlist.index',['data'=>$goods,'countCar'=>$countCar,'cate_nav'=>$cate_nav]);
     }
 
