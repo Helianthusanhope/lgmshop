@@ -148,7 +148,11 @@
 											<p class="title fl">{{ $v->gname }}</p>
 											<p class="price fl">
 												<b>¥</b>
+												@if($v->active_id != 0)
+												<strong>{{ $v->price * $v->goodactive->discount / 10}}</strong>
+												@elseif($v->active_id == 0)
 												<strong>{{ $v->price }}</strong>
+												@endif
 											</p>
 											<p class="number fl">
 												销量<span>{{ $v->sale }}</span>

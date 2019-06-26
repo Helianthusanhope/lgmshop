@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cates;
+use App\Models\Goods;
 use DB;
+use Illuminate\Support\Facades\Storage;
 class CateController extends Controller
 {
     //得到分类数据并排版
@@ -56,7 +58,16 @@ class CateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //上传缩略图
+        if($request->hasFile('thumb')){
+
+            // 创建文件上传对象
+            $file_path = $request->file('thumb')->store(date('Ymd'));
+        }else{
+            $file_path = '';
+        }
+        
+        //设置path
          $pid = $request->input('pid',0);
 
         if ($pid == 0) {
@@ -67,9 +78,12 @@ class CateController extends Controller
 
             $path = $parent_data->path.','.$parent_data->cid;
         }
+
         $cate = new Cates;
         $cate->pid = $pid;
         $cate->cname = $request->input('cname','');
+        $cate->thumb = $request->$file_path;
+        $cate->desc = $request->input('desc','');
         $cate->path = $path;
         //将数据压入到数据库
         $res = $cate->save();
@@ -99,7 +113,8 @@ class CateController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cate = Cates::find($id);
+        return view('admin.cates.edit',['cid'=>$id,'cate'=>$cate]);
     }
 
     /**
@@ -111,7 +126,26 @@ class CateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         // 获取头像
+        if($request->hasFile('thumb')){
+            // 删旧文件
+            Storage::delete($request->input('old_thumb',''));
+            $file_path = $request->file('thumb')->store(date('Ymd'));
+        }else{
+            $file_path = $request->input('old_thumb');
+        }
+        
+        $cate = Cates::find($id);
+        $cate->cname = $request->input('cname','');
+        $cate->thumb = $file_path;
+        $cate->desc = $request->input('desc','');
+        $res = $cate->save();
+
+        if($res){
+            return redirect('admin/cates')->with('success','修改成功');
+        }else{
+            return back()->with('error','修改失败');
+        }
     }
 
     /**
@@ -122,6 +156,20 @@ class CateController extends Controller
      */
     public function destroy($id)
     {
-        //
+         //找是否 分类下 是否有商品
+        $res = Goods::where('cid',$id)->get();
+        if(!$res->isEmpty()){
+            return back()->with('error','此分类下有商品,请勿删除');
+        }
+
+        //删除 没有商品的分类
+        $res = Cates::destroy($id);
+
+        if($res){
+            return redirect('admin/cates')->with('success','删除成功');
+        }else{
+            
+            return back()->with('error','删除失败');
+        }
     }
 }

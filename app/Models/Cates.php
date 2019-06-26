@@ -10,4 +10,5 @@ class Cates extends Model
     public $table = 'cates';
     //重写主键名
     public $primaryKey = 'cid';
+    
 }

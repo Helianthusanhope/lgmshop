@@ -21,40 +21,43 @@
 
         </div>
         <div class="mws-panel-body no-padding">
-        	<form class="mws-form" action="/admin/cates/{{ $user->id }}" method="post" enctype="multipart/form-data">
+        	<form class="mws-form" action="/admin/cates/{{ $cate->cid }}" method="post" enctype="multipart/form-data">
         		{{ csrf_field() }}
         		{{ method_field('PUT') }}
         		<div class="mws-form-inline">
-        			<div class="mws-form-row">
-        				<label class="mws-form-label">分区名</label>
-        				<div class="mws-form-item">
-        					<input type="text" disabled name="uname" class="small" value="{{ $user->uname }}">
-        				</div>
-        			</div>        							
-
-					<div class="mws-form-row">
-        				<label class="mws-form-label">邮箱</label>
-        				<div class="mws-form-item">
-        					<input type="text" name="email" class="small" value="{{ $user->email }}">
-        				</div>
-        			</div>
-
-        			<div class="mws-form-row">
-        				<label class="mws-form-label">手机号</label>
-        				<div class="mws-form-item">
-        					<input type="text" name="phone" class="small" value="{{ $user->phone }}">
-        				</div>
-        			</div>
-			
-					<img src="/uploads/{{ $user->userinfo->profile }}">
-						
-					<input type="hidden" name="old_profile" value="{{ $user->userinfo->profile }}">
-					<div class="mws-form-row" style="width: 450px;">
-        				<label class="mws-form-label">头像</label>
-        				<div class="mws-form-item" style="width: 450px;">
-        					<input type="file" name="profile" class="small" style="width: 440px;">
-        				</div>
-        			</div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">分区名</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="cname" class="small" value="{{ $cate->cname  }}">
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">分区描述</label>
+                        <div class="mws-form-item">
+                            <input type="text" name="desc" class="small" value="{{ $cate->desc }}">
+                        </div>
+                    </div>
+                    <input type="hidden" name="old_thumb" value="{{ $cate->thumb }}">
+                    <div class="mws-form-row" style="width: 450px;">
+                        <label class="mws-form-label">分区广告图</label>
+                        <img src="/uploads/{{ $cate->thumb }}">
+                        <div class="mws-form-item" style="width: 450px;">
+                            <input type="file" name="thumb" class="small" style="width: 440px;">
+                        </div>
+                    </div>
+                    @if( $cate->pid )
+                    <div class="mws-form-row">
+                        <label class="mws-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">所属分区</font></font></label>
+                        <div class="mws-form-item">
+                            <select class="small" name="pid">
+                                <option value="0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">--请选择--</font></font></option>
+                                @foreach($common_cates_data as $k=>$v)
+                                <option value="{{ $v->cid }}" {{substr_count($v->path,',') >= 2 ? 'disabled':''}} {{$v->cid == $cid ? 'selected' : ''}} ><font style="vertical-align: inherit;"><font style="vertical-align-align: inherit;">{{ $v->cname }}</font></font></option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    @endif
 	
 
         		</div>
