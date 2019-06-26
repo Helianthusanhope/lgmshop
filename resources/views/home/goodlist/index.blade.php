@@ -151,7 +151,7 @@
 											<p class="price fl">
 												<b>¥</b>
 												@if($v->active_id != 0)
-												<strong>{{ $v->price * $v->goodactive->discount / 10}}</strong>
+												<strong>{{ round($v->price * $v->goodactive->discount / 10, 2)}}</strong>
 												@elseif($v->active_id == 0)
 												<strong>{{ $v->price }}</strong>
 												@endif
@@ -193,17 +193,6 @@
 
 							</div>
 							<div class="clear"></div>
-							<!--分页 -->
-							<!-- <ul class="am-pagination am-pagination-right">
-								<li class="am-disabled"><a href="#">&laquo;</a></li>
-								<li class="am-active"><a href="">1</a></li>
-								<li><a href=" ">2</a></li>
-								<li><a href="">3</a></li>
-								<li><a href="">4</a></li>
-								<li><a href="">5</a></li>
-								<li><a href="">&raquo;</a></li>
-							</ul> -->
-							
 							{{ $data->links() }}
 						</div>
 					</div>

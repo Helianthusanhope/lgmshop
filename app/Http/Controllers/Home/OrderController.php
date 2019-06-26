@@ -4,35 +4,18 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Goods;
-use App\Models\Actives;
-use App\Models\Order;
-use App\Models\GoodStock;
-use App\Models\GoodComment;
-use DB;
-class GoodController extends Controller
+
+class OrderController extends Controller
 {
-    // 获取库存id
-    public static function getstid($good, $id)
-    {
-        if (empty($id)) {
-            foreach ($good->goodstock as $k => $v) {
-                $stid = $v->stid;
-                return $stid;
-            }
-        } else {
-            $stid = $id;
-            return $stid;
-        }
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        return view('home.order.index');
     }
 
     /**
@@ -43,6 +26,7 @@ class GoodController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
@@ -62,23 +46,10 @@ class GoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show($id)
     {
         //
-        $good = Goods::find($id);
-        $like = Goods::where('cid',$good->cid)->get();
-        // 优惠
-        if ($good->active_id != 0) {
-            $active =  DB::table('actives')->where('id',$good->active_id)->first()->discount;
-        } else {
-            $active = 10;
-        }
-        // 评论
-        $goodcomment = GoodComment::where('gid',$id)->Paginate(2);
-        // 默认库存id
-        $stid = $request->input('stid','');
-        $stid = self::getstid($good, $stid);
-        return view('home.good.show',['good'=>$good,'like'=>$like,'active'=>$active,'goodcomment'=>$goodcomment,'stid'=>$stid]);
+        
     }
 
     /**
@@ -87,9 +58,10 @@ class GoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         //
+        
     }
 
     /**

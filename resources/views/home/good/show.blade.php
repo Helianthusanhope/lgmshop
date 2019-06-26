@@ -4,7 +4,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<title>商品页面</title>
 
 		<link href="/ho/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
@@ -23,50 +23,13 @@
 	</head>
 
 	<body>
-
-
-		<!--顶部导航条 -->
-		<div class="am-container header">
-			<ul class="message-l">
-				<div class="topMessage">
-					<div class="menu-hd">
-						<a href="#" target="_top" class="h">亲，请登录</a>
-						<a href="#" target="_top">免费注册</a>
-					</div>
-				</div>
-			</ul>
-			<ul class="message-r">
-				<div class="topMessage home">
-					<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
-				</div>
-				<div class="topMessage my-shangcheng">
-					<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
-				</div>
-				<div class="topMessage mini-cart">
-					<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
-				</div>
-				<div class="topMessage favorite">
-					<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
-			</ul>
-			</div>
+<!-- header 开始 -->
+@include('home.public.header')
+<!-- header 结束 -->
 
 			<!--悬浮搜索框-->
-
-			<div class="nav white">
-				<div class="logo"><img src="/ho/images/logo.png" /></div>
-				<div class="logoBig">
-					<li><img src="/ho/images/logobig.png" /></li>
-				</div>
-				<div class="search-bar pr">
-					<a name="index_none_header_sysc" href="#"></a>
-					<form>
-						<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
-						<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
-					</form>
-				</div>
-			</div>
-
-			<div class="clear"></div>
+@include('home.public.search')
+			
             <b class="line"></b>
 			<div class="listMain">
 
@@ -103,23 +66,7 @@
 						});
 					});
 				</script>
-				<div class="scoll">
-					<section class="slider">
-						<div class="flexslider">
-							<ul class="slides">
-								<li>
-									<img src="/ho/images/01.jpg" title="pic" />
-								</li>
-								<li>
-									<img src="/ho/images/02.jpg" />
-								</li>
-								<li>
-									<img src="/ho/images/03.jpg" />
-								</li>
-							</ul>
-						</div>
-					</section>
-				</div>
+
 
 				<!--放大镜-->
 
@@ -165,9 +112,9 @@
 							<div class="tb-detail-price">
 								<li class="price iteminfo_price">
 									<dt>促销价</dt>
-									<dd><em>¥</em><b class="sys_item_price">{{ $good->price/$active }}</b>  </dd>                                 
+									<dd><em>¥</em><b class="sys_item_price">{{ round($good->price * $active / 10, 2) }}</b>  </dd>                                 
 								</li>
-								<li class="price iteminfo_mktprice">
+								<li class="price iteminfo_mktprice" style="padding: 0px;">
 									<dt>原价</dt>
 									<dd><em>¥</em><b class="sys_item_mktprice">{{ $good->price }}</b></dd>									
 								</li>
@@ -175,28 +122,7 @@
 							</div>
 
 							<!--地址-->
-							<dl class="iteminfo_parameter freight">
-								<dt>配送至</dt>
-								<div class="iteminfo_freprice">
-									<div class="am-form-content address">
-										<select data-am-selected>
-											<option value="a">浙江省</option>
-											<option value="b">湖北省</option>
-										</select>
-										<select data-am-selected>
-											<option value="a">温州市</option>
-											<option value="b">武汉市</option>
-										</select>
-										<select data-am-selected>
-											<option value="a">瑞安区</option>
-											<option value="b">洪山区</option>
-										</select>
-									</div>
-									<div class="pay-logis">
-										快递<b class="sys_item_freprice">10</b>元
-									</div>
-								</div>
-							</dl>
+
 							<div class="clear"></div>
 
 							<!--销量-->
@@ -233,10 +159,10 @@
 
 													<div class="theme-options">
 														<div class="cart-title">选择规格</div>
-														<ul><?php $a = 0; ?>
+														<ul>
 															@foreach($good->goodstock as $k=>$v)
-																<?php $a++; ?>
-															<li class="sku-line <?php if ($a==1) { echo 'selected'; } ?>">{{$v->color or 'a'}}*{{$v->size or 'a'}}<i></i></li>
+															<a href="/home/goods/{{ $good->gid }}?stid={{ $v->stid }}">
+															<li stid="{{ $v->stid }}" class="sku-line <?php if ($v->stid == $stid) { echo 'selected'; } ?>">{{ $v->color or ''}}*{{$v->size or ''}}<i></i></li></a>
 															@endforeach
 														</ul>
 													</div>
@@ -264,22 +190,9 @@
 													</div>
 													<div class="clear"></div>
 
-													<div class="btn-op">
-														<div class="btn am-btn am-btn-warning">确认</div>
-														<div class="btn close am-btn am-btn-warning">取消</div>
-													</div>
+													
 												</div>
-												<div class="theme-signin-right">
-													<div class="img-info">
-														<img src="/ho/images/songzi.jpg" />
-													</div>
-													<div class="text-info">
-														
-														<span id="Stock" class="tb-hidden">库存<span class="stock">1000</span>件</span>
-													</div>
-												</div>
-
-											
+											</form>
 										</div>
 									</div>
 
@@ -315,58 +228,34 @@
 						</div>
 
 						<div class="pay">
-							<div class="pay-opt">
-							<a href="home.html"><span class="am-icon-home am-icon-fw">首页</span></a>
-							<a><span class="am-icon-heart am-icon-fw">收藏</span></a>
 							
-							</div>
 							<li>
 								<div class="clearfix tb-btn tb-btn-buy theme-login">
-									<a id="LikBasket" title="立即购买" href="javascript:;" onclick="buy('{{ $good->gid }}')"><i></i>立即购买</a>
+									<a id="LikBuy" title="立即购买" stid="{{ $stid }}" href="#"><i></i>立即购买</a>
 								</div>
 							</li>
 							<li>
 								<div class="clearfix tb-btn tb-btn-basket theme-login">
-									<a id="LikBasket" title="加入购物车" href="javascript:;"><i></i>加入购物车</a>
+									<a id="LikBasket" title="加入购物车" stid="{{ $stid }}" href="#"><i></i>加入购物车</a>
 								</div>
 							</li>
 						</div>
-						</form>
+						
 					</div>
-
+					<script type="text/javascript">
+						$("#LikBuy").click(function(){
+							var aa = '/home/orders?stid=';
+							var stid = $(this).attr('stid');
+							var num = $(this).parent().parent().parent().prev().find("input[type=text]").val();
+							window.location.href = aa+stid+'&number='+num;
+							
+						});
+						
+					</script>
 					<div class="clear"></div>
 
 				</div>
-
-				<!--优惠套装-->
-				<div class="match">
-					<div class="match-title">优惠套装</div>
-					<div class="match-comment">
-						<ul class="like_list">
-							<li>
-								<div class="s_picBox">
-									<a class="s_pic" href="#"><img src="/ho/images/cp.jpg"></a>
-								</div> <a class="txt" target="_blank" href="#">萨拉米 1+1小鸡腿</a>
-								<div class="info-box"> <span class="info-box-price">¥ 29.90</span> <span class="info-original-price">￥ 199.00</span> </div>
-							</li>
-							<li class="plus_icon"><i>+</i></li>
-							<li>
-								<div class="s_picBox">
-									<a class="s_pic" href="#"><img src="/ho/images/cp2.jpg"></a>
-								</div> <a class="txt" target="_blank" href="#">ZEK 原味海苔</a>
-								<div class="info-box"> <span class="info-box-price">¥ 8.90</span> <span class="info-original-price">￥ 299.00</span> </div>
-							</li>
-							<li class="plus_icon"><i>=</i></li>
-							<li class="total_price">
-								<p class="combo_price"><span class="c-title">套餐价:</span><span>￥35.00</span> </p>
-								<p class="save_all">共省:<span>￥463.00</span></p> <a href="#" class="buy_now">立即购买</a> </li>
-							<li class="plus_icon"><i class="am-icon-angle-right"></i></li>
-						</ul>
-					</div>
-				</div>
-				<div class="clear"></div>
 				
-							
 				<!-- introduce-->
 
 				<div class="introduce">
