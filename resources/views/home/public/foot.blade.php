@@ -1,25 +1,25 @@
 
                     <div class="footer ">
                         <div class="b_btm">
-                            <table style="width:20%; height:62px; float:left; margin-left:55px; margin-top:30px;" cellspacing="0" cellpadding="0" border="0">
+                            <table style="width:18%; height:62px; float:left; margin-left:55px; margin-top:30px;" cellspacing="0" cellpadding="0" border="0">
                               <tbody><tr>
                                 <td width="72"><img src="/home/images /b1.png" width="62" height="62"></td>
                                 <td><h2>正品保障</h2>正品行货  放心购买</td>
                               </tr>
                             </tbody></table>
-                            <table style="width:20%; height:62px; float:left; margin-left:55px; margin-top:30px;" cellspacing="0" cellpadding="0" border="0">
+                            <table style="width:18%; height:62px; float:left; margin-left:55px; margin-top:30px;" cellspacing="0" cellpadding="0" border="0">
                               <tbody><tr>
                                 <td width="72"><img src="/home/images /b2.png" width="62" height="62"></td>
                                 <td><h2>满38包邮</h2>满38包邮 免运费</td>
                               </tr>
                             </tbody></table>
-                            <table style="width:20%; height:62px; float:left; margin-left:55px; margin-top:30px;" cellspacing="0" cellpadding="0" border="0">
+                            <table style="width:18%; height:62px; float:left; margin-left:55px; margin-top:30px;" cellspacing="0" cellpadding="0" border="0">
                               <tbody><tr>
                                 <td width="72"><img src="/home/images /b3.png" width="62" height="62"></td>
                                 <td><h2>天天低价</h2>天天低价 畅选无忧</td>
                               </tr>
                             </tbody></table>
-                            <table style="width:20%; height:62px; float:left; margin-left:55px; margin-top:30px;" cellspacing="0" cellpadding="0" border="0">
+                            <table style="width:18%; height:62px; float:left; margin-left:55px; margin-top:30px;" cellspacing="0" cellpadding="0" border="0">
                               <tbody><tr>
                                 <td width="72"><img src="/home/images /b4.png" width="62" height="62"></td>
                                 <td><h2>准时送达</h2>收货时间由你做主</td>

@@ -11,6 +11,6 @@ class GoodStock extends Model
     public $primaryKey = 'stid';
     public function gooddetail()
     {
-        return $this->belongsTo('App\Models\GoodStock','gid','stid');
+        return $this->belongsTo('App\Models\Goods','gid','gid');
     }
 }

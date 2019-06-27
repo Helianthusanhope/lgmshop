@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\Home\IndexController;
 use App\Http\Controllers\Home\ActiveController;
-
+use App\Http\Controllers\Home\CarController;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
         View::share('actives_not_commend',ActiveController::getActivesNotcommend());
         View::share('common_friends_data',IndexController::gerFriendsData());
         View::share('commoon_Webconfigs_data',IndexController::getWebconfigsData());
-
+        View::share('car_count',CarController::countCar());
     }
 
     /**

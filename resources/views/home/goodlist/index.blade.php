@@ -6,18 +6,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<title>搜索页面</title>
-
+		<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
 		<link href="/ho/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
 		<link href="/ho/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
-
 		<link href="/ho/basic/css/demo.css" rel="stylesheet" type="text/css" />
-
 		<link href="/ho/css/seastyle.css" rel="stylesheet" type="text/css" />
 		<link href="/ho/css/skin.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="/ho/basic/js/jquery-1.7.min.js"></script>
 		<script type="text/javascript" src="/ho/js/script.js"></script>
-
-		<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
 	</head>
 <!-- header 开始 -->
 @include('home.public.header')
@@ -33,7 +29,7 @@
 				<div class="search-bar pr">
 					<a name="index_none_header_sysc" href="#"></a>
 					<form action="/home/goodlist" method="get">
-						<input id="searchInput" name="search" type="text" placeholder="搜索" autocomplete="off">
+						<input id="searchInput" name="search" type="text" value="{{ $search or '' }}" placeholder="搜索" autocomplete="off">
 						<input id="ai-topsearch" class="submit am-btn"  value="搜索" index="1" type="submit">
 					</form>
 				</div>
@@ -75,8 +71,8 @@
 							</div>
 							<ul class="select">
 								<p class="title font-normal">
-									<span class="fl">松子</span>
-									<span class="total fl">搜索到<strong class="num">997</strong>件相关商品</span>
+									<span class="fl">{{$search or ''}}</span>
+									<span class="total fl">本页共有<strong class="num">{{ count($data) }}</strong>件相关商品</span>
 								</p>
 								<div class="clear"></div>
 								<li class="select-result">
@@ -133,10 +129,10 @@
                         </div>
 							<div class="search-content">
 								<div class="sort">
-									<li class="first"><a title="综合">综合排序</a></li>
-									<li><a title="销量">销量排序</a></li>
-									<li><a title="价格">价格优先</a></li>
-									<li class="big"><a title="评价" href="#">评价为主</a></li>
+									<li class="<?php if($sort == 1){ echo 'first'; } ?>"><a title="综合" href="/home/goodlist/{{ $cid or '' }}?search={{ $search }}">综合排序</a></li>
+									<li class="<?php if($sort == 'sale'){ echo 'first'; } ?>"><a title="销量" href="/home/goodlist/{{ $cid or '' }}?search={{ $search }}&sort=sale">销量排序</a></li>
+									<li class="<?php if($sort == 'price'){ echo 'first'; } ?>"><a title="价格" href="/home/goodlist/{{ $cid or '' }}?search={{ $search }}&sort=price">价格优先</a></li>
+									<li class="<?php if($sort == 'num'){ echo 'first'; } ?> big"><a title="评价" href="/home/goodlist/{{ $cid or '' }}?search={{ $search }}&sort=num">评价为主</a></li>
 								</div>
 								<div class="clear"></div>
 
@@ -195,7 +191,7 @@
 
 							</div>
 							<div class="clear"></div>
-							{{ $data->links() }}
+							{{ $data->appends(['search'=>$search])->links() }}
 						</div>
 					</div>
 

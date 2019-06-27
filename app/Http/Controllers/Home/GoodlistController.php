@@ -52,11 +52,22 @@ class GoodlistController extends Controller
 	}
 
 	 //显示商品列表页
-    public function show($id)
+    public function show(Request $request, $id)
     {
-    	$goods = Goods::where('cid',$id)->where('good_status','1')->select('gid','gname','price','cid','thumb','active_id','sale')->paginate(5);
+    	if ($request->input('sort','')) {
+    		$sort = $request->input('sort','');
+    		if ($sort == 'price') {
+    			$desc = 'asc';
+    		} else {
+    			$desc = 'desc';
+    		}
+    		$goods = Goods::where('cid',$id)->where('good_status','1')->orderBy($sort,$desc)->select('gid','gname','price','cid','thumb','active_id','sale')->paginate(50);
+    	} else {
+    		$sort = 1;
+    		$goods = Goods::where('cid',$id)->where('good_status','1')->orderBy('sale','desc')->orderBy('collect','desc')->select('gid','gname','price','cid','thumb','active_id','sale')->paginate(50);
+    	}
     	$cate_nav = self::getCateNav($id);
-    	return view('home.goodlist.index',['data'=>$goods,'cate_nav'=>$cate_nav]);
+    	return view('home.goodlist.index',['data'=>$goods,'cate_nav'=>$cate_nav,'search'=>'','cid'=>$id,'sort'=>$sort]);
     }
 
 
@@ -66,45 +77,65 @@ class GoodlistController extends Controller
     	$cate_nav = null;
     	// $_SESSION['car'] = null;
     	$this->dataWord();
-    	// $str = '倍混合变焦麒麟980芯片屏内指纹';
-    	// $str = '荣耀8X 千元屏 霸91% 屏占比';
-    	// $str = '小辣椒 红辣椒7X 4+64GB 学生智能手机 美颜双摄 微Q多开 人脸识别 移动联通电';
-    	// $this->word($str);
+
     	$countCar = CarController::countCar();
     	// 接收  搜索参数
     	$search = $request->input('search','');
+    	if ($request->input('sort','')) {
+    		$sort = $request->input('sort','');
+    		if ($sort == 'price') {
+    			$desc = 'asc';
+    		} else {
+    			$desc = 'desc';
+    		}
+    		if (!empty($search)) {
+	    		if (preg_match('/[\w]/', $search)) {
+	    			// echo "this is mysql like ....";
+	    			// dump(preg_match('/[\w]/',$search));
 
-    	// $data = DB::table('goods')->where('gname','like','%'.$search.'%')->get();
+	    			$goods = Goods::where('gname','like','%'.$search.'%')->orderBy($sort,$desc)->paginate(50);
 
-    	/* 中文分词 开始  */
+	    		} else {
+	    			// echo "this is 中文分词 ....";
+		    		$gid = DB::table('view_goods_word')->select('gid')->where('word',$search)->get();
+			    	// dump($gid);
+			    	$gids = [];
+			    	foreach ($gid as $key => $value) {
+			    		$gids[] = $value->gid;
+			    	}
+			    	// dump($gids);
+			    	// dump($data2);
 
-    	if(!empty($search)){
-    		if(preg_match('/[\w]/',$search)){
-    			// echo "this is mysql like ....";
-    			// dump(preg_match('/[\w]/',$search));
-
-    			$goods = Goods::where('gname','like','%'.$search.'%')->orderBy('sale','desc')->paginate(12);
-
-    		}else{
-    			// echo "this is 中文分词 ....";
-	    		$gid = DB::table('view_goods_word')->select('gid')->where('word',$search)->get();
-		    	// dump($gid);
-		    	$gids = [];
-		    	foreach ($gid as $key => $value) {
-		    		$gids[] = $value->gid;
-		    	}
-		    	// dump($gids);
-		    	// dump($data2);
-
-		    	$goods = Goods::whereIn('gid',$gids)->orderBy('sale','desc')->paginate(12);
+			    	$goods = Goods::whereIn('gid',$gids)->orderBy($sort,$desc)->paginate(50);
+			    }
+	    	}else{
+	    		$goods = Goods::orderBy($sort,$desc)->paginate(50);
 	    	}
-    	}else{
-    		$goods = Goods::orderBy('sale','desc')->paginate(12);
+    	} else {
+    		$sort = 1;
+    		if (!empty($search)) {
+	    		if (preg_match('/[\w]/', $search)) {
+
+
+	    			$goods = Goods::where('gname','like','%'.$search.'%')->orderBy('sale','desc')->orderBy('collect','desc')->paginate(50);
+
+	    		} else {
+
+		    		$gid = DB::table('view_goods_word')->select('gid')->where('word',$search)->get();
+
+			    	$gids = [];
+			    	foreach ($gid as $key => $value) {
+			    		$gids[] = $value->gid;
+			    	}
+
+			    	$goods = Goods::whereIn('gid',$gids)->orderBy('sale','desc')->orderBy('collect','desc')->paginate(50);
+			    }
+	    	}else{
+	    		$goods = Goods::orderBy('sale','desc')->orderBy('collect','desc')->paginate(50);
+	    	}
     	}
 
-    	/* 中文分词 结束  */
-
-    	return view('home.goodlist.index',['search'=>$search,'data'=>$goods,'countCar'=>$countCar,'cate_nav'=>$cate_nav]);
+    	return view('home.goodlist.index',['data'=>$goods,'countCar'=>$countCar,'cate_nav'=>$cate_nav,'search'=>$search,'sort'=>$sort]);
     }
 
     public function word($text)

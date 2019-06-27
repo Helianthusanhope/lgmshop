@@ -15,6 +15,11 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         //
+        if(!empty($_SESSION['car'])){
+            $data = $_SESSION['car'];
+        }else{
+            $data = [];
+        }
         return view('home.order.index');
     }
 
