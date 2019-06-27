@@ -46,11 +46,20 @@
     					@if(session('success'))
 		                 <div class="am-cf am-padding">
 		                 <ul>		             
-		                 	<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg" style="background:fuchsia;color:$ccc">{{ session('success') }}</span></strong><small></small></div>
+		                 	<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg" style="background:blue;color:#ccc">{{ session('success') }}</span></strong><small></small></div>
 		                 </ul>		                 	
 		                   
 		                 </div>
-                 		@endif 
+                 		@endif
+                 		@if(session('error'))	                 
+	                 	<div class="am-cf am-padding">
+		                 <ul>		             
+		                 	<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg" style="background:red;color:#ccc">{{ session('error') }}</span></strong><small></small></div>
+		                 </ul>		                 	
+		                   
+		                 </div>
+                	 @endif       
+                 
 
 						<div class="am-cf am-padding">
 							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">地址管理</strong><small></small></div>
@@ -59,27 +68,7 @@
 						@foreach($addr as  $k=>$v)
 						<ul>						
 								
-								@if($v->status)			
-									<li class="user-addresslist">										
-										<p class="new-tit new-p-re">
-											
-											<span class="new-txt">{{ $v->addrname }}</span>
-											<span class="new-txt-rd2">{{ $v->phone }}</span>
-										</p>
-
-										<div class="new-mu_l2a new-p-re">
-											<p class="new-mu_l2cw">
-												<span class="title">地址：</span>
-												<span class="province">{{ $v->area}}</span>
-												<span class="street">{{ $v->address}}</span></p>
-										</div>
-										<div class="new-mu_l2cw">
-											<a href="/home/address/update/{{$v->aid}}"><i class="am-icon-edit" style="background:yellow">取消默认地址</i></a>
-											<span class="new-mu_l2cw">|</span>
-											<a href="/home/address/edit/{{$v->aid}}"><i style="background:#ccc">删除</i></a>
-										</div>
-									</li>
-								@else
+								
 									<li class="user-addresslist">										
 									<p class="new-tit new-p-re">
 										
@@ -94,12 +83,17 @@
 											<span class="street">{{ $v->address}}</span></p>
 									</div>
 									<div class="new-mu_l2cw">
+										@if($v->status == '0')
 										<a href="/home/address/update/{{$v->aid}}"><i class="am-icon-edit"></i>设置为默认地址</a>
 										<span class="new-mu_l2cw">|</span>
+										@else
+										<i class="am-icon-edit">默认地址</i>
+										<span class="new-mu_l2cw">|</span>
+										@endif
 										<a href="/home/address/edit/{{$v->aid}}"><i style="background:#ccc">删除</i></a>
 									</div>
 								</li>
-								@endif
+								
 							
 						</ul>
 						@endforeach

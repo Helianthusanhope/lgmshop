@@ -12,6 +12,8 @@
 		<link href="/ho/css/personal.css" rel="stylesheet" type="text/css">
 		<link href="/ho/css/systyle.css" rel="stylesheet" type="text/css">
 
+	
+
 	</head>
 
 	<body>
@@ -37,10 +39,10 @@
 						</ul>
 						<ul class="message-r">
 							<div class="topMessage home">
-								<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+								<div class="menu-hd"><a href="/" target="_top" class="h">商城首页</a></div>
 							</div>
 							<div class="topMessage my-shangcheng">
-								<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+								<div class="menu-hd MyShangcheng"><a href="/home/personal" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 							</div>
 							<div class="topMessage mini-cart">
 								<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
@@ -102,7 +104,7 @@
 								<div class="m-userinfo">
 									<div class="m-baseinfo">
 										<a href="information.html">
-											<img src="/ho/images/getAvatar.do.jpg">
+											<img src="/uploads/{{$userinfo->profile}}">
 										</a>
 										<em class="s-name">{{session('home_user')->uname}}<span class="vip1"></em>
 										<div class="s-prestige am-btn am-round">
@@ -110,10 +112,18 @@
 									</div>
 									<div class="m-right">
 										<div class="m-new">
-											<a href="news.html"><i class="am-icon-bell-o"></i>消息</a>
+											<a href="#"><i class="am-icon-bell-o"></i>消息</a>
 										</div>
+
 										<div class="m-address">
-											<a href="address.html" class="i-trigger">我的收货地址</a>
+											
+											@foreach($address as $k=>$v)
+												@if( $v->status == '1')
+												<a href="/home/address"  class="i-trigger">我的地址</a>
+												<span class="i-trigger">{{$v->address}}</span>
+												
+												@endif
+											@endforeach
 										</div>
 									</div>
 								</div>

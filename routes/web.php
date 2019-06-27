@@ -106,6 +106,7 @@ Route::get('home/register/changeStatus/{id}/{token}','Home\RegisterController@ch
 
 //前台登陆
 Route::get('home/login', 'Home\LoginController@login');
+Route::get('home/login/myself', 'Home\LoginController@rinima');
 //验证登录
 Route::post('home/dologin', 'Home\LoginController@dologin');
 //登录退出
@@ -132,6 +133,7 @@ Route::get('home/address/update/{aid}', 'Home\AddressController@update');
 
 //显示个人安全中心
 Route::get('home/safety', 'Home\SafetyController@index');
+
 
 
 //显示活动界面

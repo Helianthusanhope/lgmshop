@@ -3,6 +3,7 @@
 <!---网站头部结束-->
 <!-- header 开始 -->
 @include('home.public.header')
+
 <!-- header 结束 -->
 <!-- 轮播图 开始 -->
 @include('home.public.banners')

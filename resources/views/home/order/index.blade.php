@@ -45,92 +45,87 @@
 			<div class="concent">
 				<!--地址 -->
 				<div class="paycont">
+
+					<!--错误信息-->
+						@if (count($errors) > 0)
+							<div class="am-btn am-btn-danger">
+							    <ul>
+							        @foreach ($errors->all() as $error)
+							            <li>{{ $error }}</li>
+							        @endforeach
+							    </ul>
+							</div>
+    					@endif
+				<!--提示成功信息-->
+    					@if(session('success'))
+		                 <div class="am-cf am-padding">
+		                 <ul>		             
+		                 	<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg" style="background:blue;color:#ccc">{{ session('success') }}</span></strong><small></small></div>
+		                 </ul>		                 	
+		                   
+		                 </div>
+                 		@endif
+                 		@if(session('error'))	                 
+	                 	<div class="am-cf am-padding">
+		                 <ul>		             
+		                 	<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg" style="background:red;color:#ccc">{{ session('error') }}</span></strong><small></small></div>
+		                 </ul>		                 	
+		                   
+		                 </div>
+                	 @endif       
 					<div class="address">
+
 						<h3>确认收货地址 </h3>
 						<div class="control">
 							<div class="tc-btn createAddr theme-login am-btn am-btn-danger">使用新地址</div>
 						</div>
 						<div class="clear"></div>
-						<ul>
+						<ul>											
 							<div class="per-border"></div>
-							<li class="user-addresslist defaultAddr">
-
-								<div class="address-left">
-									<div class="user DefaultAddr">
-
-										<span class="buy-address-detail">   
-                   <span class="buy-user">艾迪 </span>
-										<span class="buy-phone">15871145629</span>
-										</span>
-									</div>
-									<div class="default-address DefaultAddr">
-										<span class="buy-line-title buy-line-title-type">收货地址：</span>
-										<span class="buy--address-detail">
-								   <span class="province">湖北</span>省
-										<span class="city">武汉</span>市
-										<span class="dist">洪山</span>区
-										<span class="street">雄楚大道666号(中南财经政法大学)</span>
-										</span>
-
-										</span>
-									</div>
-									<ins class="deftip">默认地址</ins>
-								</div>
-								<div class="address-right">
-									<a href="person/address.html">
-										<span class="am-icon-angle-right am-icon-lg"></span></a>
-								</div>
-								<div class="clear"></div>
-
-								<div class="new-addr-btn">
-									<a href="#" class="hidden">设为默认</a>
-									<span class="new-addr-bar hidden">|</span>
-									<a href="#">编辑</a>
-									<span class="new-addr-bar">|</span>
-									<a href="javascript:void(0);" onclick="delClick(this);">删除</a>
-								</div>
-
-							</li>
-							<div class="per-border"></div>
+							@foreach( $addr as $k=>$v)
 							<li class="user-addresslist">
 								<div class="address-left">
 									<div class="user DefaultAddr">
 
 										<span class="buy-address-detail">   
-                   <span class="buy-user">艾迪 </span>
-										<span class="buy-phone">15871145629</span>
+                   						<span class="buy-user">{{ $v->addrname}} </span>
+										<span class="buy-phone">{{ $v->phone }}</span>
 										</span>
 									</div>
 									<div class="default-address DefaultAddr">
 										<span class="buy-line-title buy-line-title-type">收货地址：</span>
 										<span class="buy--address-detail">
-								   <span class="province">湖北</span>省
-										<span class="city">武汉</span>市
-										<span class="dist">武昌</span>区
-										<span class="street">东湖路75号众环大厦2栋9层902</span>
+										<span class="dist">{{ $v->area }}</span><br>
+										<span class="street">{{ $v->address}}</span>
 										</span>
 
 										</span>
 									</div>
-									<ins class="deftip hidden">默认地址</ins>
+									<ins class="deftip hidden">收货地址</ins>
 								</div>
 								<div class="address-right">
 									<span class="am-icon-angle-right am-icon-lg"></span>
 								</div>
 								<div class="clear"></div>
-
+								
 								<div class="new-addr-btn">
-									<a href="#">设为默认</a>
-									<span class="new-addr-bar">|</span>
-									<a href="#">编辑</a>
-									<span class="new-addr-bar">|</span>
-									<a href="javascript:void(0);"  onclick="delClick(this);">删除</a>
+									@if($v->status == '1')
+										<span><i class="am-icon-edit">收货地址</i></span>
+										<span class="new-addr-bar">|</span>		
+										<span class="new-addr-bar">|</span>
+										<a href="/home/address/edit/{{$v->aid}}"><i style="background:#ccc">删除</i></a>
+										@else
+										<a href="/home/address/update/{{$v->aid}}"><i class="am-icon-edit"></i>设置为收货地址</a>
+										<span class="new-addr-bar">|</span>		
+										<span class="new-addr-bar">|</span>
+										<a href="/home/address/edit/{{$v->aid}}"><i style="background:#ccc">删除</i></a>
+										@endif
 								</div>
 
 							</li>
-
+							@endforeach
 						</ul>
-
+			
 						<div class="clear"></div>
 					</div>
 					<!--物流 -->
@@ -397,24 +392,27 @@
 										</div>
 
 										<div id="holyshit268" class="pay-address">
-
+											@foreach($addr as $k=>$v)
 											<p class="buy-footer-address">
+												@if($v->status == '1')
 												<span class="buy-line-title buy-line-title-type">寄送至：</span>
-												<span class="buy--address-detail">
-								   <span class="province">湖北</span>省
-												<span class="city">武汉</span>市
-												<span class="dist">洪山</span>区
-												<span class="street">雄楚大道666号(中南财经政法大学)</span>
+												
+												<span class="buy--address-detail">	   				
+												<span class="dist">{{$v->area}}</span>
+												<span class="street">{{$v->address}}</span>
 												</span>
 												</span>
 											</p>
-											<p class="buy-footer-address">
+												<p class="buy-footer-address">
 												<span class="buy-line-title">收货人：</span>
 												<span class="buy-address-detail">   
-                                         <span class="buy-user">艾迪 </span>
-												<span class="buy-phone">15871145629</span>
+                                         		<span class="buy-user">{{ $v->addrname}} </span>
+												<span class="buy-phone">{{ $v->phone}}</span>
 												</span>
+												
 											</p>
+											@endif
+											@endforeach
 										</div>
 									</div>
 
@@ -431,84 +429,68 @@
 						<div class="clear"></div>
 					</div>
 				</div>
-				<div class="footer">
-					<div class="footer-hd">
-						<p>
-							<a href="#">恒望科技</a>
-							<b>|</b>
-							<a href="#">商城首页</a>
-							<b>|</b>
-							<a href="#">支付宝</a>
-							<b>|</b>
-							<a href="#">物流</a>
-						</p>
-					</div>
-					<div class="footer-bd">
-						<p>
-							<a href="#">关于恒望</a>
-							<a href="#">合作伙伴</a>
-							<a href="#">联系我们</a>
-							<a href="#">网站地图</a>
-							<em>© 2015-2025 Hengwang.com 版权所有</em>
-						</p>
-					</div>
-				</div>
+@include('home.public.foot')
 			</div>
 			<div class="theme-popover-mask"></div>
 			<div class="theme-popover">
 
 				<!--标题 -->
 				<div class="am-cf am-padding">
-					<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">新增地址</strong> / <small>Add address</small></div>
+					<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">新增地址</strong> <small></small></div>
 				</div>
 				<hr/>
 
 				<div class="am-u-md-12">
-					<form class="am-form am-form-horizontal">
+					
+					<form action= "/home/address/store"class="am-form am-form-horizontal" method="post">
+						{{ csrf_field() }}
 
 						<div class="am-form-group">
+
 							<label for="user-name" class="am-form-label">收货人</label>
 							<div class="am-form-content">
-								<input type="text" id="user-name" placeholder="收货人">
+								<input type="text" name="addrname" required value="{{ old('addrname') }}" class="layui-input" lay-verify="required" >
+
 							</div>
+
 						</div>
 
 						<div class="am-form-group">
 							<label for="user-phone" class="am-form-label">手机号码</label>
-							<div class="am-form-content">
-								<input id="user-phone" placeholder="手机号必填" type="email">
+							<div class="am-form-content"">
+								<input type="text" name="phone"  value="" required lay-verify="required" class="layui-input" placeholder="请填入正确的11位手机号">
+
 							</div>
+
 						</div>
 
 						<div class="am-form-group">
-							<label for="user-phone" class="am-form-label">所在地</label>
-							<div class="am-form-content address">
-								<select data-am-selected>
-									<option value="a">浙江省</option>
-									<option value="b">湖北省</option>
-								</select>
-								<select data-am-selected>
-									<option value="a">温州市</option>
-									<option value="b">武汉市</option>
-								</select>
-								<select data-am-selected>
-									<option value="a">瑞安区</option>
-									<option value="b">洪山区</option>
-								</select>
-							</div>
+							<label for="user-phone" class="am-form-label">所在地</label>						
+							<script src="/ho/area.js"></script>
+								<div class="am-form-content address">						
+									<div lay-verify="required">
+											<select id="Province" runat="server" name="province" style="width: 200px" lay-verify="required"></select>
+											<select id="Country" runat="server" name="country" style="width: 200px" lay-verify="required"></select>
+											<select id="Town" runat="server" name="town" style="width: 200px" lay-verify="required"></select>
+									</div>
+								</div>
 						</div>
+						<script language="javascript">
+							setup();
+						</script>
+													
 
 						<div class="am-form-group">
 							<label for="user-intro" class="am-form-label">详细地址</label>
 							<div class="am-form-content">
-								<textarea class="" rows="3" id="user-intro" placeholder="输入详细地址"></textarea>
-								<small>100字以内写出你的详细地址...</small>
+								<input type="text" name="address"  value=" {{old('address')}} " required lay-verify="required" lay-verify="required" >
+								<small>写出你的详细地址...</small>
 							</div>
 						</div>
 
 						<div class="am-form-group theme-poptit">
 							<div class="am-u-sm-9 am-u-sm-push-3">
-								<div class="am-btn am-btn-danger">保存</div>
+								<input type="submit" value="保存" class="am-btn am-btn-danger">
 								<div class="am-btn am-btn-danger close">取消</div>
 							</div>
 						</div>

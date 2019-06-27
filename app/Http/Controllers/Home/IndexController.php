@@ -41,13 +41,13 @@ class IndexController extends Controller
     public static function getCateGoods()
     {
         //获取商品所对应的的所有分类
-        $cids = Goods::pluck('cid','gid');
-        $categoods = DB::table('cates')->select('path')->whereIn('cid',$cids)->get();
-        $cates_top = [];
-        foreach ($categoods as $k => $v) {
-             $cates_top[] = explode(',', $v->path)[1];
-        }
-        return $cates_top;
+        // $cids = Goods::pluck('cid','gid');
+        // $categoods = DB::table('cates')->select('path')->whereIn('cid',$cids)->get();
+        // $cates_top = [];
+        // foreach ($categoods as $k => $v) {
+        //      $cates_top[] = explode(',', $v->path)[1];
+        // }
+        // return $cates_top;
     }
 
     /**
