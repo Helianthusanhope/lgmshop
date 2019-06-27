@@ -5,13 +5,12 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Users;
-use App\Models\ UserAddr;
+use App\Models\UserAddr;
 use DB;
 
 class AddressController extends Controller
 {
-    //封装查询地址的方法
-    
+    //封装查询地址的方法   
     public static function address()
     {
         //获取数据并分配
@@ -23,12 +22,20 @@ class AddressController extends Controller
 
     }
 
+    //封装查询获取个人信息的方法
+    
+    public static function userinfo()
+    {
+        $uid = session('home_user')->uid;
+        $userinfo = DB::table('user_infos')->where('uid',$uid)->first();
+        return $userinfo;
+    }
+
     //收货地址页面显示
     public function index()
     {
-    	
+    	//获取所有的地址
         $addr = self::address();
-            
     	return view('home.address.index',['addr'=>$addr]);
     }
 
@@ -80,48 +87,27 @@ class AddressController extends Controller
     }
 
     //执行修改为默认地址   
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+        //找到需要修改的地址 
         
-        //获取需要设置的aid 
-        $aid = $request->aid;    
-        //查询现有的收货地址
-        $addr_all = self::address();
-
-        $status = [];
-        foreach($addr_all as $k=>$v){          
-            //如果有默认地址,就将默认地址清空
-            if($v->aid == $aid && $v->status == '1'){
-               
-                $addr = UserAddr::find( $v->aid );
-                $addr->status ='0';
-                $res = $addr->save();
-
-                if($res){
-
-                return back()->with('success','设置成功'); 
-                }
-                
-                
-            }
-             //接受要修改的地址,设置为默认地址              
-            if($v->aid == $aid && $v->status =='0' ){
-
-                $addr = UserAddr::find( $aid );
-                $addr->status = '1' ;
-                $res = $addr->save();
-
-                if($res){
-                return back()->with('success','设置成功'); 
-            }
-      
+        $useraddr = UserAddr::find($id);
+        //查询是否已经存在默认地址
+        $addrup = UserAddr::where('status','1')->where('uid',$useraddr->uid)->first();
+        //如果已经存在默认地址那就清空
+        if ($addrup) {
+            $addrup->status = '0';
+            $res1 = $addrup->save();
+        } else {
+            $res1 = true;
         }
-
-
-                    
+        //如果没有默认地址就设置
+        $useraddr->status = '1';
+        $res2 = $useraddr->save();
+        if($res1 && $res2) {
+            return back()->with('success','设置成功');
         }
-        
-   
+ 
        
 
     }
@@ -131,11 +117,16 @@ class AddressController extends Controller
     {
         $aid = $request->aid;
         $addr = UserAddr::find($aid);
-        $res  = $addr->delete();
 
-        if($res){
+        // $res  = $addr->delete();
 
-            return back()->with('success','删除成功'); 
+        if ($addr->status == '1') {
+
+            return back()->with('error','请勿删除默认地址'); ;
+        }else{
+
+            $res  = $addr->delete();
+            return back()->with('success','删除成功'); ;
         }
 
            

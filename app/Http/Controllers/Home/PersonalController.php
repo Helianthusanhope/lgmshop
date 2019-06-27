@@ -10,16 +10,13 @@ class PersonalController extends Controller
     //个人中心首页
     public function index()
     {
-    	
-    	//检测是否在登录状态
-        if ( session('home_login') ){
 
-            return view('home.personal.index');
+ 
+        //获取用户的个人信息,收货地址
+        $userinfo = AddressController::userinfo();
+        $address  =  AddressController::address();
+        return view('home.personal.index',['userinfo'=>$userinfo,'address'=>$address]);
 
-        } else {
 
-            echo "<script>alert('请先登录');location.href='/';</script>";
-            exit;
-        }
     }
 }

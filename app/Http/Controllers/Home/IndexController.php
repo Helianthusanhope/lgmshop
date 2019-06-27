@@ -41,6 +41,7 @@ class IndexController extends Controller
     public static function getCateGoods()
     {
         //获取商品所对应的的所有分类
+
         $cids = DB::table('goods')->pluck('cid','gid')->toArray();
 
         // dump( $cids );
@@ -56,6 +57,7 @@ class IndexController extends Controller
 
         }
         return $categoods;
+
     }
 
     /**
