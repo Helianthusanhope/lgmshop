@@ -37,17 +37,25 @@ class IndexController extends Controller
         return $data;
     }
 
-    //获取所有商品对应的 顶级分类
+    //获取所有商品对应的 三级分类 并形成可以foreach 的形式
     public static function getCateGoods()
     {
         //获取商品所对应的的所有分类
-        $cids = Goods::pluck('cid','gid');
-        $categoods = DB::table('cates')->select('path')->whereIn('cid',$cids)->get();
+        $cids = DB::table('goods')->pluck('cid','gid')->toArray();
+
+        // dump( $cids );
+        //顶级分类 id
+        $categoods = DB::table('cates')->whereIn('cid',$cids)->get();
+        // dump( $categoods ); 
         $cates_top = [];
         foreach ($categoods as $k => $v) {
-             $cates_top[] = explode(',', $v->path)[1];
+            $v->sub1 = Goods::where('cid',$v->cid )->get();
+            $v->sub2 = $cates_top[] = explode(',', $v->path)[1];
+             // substr_count($v->path,',');
+             // $cates_three[] = explode(',', $v->path)[3];
+
         }
-        return $cates_top;
+        return $categoods;
     }
 
     /**
