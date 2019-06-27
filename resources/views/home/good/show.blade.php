@@ -6,13 +6,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<title>商品页面</title>
-
+		<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
 		<link href="/ho/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
 		<link href="/ho/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
 		<link href="/ho/basic/css/demo.css" rel="stylesheet" type="text/css" />
 		<link type="text/css" href="/ho/css/optstyle.css" rel="stylesheet" />
 		<link type="text/css" href="/ho/css/style.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+		
 		<script type="text/javascript" src="/ho/basic/js/jquery-1.7.min.js"></script>
 		<script type="text/javascript" src="/ho/basic/js/quick_links.js"></script>
 		<script type="text/javascript" src="/ho/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
@@ -250,7 +250,13 @@
 							window.location.href = aa+stid+'&number='+num;
 							
 						});
-						
+						$("#LikBasket").click(function(){
+							var aa = '/home/car/add?stid=';
+							var stid = $(this).attr('stid');
+							var num = $(this).parent().parent().parent().prev().find("input[type=text]").val();
+							window.location.href = aa+stid+'&number='+num;
+							
+						});
 					</script>
 					<div class="clear"></div>
 
