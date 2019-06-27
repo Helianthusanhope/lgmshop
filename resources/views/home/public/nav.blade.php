@@ -2,7 +2,7 @@
             <div class="shopNav">
                 <div class="slideall">
                     
-                       <div class="long-title"><span class="all-goods">全部分类</span></div>
+                       <div class="long-title  "><span class="all-goods">全部分类</span></div>
                        <div class="nav-cont">
                             <ul>
                                 <li class="index"><a href="/">首页</a></li>
@@ -15,7 +15,7 @@
                                 <i class="am-icon-angle-right" style="padding-left: 10px;"></i>
                             </div>
                         </div>
-
+                
                 
             
 <!-- 导航结束 -->
