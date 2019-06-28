@@ -24,7 +24,10 @@
 
 @endsection
 @section('content')
-	
+	<div class="am-cf am-padding">
+			<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">个人资料</strong> <small></small></div>
+		</div>
+		<hr>
 	<!--个人信息 -->
 						<div class="info-main">
 							
