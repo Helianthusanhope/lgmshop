@@ -73,10 +73,10 @@ class LoginController extends Controller
 
         session(['home_user'=>$users_data]);
     	session(['home_userinfo'=>$userinfo_data]);
+    	
+        //返回登陆结果      
+        echo json_encode( ['msg'=>'ok','info'=>''] );
         
-    	//执行跳转到首页
-    	return redirect('/');
-
     	
     }
 
