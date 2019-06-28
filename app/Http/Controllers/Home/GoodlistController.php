@@ -120,26 +120,6 @@ class GoodlistController extends Controller
     public function show(Request $request, $id)
     {
 
-
-    	
-        // $cids = DB::table('goods')->pluck('cid','gid')->toArray();
-        // if( $)
-
-        // // dump( $cids );
-        // //顶级分类 id
-        // $categoods = DB::table('cates')->whereIn('cid',$cids)->get();
-        // // dump( $categoods ); 
-        // $cates_top = [];
-        // foreach ($categoods as $k => $v) {
-        //     $v->sub = $cates_top[] = explode(',', $v->path)[1];
-        //      // substr_count($v->path,',');
-        //      // $cates_three[] = explode(',', $v->path)[3];
-
-        // } 
-        // dd( $categoods );
-
-
-
     	if ($request->input('sort','')) {
     		$sort = $request->input('sort','');
     		if ($sort == 'price') {
