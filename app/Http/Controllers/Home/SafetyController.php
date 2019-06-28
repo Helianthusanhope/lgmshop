@@ -9,4 +9,9 @@ class SafetyController extends Controller
 {
     //显示安全设置中心
     
+    public function index()
+    {
+    	return view('home/safety/index');
+    }
+    
 }

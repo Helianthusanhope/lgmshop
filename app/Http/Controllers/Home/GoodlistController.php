@@ -128,7 +128,6 @@ class GoodlistController extends Controller
 			    		$gids[] = $value->gid;
 			    	}
 
-
 			    	$goods = Goods::whereIn('gid',$gids)->orderBy('sale','desc')->orderBy('collect','desc')->paginate(50);
 			    }
 	    	}else{

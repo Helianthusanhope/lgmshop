@@ -65,8 +65,8 @@
 								<a title="{{ $v->cname }}" href="#">>>{{ $v->cname }}</a>
 								@endforeach
 								@else
-								<span class=商品规格<"font-pale">所有结果：</span>
-								<a title="商品规格" href="#">{{$search}}</a>
+								<span class="font-pale">所有结果：</span>
+								<a title="{{ $search }}" href="#">{{ $search }}</a>
 								@endif
 							</div>
 							<ul class="select">
@@ -168,7 +168,8 @@
 								</div>
 								@foreach( $data as $k=>$v )
 								<li>
-									<div class="i-pic check">
+									<div class="i-pic limit">
+										<a href="/home/goods/{{ $v->gid }}">
 										<img src="/uploads/{{ $v->thumb }}" />
 										<p class="title fl">{{ $v->gname }}</p>
 										<p class="price fl">
@@ -182,6 +183,7 @@
 										<p class="number fl">
 											销量<span>{{ $v->sale }}</span>
 										</p>
+										</a>
 									</div>
 								</li>
 								@break($loop->iteration == 3)

@@ -106,6 +106,7 @@ Route::get('home/register/changeStatus/{id}/{token}','Home\RegisterController@ch
 
 //前台登陆
 Route::get('home/login', 'Home\LoginController@login');
+Route::get('home/login/myself', 'Home\LoginController@rinima');
 //验证登录
 Route::post('home/dologin', 'Home\LoginController@dologin');
 //登录退出
@@ -119,12 +120,19 @@ Route::get('home/information/edit', 'Home\InformationController@edit');
 //执行信息修改
 Route::post('home/information/update', 'Home\InformationController@update');
 
-//显示地址页面
+//显示收货地址页面
 Route::get('home/address', 'Home\AddressController@index');
 //执行地址添加
 Route::post('home/address/store', 'Home\AddressController@store');
+//地址删除
+Route::get('home/address/edit/{aid}', 'Home\AddressController@edit');
+//默认地址的修改
+Route::get('home/address/update/{aid}', 'Home\AddressController@update');
 
 
+
+//显示个人安全中心
+Route::get('home/safety', 'Home\SafetyController@index');
 
 
 

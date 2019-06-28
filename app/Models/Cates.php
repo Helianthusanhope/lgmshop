@@ -11,4 +11,5 @@ class Cates extends Model
     //重写主键名
     public $primaryKey = 'cid';
     
+    
 }

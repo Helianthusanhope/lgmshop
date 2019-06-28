@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Actives;
+use App\Models\Goods;
 
 class ActiveController extends Controller
 {
@@ -33,6 +34,8 @@ class ActiveController extends Controller
     //显示一个活动页面
     public function index($id)
     {
-    	return view('home.active.index');
+    	//活动对应的商品
+    	$active_goods_data = Goods::where('active_id',$id)->get();
+    	return view('home.active.index',['active_goods_data'=>$active_goods_data]);
     }
 }

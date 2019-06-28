@@ -8,4 +8,6 @@ class UserAddr extends Model
 {
     //
     public $table = 'user_addrs';
+    //设置主键
+    public $primaryKey = 'aid';
 }

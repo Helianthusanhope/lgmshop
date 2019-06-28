@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\UserAddr;
 
 class OrderController extends Controller
 {
@@ -14,13 +15,19 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        //
+
         if(!empty($_SESSION['car'])){
             $data = $_SESSION['car'];
         }else{
             $data = [];
         }
-        return view('home.order.index');
+
+        
+        $uid = session('home_user')->uid;     
+        //分配现有的地址数据
+        $addr = UserAddr::where('uid',$uid)->get();         
+        return view('home.order.index',['addr'=>$addr]);
+
     }
 
     /**

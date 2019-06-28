@@ -3,6 +3,7 @@
 <!---网站头部结束-->
 <!-- header 开始 -->
 @include('home.public.header')
+
 <!-- header 结束 -->
 <!-- 轮播图 开始 -->
 @include('home.public.banners')
@@ -182,20 +183,35 @@
                         </div>
                         
                      <div class="am-g am-g-fixed flood method3 am-container" style="width: 1200px">
-                        <ul class="am-thumbnails " >
-                            <li>
-                                <div class="list " style="margin-top:5px;margin-right:10px">
-                                    <a href="# ">
-                                        <img src="/ho/images/cp.jpg " />
-                                        <div class="pro-title ">萨拉米 1+1小鸡腿</div>
-                                        <span class="e-price ">￥29.90</span>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                       
+                            @foreach( $categoods as $k1 => $v2 )
+                            @continue( $v->cid != $v2->sub2 )
+                                @foreach($v2->sub1 as $key => $value)
+                                <ul class="am-thumbnails " >
+                                    <li>
+                                        <div class="i-pic check " style="margin-top:5px;margin-right:10px">
+                                            <a href="/home/goods/{{ $value->gid }}">
+                                                <img class="limit" style="height: 200px" src="/uploads/{{ $value->thumb }}" />
+                                                <div class="pro-title ">{{ $value->gname }}</div>
+                                                <span class="e-price ">￥
+                                                @if($value->active_id != 0)
+                                                <strong>{{ round($value->price * $value->goodactive->discount / 10, 2)}}</strong>
+                                                @elseif($value->active_id == 0)
+                                                <strong>{{ $value->price }}</strong>
+                                                @endif
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                @break($loop->iteration == 8 )
+                                @endforeach
+                            @endforeach
+
+                           
+
                     </div>
                     <div class="clear "></div>
+
                     @endforeach
                     
                     
