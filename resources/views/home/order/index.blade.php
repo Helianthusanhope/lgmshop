@@ -4,7 +4,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0 ,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<title>结算页面</title>
 
 		<link href="/ho/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
@@ -24,23 +24,9 @@
 @include('home.public.header')
 <!-- header 结束 -->
 
-			<!--悬浮搜索框-->
-
-			<div class="nav white">
-				<div class="logo"><img src="/ho/images/logo.png" /></div>
-				<div class="logoBig">
-					<li><img src="/ho/images/logobig.png" /></li>
-				</div>
-
-				<div class="search-bar pr">
-					<a name="index_none_header_sysc" href="#"></a>
-					<form>
-						<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
-						<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
-					</form>
-				</div>
-			</div>
-
+<!--悬浮搜索框-->
+@include('home.public.search')
+			
 			<div class="clear"></div>
 			<div class="concent">
 				<!--地址 -->
@@ -110,7 +96,7 @@
 								
 								<div class="new-addr-btn">
 									@if($v->status == '1')
-										<span><i class="am-icon-edit">收货地址</i></span>
+										<span><i style="background:#E85252">收货地址</i></span>
 										<span class="new-addr-bar">|</span>		
 										<span class="new-addr-bar">|</span>
 										<a href="/home/address/edit/{{$v->aid}}"><i style="background:#ccc">删除</i></a>
@@ -167,10 +153,11 @@
 								</div>
 							</div>
 							<div class="clear"></div>
-
+							<?php $a = 0; ?>
+							@foreach($data as $k => $v)
 							<tr class="item-list">
 								<div class="bundle  bundle-last">
-
+									<?php $a += 10; ?>
 									<div class="bundle-main">
 										<ul class="item-content clearfix">
 											<div class="pay-phone">
@@ -181,20 +168,19 @@
 													</div>
 													<div class="item-info">
 														<div class="item-basic-info">
-															<a href="#" class="item-title J_MakePoint" data-point="tbcart.8.11">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</a>
+															<a href="#" class="item-title J_MakePoint" data-point="tbcart.8.11">{{ $v['gname'] }}</a>
 														</div>
 													</div>
 												</li>
 												<li class="td td-info">
 													<div class="item-props">
-														<span class="sku-line">颜色：12#川南玛瑙</span>
-														<span class="sku-line">包装：裸装</span>
+														<span class="sku-line">{{ $v['goodstock']['color'] }}*{{ $v['goodstock']['size'] }}</span>
 													</div>
 												</li>
 												<li class="td td-price">
 													<div class="item-price price-promo-promo">
 														<div class="price-content">
-															<em class="J_Price price-now">39.00</em>
+															<em class="J_Price price-now">{{ $v['price_active'] }}</em>
 														</div>
 													</div>
 												</li>
@@ -204,16 +190,16 @@
 													<div class="item-amount ">
 														<span class="phone-title">购买数量</span>
 														<div class="sl">
-															<input class="min am-btn" name="" type="button" value="-" />
-															<input class="text_box" name="" type="text" value="3" style="width:30px;" />
-															<input class="add am-btn" name="" type="button" value="+" />
+															<span style="border: 1px solid #8B8989;padding:0px 5px;"><a href="/home/car/descnum?id={{ $k }}" >-</a></span >
+															<input class="text_box" name="" type="text" value="{{ $v['number'] }}" style="width:30px;" />
+															<span style="border: 1px solid #8B8989;padding:0px 5px;"><a href="/home/car/addnum?id={{ $k }}" >+</a></span >
 														</div>
 													</div>
 												</div>
 											</li>
 											<li class="td td-sum">
 												<div class="td-inner">
-													<em tabindex="0" class="J_ItemSum number">117.00</em>
+													<em tabindex="0" class="J_ItemSum number">{{ $v['xiaoji'] }}</em>
 												</div>
 											</li>
 											<li class="td td-oplist">
@@ -227,76 +213,12 @@
 
 										</ul>
 										<div class="clear"></div>
-
+										
 									</div>
 							</tr>
+							@endforeach
 							<div class="clear"></div>
-							</div>
-
-							<tr id="J_BundleList_s_1911116345_1" class="item-list">
-								<div id="J_Bundle_s_1911116345_1_0" class="bundle  bundle-last">
-									<div class="bundle-main">
-										<ul class="item-content clearfix">
-											<div class="pay-phone">
-												<li class="td td-item">
-													<div class="item-pic">
-														<a href="#" class="J_MakePoint">
-															<img src="/ho/images/kouhong.jpg_80x80.jpg" class="itempic J_ItemImg"></a>
-													</div>
-													<div class="item-info">
-														<div class="item-basic-info">
-															<a href="#" target="_blank" title="美康粉黛醉美唇膏 持久保湿滋润防水不掉色" class="item-title J_MakePoint" data-point="tbcart.8.11">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</a>
-														</div>
-													</div>
-												</li>
-												<li class="td td-info">
-													<div class="item-props">
-														<span class="sku-line">颜色：10#蜜橘色+17#樱花粉</span>
-														<span class="sku-line">包装：两支手袋装（送彩带）</span>
-													</div>
-												</li>
-												<li class="td td-price">
-													<div class="item-price price-promo-promo">
-														<div class="price-content">
-															<em class="J_Price price-now">39.00</em>
-														</div>
-													</div>
-												</li>
-											</div>
-
-											<li class="td td-amount">
-												<div class="amount-wrapper ">
-													<div class="item-amount ">
-														<span class="phone-title">购买数量</span>
-														<div class="sl">
-															<input class="min am-btn" name="" type="button" value="-" />
-															<input class="text_box" name="" type="text" value="3" style="width:30px;" />
-															<input class="add am-btn" name="" type="button" value="+" />
-														</div>
-													</div>
-												</div>
-											</li>
-											<li class="td td-sum">
-												<div class="td-inner">
-													<em tabindex="0" class="J_ItemSum number">117.00</em>
-												</div>
-											</li>
-											<li class="td td-oplist">
-												<div class="td-inner">
-													<span class="phone-title">配送方式</span>
-													<div class="pay-logis">
-														包邮
-													</div>
-												</div>
-											</li>
-
-										</ul>
-										<div class="clear"></div>
-
-									</div>
-							</tr>
-							</div>
-							<div class="clear"></div>
+							
 							<div class="pay-total">
 						<!--留言-->
 							<div class="order-extra">
@@ -312,61 +234,12 @@
 
 							</div>
 							<!--优惠券 -->
-							<div class="buy-agio">
-								<li class="td td-coupon">
-
-									<span class="coupon-title">优惠券</span>
-									<select data-am-selected>
-										<option value="a">
-											<div class="c-price">
-												<strong>￥8</strong>
-											</div>
-											<div class="c-limit">
-												【消费满95元可用】
-											</div>
-										</option>
-										<option value="b" selected>
-											<div class="c-price">
-												<strong>￥3</strong>
-											</div>
-											<div class="c-limit">
-												【无使用门槛】
-											</div>
-										</option>
-									</select>
-								</li>
-
-								<li class="td td-bonus">
-
-									<span class="bonus-title">红包</span>
-									<select data-am-selected>
-										<option value="a">
-											<div class="item-info">
-												¥50.00<span>元</span>
-											</div>
-											<div class="item-remainderprice">
-												<span>还剩</span>10.40<span>元</span>
-											</div>
-										</option>
-										<option value="b" selected>
-											<div class="item-info">
-												¥50.00<span>元</span>
-											</div>
-											<div class="item-remainderprice">
-												<span>还剩</span>50.00<span>元</span>
-											</div>
-										</option>
-									</select>
-
-								</li>
-
-							</div>
 							<div class="clear"></div>
 							</div>
 							<!--含运费小计 -->
 							<div class="buy-point-discharge ">
 								<p class="price g_price ">
-									合计（含运费） <span>¥</span><em class="pay-sum">244.00</em>
+									合计（含运费） <span>¥</span><em class="pay-sum" id="gobuy-price">{{ $priceCount + $a }}</em>
 								</p>
 							</div>
 
@@ -376,7 +249,7 @@
 									<div class="box">
 										<div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em>
 											<span class="price g_price ">
-                                    <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">244.00</em>
+                                    <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">{{ $priceCount + $a }}</em>
 											</span>
 										</div>
 
@@ -393,7 +266,7 @@
 												</span>
 											</p>
 												<p class="buy-footer-address">
-												<span class="buy-line-title">收货人：</span>
+												<span class="buy-line-title" id="gobuy-aid" aid="{{ $v->aid }}">收货人：</span>
 												<span class="buy-address-detail">   
                                          		<span class="buy-user">{{ $v->addrname}} </span>
 												<span class="buy-phone">{{ $v->phone}}</span>
@@ -407,14 +280,49 @@
 
 									<div id="holyshit269" class="submitOrder">
 										<div class="go-btn-wrap">
-											<a id="J_Go" href="success.html" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
+											<a href="javascript:;" onclick="return goBuy()" class="btn-go" >提交订单</a>
 										</div>
 									</div>
+
 									<div class="clear"></div>
 								</div>
 							</div>
 						</div>
 
+						<script type="text/javascript">
+							
+						    function goBuy()
+						    {
+						    	$.ajaxSetup({
+							        headers: {
+							        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+							        }
+							    });
+						        var price_all = $('#gobuy-price').html();
+						        var aid = $('#gobuy-aid').attr('aid');
+						        $.ajax({
+								    url:"/home/orders",
+								    dataType:"json",
+								    async:true,
+								    data:{price_all,aid},
+								    type:"POST",
+								    success:function(res){
+										layer.msg('提交成功');
+								        setTimeout(function(){
+						                    window.location.href = '/home/orders/success';
+						                },600);
+								    },
+								    error:function(){
+								        layer.msg('提交失败');
+								    }
+								});
+						    }
+						    $(window).keydown(function(event) {
+						        if (event.keyCode == 13) {
+						            $('.log-btn').trigger('click');
+						        }
+						    });
+						</script>
 						<div class="clear"></div>
 					</div>
 				</div>

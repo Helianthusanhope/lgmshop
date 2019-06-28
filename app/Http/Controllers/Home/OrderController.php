@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\UserAddr;
-
+use App\Models\Goods;
+use App\Models\GoodStock;
+use App\Models\Actives;
+use App\Models\Order;
+use APP\Http\Controllers\Home\CarController;
 class OrderController extends Controller
 {
     /**
@@ -13,20 +17,18 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-
         if(!empty($_SESSION['car'])){
             $data = $_SESSION['car'];
-        }else{
+        } else {
             $data = [];
         }
-
-        
-        $uid = session('home_user')->uid;     
+        $uid = session('home_user')->uid;
+        $priceCount = CarController::priceCount();     
         //分配现有的地址数据
         $addr = UserAddr::where('uid',$uid)->get();         
-        return view('home.order.index',['addr'=>$addr]);
+        return view('home.order.index',['addr'=>$addr,'data'=>$data,'priceCount'=>$priceCount]);
 
     }
 
@@ -49,7 +51,44 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $aid = $request->input('aid','');
+        $price_all = $request->input('price_all','');
+        $data = $_SESSION['car'];
+        $stid_all = '';
+        $number = '';
+        $a = 0;
+        foreach ($data as $k => $v) {
+            $a++;
+            if ($a == 1) {
+                $stid_all = $k;
+                $number = $v['number'];
+            } else {
+                $stid_all = $stid_all.','.$k;
+                $number = $number.','.$v['number'];
+            }
+            
+        }
+        $oname = time().session('home_user')->uid;
+        $orders = new Order;
+        $orders->uid = session('home_user')->uid;
+        $orders->oname = str_pad($oname,15,rand(0,9),STR_PAD_RIGHT);
+        $orders->aid = $aid;
+        $orders->price_all = $price_all;
+        $orders->stid_all = $stid_all;
+        $orders->number = $number;
+        $orders->order_status = '1';
+        $orders->coid_all = '0';
+        $res = $orders->save();
+        if ($res) {
+            $_SESSION['car'] = null;
+            echo json_encode(['msg'=>'ok','info'=>'提交订单成功']);
+            exit;
+        } else {
+            echo json_encode(['msg'=>'err','info'=>'提交订单失败']);
+            exit;
+        }
+
+        
     }
 
     /**
@@ -97,5 +136,53 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // 
+    public function success()
+    {
+
+        return view('home.order.success');
+    }
+
+    // 计算订单信息
+    public function buy(Request $request)
+    {
+        $stid = $request->input('stid','');
+        $number = $request->input('number','');
+        if(!empty($_SESSION['car'])){
+            if (!empty($_SESSION['car'][$stid]) && !empty($stid)) {
+                $_SESSION['car'][$stid]['number'] = $_SESSION['car'][$stid]['number'] + $number;
+                $_SESSION['car'][$stid]['xiaoji'] = $_SESSION['car'][$stid]['number'] * $_SESSION['car'][$stid]['price_active'];
+            } elseif (empty($_SESSION['car'][$stid]) && !empty($stid)) {
+                $goodstock = GoodStock::find($stid);
+                $data = Goods::select(['gid', 'gname', 'price' ,'cid', 'active_id', 'thumb'])->find($goodstock->gid)->toArray();
+                if ($data['active_id'] == '0') {
+                    $data['price_active'] = $data['price'];
+                } else {
+                    $data['price_active'] = round(Actives::find($data['active_id'])->discount * $data['price'] /10, 2);
+                }
+                $data['goodstock'] = $goodstock->toArray();
+                $data['number'] = $number;
+                $data['stid'] = $stid;
+                $data['xiaoji'] = $data['price_active'] * $data['number'];
+                $_SESSION['car'][$stid] = $data;
+                }
+
+        } else {
+            $goodstock = GoodStock::find($stid);
+            $data = Goods::select(['gid', 'gname', 'price' ,'cid', 'active_id', 'thumb'])->find($goodstock->gid)->toArray();
+            if ($data['active_id'] == '0') {
+                $data['price_active'] = $data['price'];
+            } else {
+                $data['price_active'] = round(Actives::find($data['active_id'])->discount * $data['price'] /10, 2);
+            }
+            $data['goodstock'] = $goodstock->toArray();
+            $data['number'] = $number;
+            $data['stid'] = $stid;
+            $data['xiaoji'] = $data['price_active'] * $data['number'];
+            $_SESSION['car'][$stid] = $data;
+        }
+        return redirect('/home/orders');
     }
 }

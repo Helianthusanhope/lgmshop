@@ -24,8 +24,14 @@ class CarController extends Controller
 		$priceCount = self::priceCount();
         // 已享优惠
         $pricePromo = self::pricePromo();
+        // uid
+        if (session('home_login')) {
+            $uid = session('home_user')->uid;
+        } else {
+            $uid = 0;
+        }
 		// 加载模板
-		return view('home.car.index',['data'=>$data,'priceCount'=>$priceCount,'pricePromo'=>$pricePromo]);
+		return view('home.car.index',['data'=>$data,'priceCount'=>$priceCount,'pricePromo'=>$pricePromo,'uid'=>$uid]);
 	}
 
 

@@ -149,7 +149,8 @@ Route::get('home/goodlist/catetwo/{cid}','Home\GoodlistController@catetwo');
 // 显示商品
 Route::resource('home/goods','Home\GoodController');
 // 订单页
-Route::get('home/orders/buy', 'Home\OrderController@index');
+Route::get('home/orders/buy', 'Home\OrderController@buy');
+Route::get('home/orders/success', 'Home\OrderController@success');
 Route::resource('home/orders','Home\OrderController');
 
 
@@ -170,7 +171,3 @@ Route::get('home/car/index','Home\CarController@index');
 Route::get('home/car/addnum','Home\CarController@addNum');
 Route::get('home/car/descnum','Home\CarController@descNum');
 Route::get('home/car/delete','Home\CarController@delete');
-
-// 购物 结算
-Route::get('home/order/account','Home\OrderController@account');
-Route::post('home/order/pay','Home\OrderController@pay');

@@ -64,7 +64,7 @@
 								  </form>
 								  <div class="login-links">
 								    <label for="reader-me">
-								      <input id="reader-me" type="checkbox">点击表示您同意商城《服务协议》</label></div>
+								      <input id="reader-me" type="checkbox">点击同意商城《服务协议》 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/home/login">直接登录</a></label></div>
 								</div>
 
 								<div class="am-tab-panel">
@@ -100,7 +100,7 @@
 									</form>
 									 <div class="login-links">
 										<label for="reader-me">
-											<input id="reader-me" type="checkbox"> 点击表示您同意商城《服务协议》
+											<input id="reader-me" type="checkbox"> 点击同意商城《服务协议》 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/home/login">直接登录
 										</label>
 								  	</div>
 									
