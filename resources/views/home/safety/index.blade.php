@@ -43,21 +43,13 @@
 										<div class="fore2"><small>为保证您购物安全，建议您定期更改密码以保护账户安全。</small></div>
 									</div>
 									<div class="fore3">
-										<a href="#">
-											<div class="am-btn am-btn-secondary" onclick="mima()">修改</div>
+										<a href="/home/safety/upass">
+											<div class="am-btn am-btn-secondary">修改</div>
 										</a>
 									</div>
-
 								</li>
-								<script type="text/javascript">
-									function mima(){
 
-										alert('修改页面');
-									}
-								</script>
-
-
-								<li>
+							<!-- 	<li>
 									<i class="i-safety-wallet"></i>
 									<div class="m-left">
 										<div class="fore1">支付密码</div>
@@ -68,7 +60,7 @@
 											<div class="am-btn am-btn-secondary">立即启用</div>
 										</a>
 									</div>
-								</li>
+								</li> -->
 								<li>
 									<i class="i-safety-iphone"></i>
 									<div class="m-left">
@@ -76,7 +68,7 @@
 										<div class="fore2"><small>您验证的手机：186XXXXXXXX 若已丢失或停用，请立即更换</small></div>
 									</div>
 									<div class="fore3">
-										<a href="bindphone.html">
+										<a href="/home/safety/phone">
 											<div class="am-btn am-btn-secondary">换绑</div>
 										</a>
 									</div>
@@ -88,12 +80,12 @@
 										<div class="fore2"><small>您验证的邮箱：5831XXX@qq.com 可用于快速找回登录密码</small></div>
 									</div>
 									<div class="fore3">
-										<a href="email.html">
+										<a href="/home/safety/email">
 											<div class="am-btn am-btn-secondary">换绑</div>
 										</a>
 									</div>
 								</li>
-								<li>
+								<!-- <li>
 									<i class="i-safety-idcard"></i>
 									<div class="m-left">
 										<div class="fore1">实名认证</div>
@@ -116,9 +108,12 @@
 											<div class="am-btn am-btn-secondary">认证</div>
 										</a>
 									</div>
-								</li>
+								</li> -->
 							</ul>
 						</div>
 
-					</div>				
+					</div>	
+
+
+								
 @endsection

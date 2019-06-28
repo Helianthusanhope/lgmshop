@@ -8,8 +8,8 @@ use DB;
 use Hash;
 class LoginController extends Controller
 {   
-    //
-    public function rinima()
+    //进去个人中心的验证
+    public function myself()
     {
         //检测是否在登录状态
         if ( !session('home_login') ){
@@ -35,7 +35,7 @@ class LoginController extends Controller
     	
     	//验证获取的数据
     	//在数据查看验证用户名
-    	if( DB::table('users')->where('uname',$uname)->first() ){
+    	if( DB::table('users')->where('uname',$uname)->first() ) {
 
     		$users_data = DB::table('users')->where('uname',$uname)->first();
 
@@ -50,23 +50,27 @@ class LoginController extends Controller
 
 
     	//如果登录名不正确
-    	if(empty($users_data)){
+    	if(empty($users_data)) {
 
-    		echo "<script>alert('用户名或密码错误');location.href='/home/login';</script>";
+    		echo json_encode( ['msg'=>'err','info'=>'帐号密码错误'] );
     		exit;
     	}
     	//验证密码是否正确
-    	if( !Hash::check( $upass,$users_data->upass)){
+    	if( !Hash::check( $upass,$users_data->upass)) {
 
-    		echo "<script>alert('用户名或密码错误');location.href='/home/login';</script>";
-    		exit;
+    		echo json_encode( ['msg'=>'err','info'=>'帐号密码错误'] );
+            exit;
     	}     
     	
-    	// 执行登录
+
+    	// 登录成功压入数据
     	session(['home_login'=>true]);
     	session(['home_user'=>$users_data]);
-    	//执行跳转到首页
-    	return redirect('/');
+    	
+        //返回登陆结果      
+        echo json_encode( ['msg'=>'ok','info'=>''] );
+        
+       
     	
     }
 
