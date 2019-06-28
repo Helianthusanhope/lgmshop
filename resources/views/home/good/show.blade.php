@@ -51,7 +51,7 @@
 						</div>
 			</div>
 				<ol class="am-breadcrumb am-breadcrumb-slash">
-					<li><a href="#">首页</a></li>
+					<li><a href="/">首页</a></li>
 					<li><a href="/home/goodlist/{{ $good->cid }}">{{ $good->goodcates->cname }}</a></li>
 					<li class="am-active">内容</li>
 				</ol>
@@ -231,7 +231,7 @@
 							
 							<li>
 								<div class="clearfix tb-btn tb-btn-buy theme-login">
-									<a id="LikBuy" title="立即购买" stid="{{ $stid }}" href="#"><i></i>立即购买</a>
+									<a id="LikBuy" title="立即购买" stid="{{ $stid }}" href="#" uid="{{ $uid }}"><i></i>立即购买</a>
 								</div>
 							</li>
 							<li>
@@ -243,13 +243,20 @@
 						
 					</div>
 					<script type="text/javascript">
+						// 立即购买
 						$("#LikBuy").click(function(){
-							var aa = '/home/orders?stid=';
+							var uid = $(this).attr('uid');
+							if(uid == 0){
+								layer.msg('您尚未登录');
+								return;
+							}
+							var aa = '/home/orders/buy?stid=';
 							var stid = $(this).attr('stid');
 							var num = $(this).parent().parent().parent().prev().find("input[type=text]").val();
 							window.location.href = aa+stid+'&number='+num;
 							
 						});
+						// 加入购物车
 						$("#LikBasket").click(function(){
 							var aa = '/home/car/add?stid=';
 							var stid = $(this).attr('stid');

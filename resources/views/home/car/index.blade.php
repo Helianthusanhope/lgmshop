@@ -153,13 +153,23 @@
 							<strong class="price">¥<em id="J_Total">{{$priceCount}}</em></strong>
 						</div>
 						<div class="btn-area">
-							<a href="pay.html" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
+							<a href="#" id="J_Go" uid="{{ $uid }}" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
 								<span>结&nbsp;算</span></a>
 						</div>
 					</div>
 
 				</div>
-
+				<script type="text/javascript">
+					// 立即购买
+						$("#J_Go").click(function(){
+							var uid = $(this).attr('uid');
+							if(uid == 0){
+								layer.msg('您尚未登录');
+								return;
+							}
+							window.location.href = '/home/orders';
+						});
+				</script>
 <!--foot-->
 @include('home.public.foot')
 <!--foot-->

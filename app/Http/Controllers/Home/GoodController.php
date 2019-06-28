@@ -78,7 +78,12 @@ class GoodController extends Controller
         // 默认库存id
         $stid = $request->input('stid','');
         $stid = self::getstid($good, $stid);
-        return view('home.good.show',['good'=>$good,'like'=>$like,'active'=>$active,'goodcomment'=>$goodcomment,'stid'=>$stid]);
+        if (session('home_login')) {
+            $uid = session('home_user')->uid;
+        } else {
+            $uid = 0;
+        }
+        return view('home.good.show',['good'=>$good,'like'=>$like,'active'=>$active,'goodcomment'=>$goodcomment,'stid'=>$stid,'uid'=>$uid]);
     }
 
     /**
