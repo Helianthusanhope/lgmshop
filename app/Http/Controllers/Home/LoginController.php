@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use DB;
+use App\Models\Users;
+use App\Models\Userinfo;
 use Hash;
 class LoginController extends Controller
 {   
@@ -35,17 +36,20 @@ class LoginController extends Controller
     	
     	//验证获取的数据
     	//在数据查看验证用户名
-    	if( DB::table('users')->where('uname',$uname)->first() ){
+    	if( Users::where('uname',$uname)->first() ){
 
-    		$users_data = DB::table('users')->where('uname',$uname)->first();
+            $users_data = Users::where('uname',$uname)->first();
+    		$userinfo_data = Userinfo::where('uid',$users_data->uid)->first();
 
-    	} else if ( DB::table('users')->where('email',$uname)->first() ){
+    	} else if ( Users::where('email',$uname)->first() ){
 
-    		$users_data = DB::table('users')->where('email',$uname)->first();
+    		$users_data = Users::where('email',$uname)->first();
+            $userinfo_data = Userinfo::where('uid',$users_data->uid)->first();
 
     	} else {
 
-    		$users_data = DB::table('users')->where('phone',$uname)->first();
+    		$users_data = Users::where('phone',$uname)->first();
+            $userinfo_data = Userinfo::where('uid',$users_data->uid)->first();
     	}
 
 
@@ -64,7 +68,9 @@ class LoginController extends Controller
     	
     	// 执行登录
     	session(['home_login'=>true]);
-    	session(['home_user'=>$users_data]);
+        session(['home_user'=>$users_data]);
+    	session(['home_userinfo'=>$userinfo_data]);
+        
     	//执行跳转到首页
     	return redirect('/');
     	
@@ -75,7 +81,8 @@ class LoginController extends Controller
     {
     	//执行退出
     	session(['home_login'=>false]);
-    	session(['home_user'=>null]);   
+        session(['home_user'=>null]);   
+    	session(['home_userinfo'=>null]);   
         
     	return redirect('/');
 

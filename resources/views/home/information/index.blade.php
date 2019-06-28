@@ -45,7 +45,7 @@
 									<span><img src="/uploads/{{ $data->profile}}" style="width:60px"></span>
 									<br>
 									<div class="am-form-content"style="width:80px">
-										<input type="hidden" name="old_profile"  value="{{ $data->profile}}">
+										<input type="hidden" name="old_profile"  value="{{ $data->profile }}">
 
 									</div>								
 									<div class="am-form-content">

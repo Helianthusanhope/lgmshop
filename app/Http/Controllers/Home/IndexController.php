@@ -66,7 +66,7 @@ class IndexController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {       
         //已共享 $common_cates_data
         $works_data = WorkController::getWorksAll();
         $actives_commend = ActiveController::getActivesCommend();

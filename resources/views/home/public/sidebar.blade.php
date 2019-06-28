@@ -5,12 +5,12 @@
                         <a href="# ">
                             <span class="setting "></span>
                         </a>
+                        @if(session('home_login')) 
                         <div class="ibar_login_box status_login ">
                             <div class="avatar_box ">
-                                <p class="avatar_imgbox "><img src="/ho/images/no-img_mid_.jpg " /></p>
+                                <p class="avatar_imgbox "><img src="/uploads/{{session('home_userinfo')->profile}} " /></p>
                                 <ul class="user_info ">
-                                    <li>用户名sl1903</li>
-                                    <li>级&nbsp;别普通会员</li>
+                                    <li>{{session('home_user')->uname}}</li>
                                 </ul>
                             </div>
                             <div class="login_btnbox ">
@@ -19,16 +19,30 @@
                             </div>
                             <i class="icon_arrow_white "></i>
                         </div>
-
+                        @else
+                        <div class="ibar_login_box status_login ">
+                            <div class="avatar_box ">
+                                <p class="avatar_imgbox "><img src="/ho/images/no-img_mid_.jpg " /></p>
+                                <ul class="user_info ">
+                                    <li>游客{{ rand(0001,9999) }},你好</li>
+                                </ul>
+                            </div>
+                            <div class="login_btnbox ">
+                                <a href="/home/login" class="login_order ">亲，请登录</a>
+                                <a href="/home/register" class="login_favorite ">免费注册</a>
+                            </div>
+                            <i class="icon_arrow_white "></i>
+                        </div>
+                        @endif
                     </div>
                     <div id="shopCart " class="item ">
-                        <a href="# ">
+                        <a href="/home/car/index">
                             <span class="message "></span>
                         </a>
                         <p>
                             购物车
                         </p>
-                        <p class="cart_num ">0</p>
+                        <p class="cart_num ">{{ $car_count }}</p>
                     </div>
                     <div id="asset " class="item ">
                         <a href="# ">
