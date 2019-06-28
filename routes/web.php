@@ -140,8 +140,12 @@ Route::get('home/safety', 'Home\SafetyController@index');
 Route::get('home/active/{id}', 'Home\ActiveController@index');
 //显示新闻详情页
 Route::get('home/work/{id}', 'Home\WorkController@index');
-// 显示商品
+// 三级分类和全局搜索 显示商品详情
 Route::resource('home/goodlist','Home\GoodlistController');
+//一级分类 显示
+Route::get('home/goodlist/catetop/{cid}','Home\GoodlistController@catetop');
+//二级分类 显示
+Route::get('home/goodlist/catetwo/{cid}','Home\GoodlistController@catetwo');
 // 显示商品
 Route::resource('home/goods','Home\GoodController');
 // 订单页

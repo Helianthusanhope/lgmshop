@@ -51,9 +51,95 @@ class GoodlistController extends Controller
     	return $cate_nav;
 	}
 
-	 //显示商品列表页
+	//
+
+	// 一级分类跳转到对应商品
+	public function catetop(Request $request,$id)
+	{
+		//获取商品所对应的的 第三级分类
+    	$top_cid = $id;
+    	$top_cid_name = DB::table('cates')->select('cname')->where('cid',$top_cid)->first();
+    	//所有的 分类id 和路径
+    	$cid_paths = DB::table('cates')->select('cid','path')->get()->toArray();
+    	//获取 顶级分类 对应的所有 三级分类
+    	$cids = [];
+    	foreach( $cid_paths as $k=>$v ){
+    		$path = $v->path;
+    		if( substr_count($path,',') == 2 && explode(',',$path)[1] == $top_cid ){
+    			$cids[] = $v->cid;
+    		}
+    	}
+    	if ($request->input('sort','')) {
+    		$sort = $request->input('sort','');
+    		if ($sort == 'price') {
+    			$desc = 'asc';
+    		} else {
+    			$desc = 'desc';
+    		}
+    		$goods = Goods::whereIn('cid',$cids)->where('good_status','1')->orderBy($sort,$desc)->select('gid','gname','price','cid','thumb','active_id','sale')->paginate(50);
+    	} else {
+    		$sort = 1;
+    		$goods = Goods::whereIn('cid',$cids)->where('good_status','1')->orderBy('sale','desc')->orderBy('collect','desc')->select('gid','gname','price','cid','thumb','active_id','sale')->paginate(50);
+    	}
+    	return view('home.goodlist.catetop',['top_cid_name'=>$top_cid_name,'data'=>$goods,'search'=>'','cid'=>$id,'sort'=>$sort]);
+	}
+
+
+	// 一级分类跳转到对应商品
+	public function catetwo(Request $request,$id)
+	{
+		//获取商品所对应的的 第三级分类
+    	$two_cid = $id;
+    	$two_cid_name = DB::table('cates')->select('cname')->where('cid',$two_cid)->first();
+    	//所有的 分类id 和路径
+    	$cid_paths = DB::table('cates')->select('cid','path')->get()->toArray();
+    	//获取 顶级分类 对应的所有 三级分类
+    	$cids = [];
+    	foreach( $cid_paths as $k=>$v ){
+    		$path = $v->path;
+    		if( substr_count($path,',') == 2 && explode(',',$path)[2] == $two_cid ){
+    			$cids[] = $v->cid;
+    		}
+    	}
+    	if ($request->input('sort','')) {
+    		$sort = $request->input('sort','');
+    		if ($sort == 'price') {
+    			$desc = 'asc';
+    		} else {
+    			$desc = 'desc';
+    		}
+    		$goods = Goods::whereIn('cid',$cids)->where('good_status','1')->orderBy($sort,$desc)->select('gid','gname','price','cid','thumb','active_id','sale')->paginate(50);
+    	} else {
+    		$sort = 1;
+    		$goods = Goods::whereIn('cid',$cids)->where('good_status','1')->orderBy('sale','desc')->orderBy('collect','desc')->select('gid','gname','price','cid','thumb','active_id','sale')->paginate(50);
+    	}
+    	return view('home.goodlist.catetwo',['two_cid_name'=>$two_cid_name,'data'=>$goods,'search'=>'','cid'=>$id,'sort'=>$sort]);
+	}
+
+	// 分类id 显示商品列表页
     public function show(Request $request, $id)
     {
+
+
+    	
+        // $cids = DB::table('goods')->pluck('cid','gid')->toArray();
+        // if( $)
+
+        // // dump( $cids );
+        // //顶级分类 id
+        // $categoods = DB::table('cates')->whereIn('cid',$cids)->get();
+        // // dump( $categoods ); 
+        // $cates_top = [];
+        // foreach ($categoods as $k => $v) {
+        //     $v->sub = $cates_top[] = explode(',', $v->path)[1];
+        //      // substr_count($v->path,',');
+        //      // $cates_three[] = explode(',', $v->path)[3];
+
+        // } 
+        // dd( $categoods );
+
+
+
     	if ($request->input('sort','')) {
     		$sort = $request->input('sort','');
     		if ($sort == 'price') {

@@ -118,7 +118,7 @@
                                 <h4>{{ $v->active_desc }}</h4>
                             </div>
                             <div class="recommendationMain one">
-                                <a href="introduction.html"><img src="/uploads/{{ $v->active_thumb }}"></img></a>
+                                <a href="/home/active/{{ $v->id }}"><img src="/uploads/{{ $v->active_thumb }}"></img></a>
                             </div>
                         </div>
                         @endforeach
@@ -161,7 +161,7 @@
                             <h3>{{ $v->desc }}</h3>
                             <div class="today-brands ">
                                 @foreach( $v->sub as $kk=>$vv )
-                                <a href="# ">{{ $vv->cname }}</a>
+                                <a href="/home/goodlist/catetwo/{{ $vv->cid }}">{{ $vv->cname }}</a>
                                 @endforeach
                             </div>
                             <span class="more ">
@@ -178,7 +178,8 @@
                                         {{ $v->desc }}
                                     </div>                  
                                 </div>
-                                  <img style="width: 300px;height: 400px" src="/uploads/{{ $v->thumb }}" />                                
+                                <a href="/home/goodlist/catetop/{{ $v->cid }}">
+                                  <img style="width: 300px;height: 400px" src="/uploads/{{ $v->thumb }}" /></a>                              
                             </a>
                         </div>
                         
@@ -190,7 +191,7 @@
                                     <li>
                                         <div class="i-pic check " style="margin-top:5px;margin-right:10px">
                                             <a href="/home/goods/{{ $value->gid }}">
-                                                <img class="limit" style="height: 200px" src="/uploads/{{ $value->thumb }}" />
+                                               <img class="limit" style="height: 200px" src="/uploads/{{ $value->thumb }}" />
                                                 <div class="pro-title ">{{ $value->gname }}</div>
                                                 <span class="e-price ">￥
                                                 @if($value->active_id != 0)
@@ -205,6 +206,7 @@
                                 </ul>
                                 @break($loop->iteration == 8 )
                                 @endforeach
+                            @break($loop->iteration == 1 )
                             @endforeach
 
                            

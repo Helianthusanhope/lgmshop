@@ -46,7 +46,7 @@ class LoginController extends Controller
     		$users_data = Users::where('email',$uname)->first();
             $userinfo_data = Userinfo::where('uid',$users_data->uid)->first();
 
-    	} else {
+    	} else if ( Users::where('phone',$uname)->first() ){
 
     		$users_data = Users::where('phone',$uname)->first();
             $userinfo_data = Userinfo::where('uid',$users_data->uid)->first();

@@ -5,7 +5,7 @@
 @include('home.public.header')
 <!-- header 结束 -->
 <div class="banner">
-  <!--轮播图开始-->
+  <!--热门商品 开始-->
     <div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
         <ul class="am-slides" >
             @foreach( $active_goods_data as $k=>$v)
@@ -17,7 +17,7 @@
             @endforeach
         </ul>
     </div>
-    <!--轮播图结束-->
+    <!--热门商品 结束-->
     <div class="clear"></div>   
 </div>
 

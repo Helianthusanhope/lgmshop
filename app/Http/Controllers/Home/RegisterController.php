@@ -39,6 +39,7 @@ class RegisterController extends Controller
         $upass = $request->input('upass');
         $repass = $request->input('repass');
         $email = $request->input('email');
+
         //验证密码
         if($upass != $repass){
             echo "<script>alert('俩次密码不一致');location.href='/home/register'</script>";
