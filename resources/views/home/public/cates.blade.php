@@ -7,7 +7,7 @@
                                         <ul class="category-list" id="js_climit_li">
                                             <li class="appliance js_toggle relative first">
                                                 <div class="category-info">
-                                                    <h3 class="category-name b-category-name"><i><img src="/ho/images/cake.png"></i><a class="ml-22" title="点心">{{ $v->cname }}</a></h3>
+                                                    <h3 class="category-name b-category-name"><i><img src="/ho/images/cake.png"></i><a class="ml-22" title="点心" href="/home/goodlist/catetop/{{ $v->cid }}" >{{ $v->cname }}</a></h3>
                                                     <em>&gt;</em></div>
                                                 <div class="menu-item menu-in top">
                                                     <div class="area-in">
@@ -16,7 +16,8 @@
                                                                 <div class="sort-side">
                                                                     @foreach( $v->sub as  $kk=>$vv )
                                                                     <dl class="dl-sort">
-                                                                        <dt><span title="{{ $vv->cname }}">{{ $vv->cname }}</span></dt>
+                                                                        <dt><span title="{{ $vv->cname }}" href="/home/goodlist/catetwo/{{ $vv->cid }}"
+                                                                            >{{ $vv->cname }}</span></dt>
                                                                         @foreach( $vv->sub as $kkk=>$vvv )
                                                                             <dd><a title="{{$vvv->cname}}" href="/home/goodlist/{{ $vvv->cid }}"><span>{{$vvv->cname}}</span></a></dd>
                                                                         @endforeach

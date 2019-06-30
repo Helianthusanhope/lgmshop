@@ -27,7 +27,7 @@
                     <td>{{ $v->email }}</td>
                     <td>{{ $v->phone }}</td>
                     <td>
-                        <img style="border-radius: 5px;border:1px solid #ccc;width: 50px;" src="/uploads/{{ $v->userinfos->profile }}">
+                        <img style="border-radius: 5px;border:1px solid #ccc;width: 50px;" src="/uploads/{{ $v->userinfos->profile or '' }}">
                     </td>
                     <td>{{ $v->created_at}}</td>
                     <td>

@@ -68,7 +68,7 @@
 									<span class="total fl">本页共有<strong class="num">{{ count($data) }}</strong>件相关商品</span>
 								</p>
 								<div class="clear"></div>
-								<li class="select-result">
+								<!-- <li class="select-result">
 									<dl>
 										<dt>已选</dt>
 										<dd class="select-no"></dd>
@@ -115,7 +115,7 @@
 											<dd><a href="#">有机零食</a></dd>
 										</div>
 									</dl>
-								</li>
+								</li> -->
 					        
 							</ul>
 							<div class="clear"></div>

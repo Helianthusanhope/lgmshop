@@ -56,7 +56,7 @@ class UserController extends Controller
     {
          
         //显示用户列表
-        $users = Users::get();
+        $users = Users::all();
         
         // 加载页面
         return view('admin.users.index',['users'=>$users]);

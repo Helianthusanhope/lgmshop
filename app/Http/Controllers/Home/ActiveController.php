@@ -36,6 +36,8 @@ class ActiveController extends Controller
     {
     	//活动对应的商品
     	$active_goods_data = Goods::where('active_id',$id)->get();
-    	return view('home.active.index',['active_goods_data'=>$active_goods_data]);
+
+    	$active_name = Actives::where('id',$id)->select('active_name')->first();
+    	return view('home.active.index',['active_name'=>$active_name,'active_goods_data'=>$active_goods_data]);
     }
 }

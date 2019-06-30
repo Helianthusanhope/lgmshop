@@ -36,9 +36,19 @@ class GoodlistController extends Controller
 				DB::table('goods_word')->insert(['gid'=>$value->gid,'word'=>$vv]);
 			}
 			
+			// $brr = $this->keyword();
+			// foreach($brr as $kk1=>$vv1){
+			// 	DB::table('goods_word')->insert(['gid'=>$value->gid,'word'=>$vv1]);
+			// }		
 		}
 
 	}
+
+	// public static function keyword()
+	// {
+		
+	// }
+
 	//获取分类导航数据
 	public static function getCateNav($id)
 	{
