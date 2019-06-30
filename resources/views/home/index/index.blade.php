@@ -192,7 +192,7 @@
                                         <div class="i-pic check " style="margin-top:5px;margin-right:10px">
                                             <a href="/home/goods/{{ $value->gid }}">
                                                <img class="limit" style="height: 200px" src="/uploads/{{ $value->thumb }}" />
-                                                <div class="pro-title ">{{ $value->gname }}</div>
+                                                <div class="pro-title " style="overflow: hidden; white-space:nowrap;">{{ $value->gname }}</div>
                                                 <span class="e-price ">￥
                                                 @if($value->active_id != 0)
                                                 <strong>{{ round($value->price * $value->goodactive->discount / 10, 2)}}</strong>

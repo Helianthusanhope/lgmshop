@@ -105,6 +105,7 @@ class GoodlistController extends Controller
     	$cid_paths = DB::table('cates')->select('cid','path')->get()->toArray();
     	//获取 顶级分类 对应的所有 三级分类
     	$cids = [];
+    	
     	foreach( $cid_paths as $k=>$v ){
     		$path = $v->path;
     		if( substr_count($path,',') == 2 && explode(',',$path)[2] == $two_cid ){
