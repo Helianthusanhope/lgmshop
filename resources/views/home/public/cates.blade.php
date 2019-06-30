@@ -19,7 +19,7 @@
                                                                         <dt><span title="{{ $vv->cname }}" href="/home/goodlist/catetwo/{{ $vv->cid }}"
                                                                             >{{ $vv->cname }}</span></dt>
                                                                         @foreach( $vv->sub as $kkk=>$vvv )
-                                                                            <dd><a title="{{$vvv->cname}}" href="/home/goodlist/{{ $vvv->cid }}"><span>{{$vvv->cname}}</span></a></dd>
+                                                                            <dd><a title="{{$vvv->cname}}" href="/home/goodlist/catethree/{{ $vvv->cid }}"><span>{{$vvv->cname}}</span></a></dd>
                                                                         @endforeach
                                                                     </dl>
                                                                     @endforeach

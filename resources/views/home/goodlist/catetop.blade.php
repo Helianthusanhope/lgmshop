@@ -39,7 +39,7 @@
            <div class="search">
 			<div class="search-list">
 				<div class="nav-table"  >
-						   <div class="long-title"><span class="all-goods">全部分类</span></div>
+						   <div class="long-title"><a href="/home/goodlist/sort"><span class="all-goods" >全部分类</span></a></div>
 						   <div class="nav-cont">
 							<ul>
                                 <li class="index"><a href="/">首页</a></li>

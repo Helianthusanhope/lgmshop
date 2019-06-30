@@ -49,16 +49,24 @@ class GoodlistController extends Controller
 		
 	// }
 
+	//全部分类 显示商品
+	public function sort()
+	{
+		return view('home.goodlist.sort');
+	}
 	//获取分类导航数据
 	public static function getCateNav($id)
 	{
-		//第三级分类导航
-    	$cate_data = DB::table('cates')->where('cid',$id)->select('cid','cname','path')->first();
-    	$cids = explode(',', $cate_data->path);
-    	//获取父级分类
-    	$cate_nav = DB::table('cates')->whereIn('cid',$cids)->select('cid','cname','path')->get();
-    	$cate_nav[] =$cate_data ;
-    	return $cate_nav;
+		if ( exit($id) ) {
+			//第三级分类导航
+	    	$cate_data = Cates::where('cid',$id)->select('cid','cname','path')->first();
+	    	$cids = explode(',', $cate_data->path);
+	    	//获取父级分类
+	    	$cate_nav = Cates::whereIn('cid',$cids)->select('cid','cname','path')->get();
+	    	$cate_nav[] =$cate_data ;
+	    	return $cate_nav;
+		}
+		
 	}
 
 	//
@@ -105,7 +113,7 @@ class GoodlistController extends Controller
     	$cid_paths = DB::table('cates')->select('cid','path')->get()->toArray();
     	//获取 顶级分类 对应的所有 三级分类
     	$cids = [];
-    	
+
     	foreach( $cid_paths as $k=>$v ){
     		$path = $v->path;
     		if( substr_count($path,',') == 2 && explode(',',$path)[2] == $two_cid ){
@@ -127,10 +135,12 @@ class GoodlistController extends Controller
     	return view('home.goodlist.catetwo',['two_cid_name'=>$two_cid_name,'data'=>$goods,'search'=>'','cid'=>$id,'sort'=>$sort]);
 	}
 
-	// 分类id 显示商品列表页
-    public function show(Request $request, $id)
-    {
+	
 
+	// 分类id 显示商品列表页
+    public function catethree(Request $request, $id)
+    {
+    	$cid = $id;
     	if ($request->input('sort','')) {
     		$sort = $request->input('sort','');
     		if ($sort == 'price') {
@@ -138,13 +148,13 @@ class GoodlistController extends Controller
     		} else {
     			$desc = 'desc';
     		}
-    		$goods = Goods::where('cid',$id)->where('good_status','1')->orderBy($sort,$desc)->select('gid','gname','price','cid','thumb','active_id','sale')->paginate(50);
+    		$goods = Goods::where('cid',$cid)->where('good_status','1')->orderBy($sort,$desc)->select('gid','gname','price','cid','thumb','active_id','sale')->paginate(50);
     	} else {
     		$sort = 1;
-    		$goods = Goods::where('cid',$id)->where('good_status','1')->orderBy('sale','desc')->orderBy('collect','desc')->select('gid','gname','price','cid','thumb','active_id','sale')->paginate(50);
+    		$goods = Goods::where('cid',$cid)->where('good_status','1')->orderBy('sale','desc')->orderBy('collect','desc')->select('gid','gname','price','cid','thumb','active_id','sale')->paginate(50);
     	}
     	$cate_nav = self::getCateNav($id);
-    	return view('home.goodlist.index',['data'=>$goods,'cate_nav'=>$cate_nav,'search'=>'','cid'=>$id,'sort'=>$sort]);
+    	return view('home.goodlist.catethree',['data'=>$goods,'cate_nav'=>$cate_nav,'search'=>'','cid'=>$id,'sort'=>$sort]);
     }
 
 
