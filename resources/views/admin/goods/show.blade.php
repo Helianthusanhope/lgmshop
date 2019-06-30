@@ -63,6 +63,7 @@
             <thead>
                 <tr>
                     <th>库存ID</th>
+                    <th>缩略图</th>
                     <th>规格</th>
                     <th>大小</th>
                     <th>库存量</th>
@@ -74,6 +75,9 @@
                 @foreach($goods as $k=>$v)
                 <tr>
                     <td>{{ $v->stid }}</td>
+                    <td>
+                        <img style="border-radius: 5px;border:1px solid #ccc;width: 50px;" src="/uploads/{{ $v->picture }}">
+                    </td>
                     <td>{{ $v->color }}</td>
                     <td>{{ $v->size }}</td>
                     <td>{{ $v->stock }}</td>
@@ -123,7 +127,7 @@
         <span><i class="icon-loading-2"></i> jQuery-UI Spinner</span>
     </div>
     <div class="mws-panel-body no-padding">
-        <form class="mws-form" action="/admin/stockstore" method="post">
+        <form class="mws-form" action="/admin/stockstore" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="mws-form-inline">
                 <div class="mws-form-row">
@@ -147,7 +151,12 @@
                         </div>
                     </div>
                 </div>
-                
+                <div class="mws-form-row" style="width: 51%;">
+                    <label class="mws-form-label">缩略图</label>
+                    <div class="mws-form-item">
+                        <input type="file" name="picture" class="small">
+                    </div>
+                </div>
             </div>
             <div class="mws-button-row">
                 <input type="submit" value="提交" class="btn btn-danger">

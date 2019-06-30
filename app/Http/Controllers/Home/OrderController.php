@@ -56,15 +56,18 @@ class OrderController extends Controller
         $data = $_SESSION['car'];
         $stid_all = '';
         $number = '';
+        $price = '';
         $a = 0;
         foreach ($data as $k => $v) {
             $a++;
             if ($a == 1) {
                 $stid_all = $k;
                 $number = $v['number'];
+                $price = $v['price_active'];
             } else {
                 $stid_all = $stid_all.','.$k;
                 $number = $number.','.$v['number'];
+                $price = $price.','.$v['price_active'];
             }
             
         }
@@ -74,6 +77,7 @@ class OrderController extends Controller
         $orders->oname = str_pad($oname,15,rand(0,9),STR_PAD_RIGHT);
         $orders->aid = $aid;
         $orders->price_all = $price_all;
+        $orders->price = $price;
         $orders->stid_all = $stid_all;
         $orders->number = $number;
         $orders->order_status = '1';

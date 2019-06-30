@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\UserAddr;
+use App\Models\GoodStock;
+use App\Models\Goods;
 use DB;
 class PersonalController extends Controller
 {
@@ -34,16 +37,30 @@ class PersonalController extends Controller
     {
     	//获取订单数据
     	$uid = session('home_user')->uid;
-    	$orders = Order::where('uid',$uid)->get();
+    	$orders = Order::where('uid',$uid)->get()->toArray();
+        // 收获地址
+        foreach($orders as $k => $v){
+            $useraddr[$k] = UserAddr::find($v['aid']);
+        }
+        
+        foreach ($orders as $k => $v) {
+            // 商品数量
+            $orders[$k]['number'] = explode ( "," ,  $v['number']);
+            $orders[$k]['price'] = explode ( "," ,  $v['price']);
 
-    	//查找
-    	$useraddr = [];
-    	foreach($orders as $k=>$v) {
-
-    		$addr = DB::table('user_addrs')->where('aid',$v->aid)->first();
-    		$useraddr[$k] = $addr;
-    		
-    	}
+        }
+        foreach ($orders as $k => $v) {
+            $a = explode ( "," ,  $v['stid_all']);
+            $orders[$k]['good'] = GoodStock::whereIn('stid', $a)->get()->toArray();
+        }
+        foreach ($orders as $k => $v) {
+            foreach ($v['good'] as $kk => $vv) {
+                $orders[$k]['good'][$kk]['number'] = $v['number'][$kk];
+                $orders[$k]['good'][$kk]['price'] = $v['price'][$kk];
+                $orders[$k]['good'][$kk]['gname'] = Goods::find($vv['gid'])->gname;
+            }
+        }
+        // 订单内商品详情
     	
     	
     	return view('home.order.all',['orders'=>$orders,'useraddr'=>$useraddr]);

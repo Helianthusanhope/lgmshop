@@ -84,17 +84,23 @@
 									});
 								});
 							</script>
-
+							@foreach($good->goodstock as $k => $v)
+							@if($v->stid == $stid)
 							<div class="tb-booth tb-pic tb-s310">
-								<a href="images/01.jpg"><img src="/uploads/{{ $good->thumb }}" alt="细节展示放大镜特效" rel="/uploads/{{ $good->thumb }}" class="jqzoom" /></a>
+								<a href="images/01.jpg"><img src="/uploads/{{ $v->picture }}" alt="细节展示放大镜特效" rel="/uploads/{{ $v->picture }}" class="jqzoom" /></a>
 							</div>
+							@endif
+							@endforeach
 							<ul class="tb-thumb" id="thumblist">
-								<li class="tb-selected">
+								@foreach($good->goodstock as $k => $v)
+								<li class="tb<?php if ($v->stid == $stid) { echo '-selected'; } ?>">
 									<div class="tb-pic tb-s40">
-										<a href="#"><img src="/uploads/{{ $good->thumb }}" mid="/uploads/{{ $good->thumb }}" big="/uploads/{{ $good->thumb }}"></a>
+										<a href="#"><img src="/uploads/{{ $v->picture }}" mid="/uploads/{{ $v->picture }}" big="/uploads/{{ $v->picture }}"></a>
 									</div>
 								</li>
+								@endforeach
 							</ul>
+
 						</div>
 
 						<div class="clear"></div>

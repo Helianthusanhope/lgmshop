@@ -36,34 +36,13 @@
                         @endif
                     </div>
                     <div id="shopCart " class="item ">
-                        <a href="/home/car/index">
+                        <a href="/home/car/index"></a>
                             <span class="message "></span>
-                        </a>
                         <p>
                             购物车
                         </p>
                         <p class="cart_num ">{{ $car_count }}</p>
                     </div>
-                    <div id="asset " class="item ">
-                        <a href="# ">
-                            <span class="view "></span>
-                        </a>
-                        <div class="mp_tooltip ">
-                            我的资产
-                            <i class="icon_arrow_right_black "></i>
-                        </div>
-                    </div>
-
-                    <div id="foot " class="item ">
-                        <a href="# ">
-                            <span class="zuji "></span>
-                        </a>
-                        <div class="mp_tooltip ">
-                            我的足迹
-                            <i class="icon_arrow_right_black "></i>
-                        </div>
-                    </div>
-
                     <div id="brand " class="item ">
                         <a href="#">
                             <span class="wdsc "><img src="/ho/images/wdsc.png " /></span>
@@ -74,21 +53,7 @@
                         </div>
                     </div>
 
-                    <div id="broadcast " class="item ">
-                        <a href="# ">
-                            <span class="chongzhi "><img src="/ho/images/chongzhi.png " /></span>
-                        </a>
-                        <div class="mp_tooltip ">
-                            我要充值
-                            <i class="icon_arrow_right_black "></i>
-                        </div>
-                    </div>
-
                     <div class="quick_toggle ">
-                        <li class="qtitem ">
-                            <a href="# "><span class="kfzx "></span></a>
-                            <div class="mp_tooltip ">客服中心<i class="icon_arrow_right_black "></i></div>
-                        </li>
                         <!--二维码 -->
                         <li class="qtitem ">
                             <a href="#none "><span class="mpbtn_qrcode "></span></a>

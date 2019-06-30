@@ -67,7 +67,6 @@
                     <th>规格</th>
                     <th>大小</th>
                     <th>缩略图</th>
-                    <th>评论</th>
                     <th>库存量</th>
                     <th>发货数量</th>
                 </tr>
@@ -79,8 +78,7 @@
                     <td>{{ $v['gname'] }}</td>
                     <td>{{ $v['color'] }}</td>
                     <td>{{ $v['size'] }}</td>
-                    <td><img src="/uploads/{{ $v['thumb'] }}" style="width: 50px;"></td>
-                    <td>{{ $v['comment'] or '无' }}</td>
+                    <td><img src="/uploads/{{ $v['picture'] }}" style="width: 50px;"></td>
                     <td>{{ $v['stock'] }}</td>
                     <td>{{ $v['number'] }}</td>
                 </tr>
