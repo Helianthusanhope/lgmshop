@@ -111,39 +111,54 @@ Route::post('/home/dologin', 'Home\LoginController@dologin');
 
 
 
-	//登录退出
-	Route::get('home/loginout', 'Home\LoginController@loginout');
+//登录退出
+Route::get('home/loginout', 'Home\LoginController@loginout');
 
-	//个人中心
-	// 验证是否在登录状态
-	Route::get('home/login/myself', 'Home\LoginController@myself');
-	//显示个人中心首页
-	Route::get('home/personal', 'Home\PersonalController@index');
+//个人中心
+// 验证是否在登录状态
+Route::get('home/login/myself', 'Home\LoginController@myself');
+//显示个人中心首页
+Route::get('home/personal', 'Home\PersonalController@index');
 
-	//显示个人信息修改页面页面
-	Route::get('home/information/edit', 'Home\InformationController@edit');
-	//执行信息修改
-	Route::post('home/information/update', 'Home\InformationController@update');
+//显示个人的订单页面
+Route::get('home/personal/order', 'Home\PersonalController@order');
+//显示未付款
+Route::get('home/order/all', 'Home\PersonalController@all');
+//显示未付款
+Route::get('home/order/car', 'Home\PersonalController@car');
+//显示待收货
+Route::get('home/order/get', 'Home\PersonalController@get');
+//显示待评价
+Route::get('home/order/replay', 'Home\PersonalController@replay');
 
-	//显示收货地址页面
-	Route::get('home/address', 'Home\AddressController@index');
-	//执行地址添加
-	Route::post('home/address/store', 'Home\AddressController@store');
-	//地址删除
-	Route::get('home/address/edit/{aid}', 'Home\AddressController@edit');
-	//默认地址的修改
-	Route::get('home/address/update/{aid}', 'Home\AddressController@update');
 
-	//显示个人安全中心
-	Route::get('home/safety', 'Home\SafetyController@index');
-	//修改个人登录密码
-	Route::get('home/safety/upass', 'Home\SafetyController@upass');
-	//执行登录密码修改
-	Route::post('home/safety/doupass', 'Home\SafetyController@doupass');
-	//显示邮箱变更密码页面
-	Route::get('home/safety/email', 'Home\SafetyController@email');
-	//显示手机变更密码
-	Route::get('home/safety/phone', 'Home\SafetyController@phone');
+//显示个人信息修改页面页面
+Route::get('home/information/edit', 'Home\InformationController@edit');
+//执行信息修改
+Route::post('home/information/update', 'Home\InformationController@update');
+
+//显示收货地址页面
+Route::get('home/address', 'Home\AddressController@index');
+//执行地址添加
+Route::post('home/address/store', 'Home\AddressController@store');
+//地址删除
+Route::get('home/address/edit/{aid}', 'Home\AddressController@edit');
+//默认地址的修改
+Route::get('home/address/update/{aid}', 'Home\AddressController@update');
+
+//显示个人安全中心
+Route::get('home/safety', 'Home\SafetyController@index');
+//修改个人登录密码
+Route::get('home/safety/upass', 'Home\SafetyController@upass');
+//执行登录密码修改
+Route::post('home/safety/doupass', 'Home\SafetyController@doupass');
+//显示邮箱变更密码页面
+Route::get('home/safety/email', 'Home\SafetyController@email');
+//显示手机变更密码
+Route::get('home/safety/phone', 'Home\SafetyController@phone');
+
+
+
 
 
 

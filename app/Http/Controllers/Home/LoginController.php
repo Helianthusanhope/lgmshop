@@ -74,9 +74,8 @@ class LoginController extends Controller
         session(['home_user'=>$users_data]);
     	session(['home_userinfo'=>$userinfo_data]);
     	
-        //返回登陆结果      
-        echo json_encode( ['msg'=>'ok','info'=>''] );
-        
+     
+        echo json_encode( ['msg'=>'ok','info'=>'登录成功'] );
     	
     }
 
