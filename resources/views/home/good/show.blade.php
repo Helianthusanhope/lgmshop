@@ -21,8 +21,6 @@
 		<script type="text/javascript" src="/ho/js/list.js"></script>
 		
 	</head>
-
-	<body>
 <!-- header 开始 -->
 @include('home.public.header')
 <!-- header 结束 -->
@@ -38,16 +36,11 @@
 					   <div class="long-title"><span class="all-goods">全部分类</span></div>
 					   <div class="nav-cont">
 							<ul>
-								<li class="index"><a href="/">首页</a></li>
-                                <li class="qc"><a href="#">闪购</a></li>
-                                <li class="qc"><a href="#">限时抢</a></li>
-                                <li class="qc"><a href="#">团购</a></li>
-                                <li class="qc last"><a href="#">大包装</a></li>
+								@foreach( $actives_not_commend as $k=>$v )
+                                <li class="qc"><a href="/home/active/{{ $v->id }}">{{ $v->active_name }}</a></li>
+                                @endforeach
 							</ul>
-						    <div class="nav-extra">
-						    	<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
-						    	<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
-						    </div>
+						    
 						</div>
 			</div>
 				<ol class="am-breadcrumb am-breadcrumb-slash">
@@ -284,58 +277,18 @@
 						     	<div class="mt">            
 						            <h2>看了又看</h2>        
 					            </div>
-						     	
+						     	@foreach($looks as $k => $v)
 							      <li class="first">
-							      	<div class="p-img">                    
-							      		<a  href="#"> <img class="" src="/ho/images/browse1.jpg"> </a>               
+							      	<div class="p-img" >                    
+							      		<a  href="/home/goods/{{ $v->gid }}"> <img style="width: 100%;height: 200px" class="" src="/uploads/{{ $v->thumb }}"> </a>               
 							      	</div>
 							      	<div class="p-name"><a href="#">
-							      		【三只松鼠_开口松子】零食坚果特产炒货东北红松子原味
+							      		{{ $v->gname }}
 							      	</a>
 							      	</div>
-							      	<div class="p-price"><strong>￥35.90</strong></div>
+							      	<div class="p-price"><strong>{{ round($v->price * $v->goodactive->discount / 10, 2) }}</strong></div>
 							      </li>
-							      <li>
-							      	<div class="p-img">                    
-							      		<a  href="#"> <img class="" src="/ho/images/browse1.jpg"> </a>               
-							      	</div>
-							      	<div class="p-name"><a href="#">
-							      		【三只松鼠_开口松子】零食坚果特产炒货东北红松子原味
-							      	</a>
-							      	</div>
-							      	<div class="p-price"><strong>￥35.90</strong></div>
-							      </li>
-							      <li>
-							      	<div class="p-img">                    
-							      		<a  href="#"> <img class="" src="/ho/images/browse1.jpg"> </a>               
-							      	</div>
-							      	<div class="p-name"><a href="#">
-							      		【三只松鼠_开口松子】零食坚果特产炒货东北红松子原味
-							      	</a>
-							      	</div>
-							      	<div class="p-price"><strong>￥35.90</strong></div>
-							      </li>							      
-							      <li>
-							      	<div class="p-img">                    
-							      		<a  href="#"> <img class="" src="/ho/images/browse1.jpg"> </a>               
-							      	</div>
-							      	<div class="p-name"><a href="#">
-							      		【三只松鼠_开口松子】零食坚果特产炒货东北红松子原味
-							      	</a>
-							      	</div>
-							      	<div class="p-price"><strong>￥35.90</strong></div>
-							      </li>							      
-							      <li>
-							      	<div class="p-img">                    
-							      		<a  href="#"> <img class="" src="/ho/images/browse1.jpg"> </a>               
-							      	</div>
-							      	<div class="p-name"><a href="#">
-							      		【三只松鼠_开口松子218g】零食坚果特产炒货东北红松子原味
-							      	</a>
-							      	</div>
-							      	<div class="p-price"><strong>￥35.90</strong></div>
-							      </li>							      
-					      
+							    @endforeach
 						     </ul>					
 					    </div>
 					</div>
@@ -366,25 +319,6 @@
 							<div class="am-tabs-bd">
 
 								<div class="am-tab-panel am-fade am-in am-active">
-									<div class="J_Brand">
-
-										<div class="attr-list-hd tm-clear">
-											<h4>产品参数：</h4></div>
-										<div class="clear"></div>
-										<ul id="J_AttrUL">
-											<li title="">产品类型:&nbsp;{{ $good->goodcates->cname }}</li>
-											<li title="">原料产地:&nbsp;巴基斯坦</li>
-											<li title="">产地:&nbsp;湖北省武汉市</li>
-											<li title="">配料表:&nbsp;进口松子、食用盐</li>
-											<li title="">产品规格:&nbsp;210g</li>
-											<li title="">保质期:&nbsp;180天</li>
-											<li title="">产品标准号:&nbsp;GB/T 22165</li>
-											<li title="">生产许可证编号：&nbsp;QS4201 1801 0226</li>
-											<li title="">储存方法：&nbsp;请放置于常温、阴凉、通风、干燥处保存 </li>
-											<li title="">食用方法：&nbsp;开袋去壳即食</li>
-										</ul>
-										<div class="clear"></div>
-									</div>
 
 									<div class="details">
 										<div class="attr-list-hd after-market-hd">
@@ -404,20 +338,7 @@
                                     	<div class="rate">                
                                     		<strong>100<span>%</span></strong><br> <span>好评度</span>            
                                     	</div>
-                                        <dl>                    
-                                            <dt>买家印象</dt>                    
-                                            <dd class="p-bfc">
-                                            			<q class="comm-tags"><span>味道不错</span><em>(2177)</em></q>
-                                            			<q class="comm-tags"><span>颗粒饱满</span><em>(1860)</em></q>
-                                            			<q class="comm-tags"><span>口感好</span><em>(1823)</em></q>
-                                            			<q class="comm-tags"><span>商品不错</span><em>(1689)</em></q>
-                                            			<q class="comm-tags"><span>香脆可口</span><em>(1488)</em></q>
-                                            			<q class="comm-tags"><span>个个开口</span><em>(1392)</em></q>
-                                            			<q class="comm-tags"><span>价格便宜</span><em>(1119)</em></q>
-                                            			<q class="comm-tags"><span>特价买的</span><em>(865)</em></q>
-                                            			<q class="comm-tags"><span>皮很薄</span><em>(831)</em></q> 
-                                            </dd>                                           
-                                         </dl> 
+                                        
                                     </div>	
                                     <div class="clear"></div>
 									<div class="tb-r-filter-bar">
@@ -425,28 +346,7 @@
 											<li class="tb-taglist-li tb-taglist-li-current">
 												<div class="comment-info">
 													<span>全部评价</span>
-													<span class="tb-tbcr-num">(32)</span>
-												</div>
-											</li>
-
-											<li class="tb-taglist-li tb-taglist-li-1">
-												<div class="comment-info">
-													<span>好评</span>
-													<span class="tb-tbcr-num">(32)</span>
-												</div>
-											</li>
-
-											<li class="tb-taglist-li tb-taglist-li-0">
-												<div class="comment-info">
-													<span>中评</span>
-													<span class="tb-tbcr-num">(32)</span>
-												</div>
-											</li>
-
-											<li class="tb-taglist-li tb-taglist-li--1">
-												<div class="comment-info">
-													<span>差评</span>
-													<span class="tb-tbcr-num">(32)</span>
+													<span class="tb-tbcr-num">({{ $good->num }})</span>
 												</div>
 											</li>
 										</ul>
@@ -481,7 +381,7 @@
 															{{ $v->comment }}
 														</div>
 														<div class="tb-r-act-bar">
-															规格：{{ $v->stname }}
+															规格：{{ $v->stockComment->color }}*{{ $v->stockComment->size }}
 														</div>
 													</div>
 
@@ -524,15 +424,9 @@
 									<div class="clear"></div>
 
 									<!--分页 -->
-									<ul class="am-pagination am-pagination-right">
-										<li class="am-disabled"><a href="#">&laquo;</a></li>
-										<li class="am-active"><a href="#">1</a></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#">4</a></li>
-										<li><a href="#">5</a></li>
-										<li><a href="#">&raquo;</a></li>
-									</ul>
+									
+										<div style="float: right;">{{ $like->links() }}</div>
+									
 									<div class="clear"></div>
 
 								</div>

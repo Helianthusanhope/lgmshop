@@ -81,7 +81,6 @@ class OrderController extends Controller
         $orders->stid_all = $stid_all;
         $orders->number = $number;
         $orders->order_status = '1';
-        $orders->coid_all = '0';
         $res = $orders->save();
         if ($res) {
             $_SESSION['car'] = null;
@@ -143,10 +142,11 @@ class OrderController extends Controller
     }
 
     // 
-    public function success()
+    public function success(Request $request)
     {
-
-        return view('home.order.success');
+        $useraddr = UserAddr::find($request->input('aid', ''));
+        $price_all = $request->input('price_all', '');
+        return view('home.order.success',['useraddr'=>$useraddr,'price_all'=>$price_all]);
     }
 
     // 计算订单信息

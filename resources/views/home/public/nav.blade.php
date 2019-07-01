@@ -10,12 +10,6 @@
                                 <li class="qc"><a href="/home/active/{{ $v->id }}">{{ $v->active_name }}</a></li>
                                 @endforeach
                             </ul>
-                            <div class="nav-extra">
-                                <i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
-                                <i class="am-icon-angle-right" style="padding-left: 10px;"></i>
-                            </div>
+                           
                         </div>
-                
-                
-            
 <!-- 导航结束 -->
