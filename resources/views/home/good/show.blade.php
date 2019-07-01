@@ -45,7 +45,7 @@
 			</div>
 				<ol class="am-breadcrumb am-breadcrumb-slash">
 					<li><a href="/">首页</a></li>
-					<li><a href="/home/goodlist/catesan/{{ $good->cid }}">{{ $good->goodcates->cname }}</a></li>
+					<li><a href="/home/goodlist/{{ $good->cid }}">{{ $good->goodcates->cname }}</a></li>
 					<li class="am-active">内容</li>
 				</ol>
 				<script type="text/javascript">
@@ -286,7 +286,13 @@
 							      		{{ $v->gname }}
 							      	</a>
 							      	</div>
-							      	<div class="p-price"><strong>{{ round($v->price * $v->goodactive->discount / 10, 2) }}</strong></div>
+							      	<div class="p-price">
+							      		@if($v->active_id != 0)
+							      		<strong>{{ round($v->price * $v->goodactive->discount / 10, 2) }}</strong>
+							      		@else
+							      		<strong>{{ $v->price }}</strong>
+							      		@endif
+							      	</div>
 							      </li>
 							    @endforeach
 						     </ul>					
@@ -414,7 +420,11 @@
 													<p>{{$v->gname}}</p>
 													<p class="price fl">
 														<b>¥</b>
-														<strong>{{$v->price}}</strong>
+														@if($v->active_id != 0)
+											      		<strong>{{ round($v->price * $v->goodactive->discount / 10, 2) }}</strong>
+											      		@else
+											      		<strong>{{ $v->price }}</strong>
+											      		@endif
 													</p>
 												</div>
 											</li>
