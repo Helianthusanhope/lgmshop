@@ -35,6 +35,9 @@
                         <td><span style="background:#ccc; font-size:15px" >未显示</span></td>
                     @endif
                     <td>
+                      <a href="/admin/banners/status/{{$v->id}}" class="btn btn-success">
+                            {!! $v->status ? '取消显示' : '<p style="color: #D34011">显示</p>' !!}
+                        </a>   
                         <a href="/admin/banners/{{ $v->id }}/edit" class="btn btn-warning">修改</a>
                         <form action="/admin/banners/{{ $v->id }}" method="post" style="display: inline-block;">
                             {{ csrf_field() }}
