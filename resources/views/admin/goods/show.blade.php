@@ -115,6 +115,7 @@
                         type: 'DELETE',
                         url: url,
                     });
+                    
                     window.location.reload();
                 }
             </script>

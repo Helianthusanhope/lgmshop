@@ -122,14 +122,14 @@ Route::get('home/personal', 'Home\PersonalController@index');
 
 //显示个人的订单页面
 Route::get('home/personal/order', 'Home\PersonalController@order');
-//显示未付款
-Route::get('home/order/all', 'Home\PersonalController@all');
-//显示未付款
-Route::get('home/order/car', 'Home\PersonalController@car');
-//显示待收货
-Route::get('home/order/get', 'Home\PersonalController@get');
+//确认收货
+Route::get('home/personal/orderconfirm/{id}', 'Home\PersonalController@orderConfirm');
+//显示评论页
+Route::get('home/personal/comment/{id}', 'Home\PersonalController@comment');
+//评论添加
+Route::post('home/personal/gocomment', 'Home\PersonalController@goComment');
 //显示待评价
-Route::get('home/order/replay', 'Home\PersonalController@replay');
+Route::get('home/personal/orderinfo', 'Home\PersonalController@orderInfo');
 
 
 //显示个人信息修改页面页面

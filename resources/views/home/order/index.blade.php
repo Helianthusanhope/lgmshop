@@ -5,7 +5,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0 ,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<meta name="csrf-token" content="{{ csrf_token() }}">
-		<title>结算页面</title>
+		<title>订单结算</title>
 
 		<link href="/ho/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
 
@@ -18,7 +18,6 @@
 
 	</head>
 
-	<body>
 
 <!-- header 开始 -->
 @include('home.public.header')
@@ -69,7 +68,7 @@
 						<ul>											
 							<div class="per-border"></div>
 							@foreach( $addr as $k=>$v)
-							<li class="user-addresslist">
+							<li class="user-addresslist <?php if ($v->status == '1') { echo 'defaultAddr'; } ?>">
 								<div class="address-left">
 									<div class="user DefaultAddr">
 
@@ -87,7 +86,11 @@
 
 										</span>
 									</div>
-									<ins class="deftip hidden">收货地址</ins>
+									@if($v->status == '1')
+									<ins class="deftip">默认地址</ins>
+									@else
+									<ins class="deftip hidden">默认地址</ins>
+									@endif
 								</div>
 								<div class="address-right">
 									<span class="am-icon-angle-right am-icon-lg"></span>
@@ -96,16 +99,16 @@
 								
 								<div class="new-addr-btn">
 									@if($v->status == '1')
-										<span><i style="background:#E85252">收货地址</i></span>
+										<span><i>收货地址</i></span>
 										<span class="new-addr-bar">|</span>		
 										<span class="new-addr-bar">|</span>
 										<a href="/home/address/edit/{{$v->aid}}"><i style="background:#ccc">删除</i></a>
-										@else
+									@else
 										<a href="/home/address/update/{{$v->aid}}"><i class="am-icon-edit"></i>设置为收货地址</a>
 										<span class="new-addr-bar">|</span>		
 										<span class="new-addr-bar">|</span>
 										<a href="/home/address/edit/{{$v->aid}}"><i style="background:#ccc">删除</i></a>
-										@endif
+									@endif
 								</div>
 
 							</li>
@@ -116,16 +119,7 @@
 					</div>
 					<div class="clear"></div>
 
-					<!--支付方式-->
-					<div class="logistics">
-						<h3>选择支付方式</h3>
-						<ul class="pay-list">
-							<li class="pay card"><img src="/ho/images/wangyin.jpg" />银联<span></span></li>
-							<li class="pay qq"><img src="/ho/images/weizhifu.jpg" />微信<span></span></li>
-							<li class="pay taobao"><img src="/ho/images/zhifubao.jpg" />支付宝<span></span></li>
-						</ul>
-					</div>
-					<div class="clear"></div>
+					
 
 					<!--订单 -->
 					<div class="concent">
@@ -221,18 +215,6 @@
 							
 							<div class="pay-total">
 						<!--留言-->
-							<div class="order-extra">
-								<div class="order-user-info">
-									<div id="holyshit257" class="memo">
-										<label>买家留言：</label>
-										<input type="text" title="选填,对本次交易的说明（建议填写已经和卖家达成一致的说明）" placeholder="选填,建议填写和卖家达成一致的说明" class="memo-input J_MakePoint c2c-text-default memo-close">
-										<div class="msg hidden J-msg">
-											<p class="error">最多输入500个字符</p>
-										</div>
-									</div>
-								</div>
-
-							</div>
 							<!--优惠券 -->
 							<div class="clear"></div>
 							</div>
@@ -309,7 +291,7 @@
 								    success:function(res){
 										layer.msg('提交成功');
 								        setTimeout(function(){
-						                    window.location.href = '/home/orders/success';
+						                    window.location.href = '/home/orders/success?aid='+aid+'&price_all='+price_all;
 						                },600);
 								    },
 								    error:function(){

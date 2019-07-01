@@ -16,7 +16,6 @@
 
 	</head>
 
-	<body>
 <!-- header 开始 -->
 @include('home.public.header')
 <!-- header 结束 -->
