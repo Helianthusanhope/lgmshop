@@ -64,7 +64,7 @@ class PersonalController extends Controller
         // 订单内商品详情
         
         
-        return view('home.personal.order',['orders'=>$orders,'useraddr'=>$useraddr]);
+        return view('home.personal.order',['orders'=>$orders]);
     }
     // 确认收货
     public function orderConfirm($id)

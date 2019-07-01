@@ -184,9 +184,12 @@
                         </div>
                         
                      <div class="am-g am-g-fixed flood method3 am-container" style="width: 1200px">
-                            @foreach( $categoods as $k1 => $v2 )
-                            @continue( $v->cid != $v2->sub2 )
-                                @foreach($v2->sub1 as $key => $value)
+                            @foreach( $categoods as $k1 => $v1 )
+                            @if( $v->cid == $v1->sub2 )
+                                <?php $a = 0; ?>
+                                @foreach($v1->sub1 as $key => $value)
+                                <?php $a++; ?>
+                                @if($a<=8)
                                 <ul class="am-thumbnails " >
                                     <li>
                                         <div class="i-pic check " style="margin-top:5px;margin-right:10px">
@@ -204,9 +207,9 @@
                                         </div>
                                     </li>
                                 </ul>
-                                @break($loop->iteration == 8 )
+                                @endif
                                 @endforeach
-                            @break($loop->iteration == 1 )
+                            @endif
                             @endforeach
 
                            

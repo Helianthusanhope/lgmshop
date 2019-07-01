@@ -46,7 +46,7 @@
                         <div class="mws-form-item">
                             <select class="small" name="pid">
                                 <option value="0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">--请选择--</font></font></option>
-                                @foreach($common_cates_data as $k=>$v)
+                                @foreach($cates as $k=>$v)
                                 <option value="{{ $v->cid }}" {{substr_count($v->path,',') >= 2 ? 'disabled':''}} {{$v->cid == $cid ? 'selected' : ''}} ><font style="vertical-align: inherit;"><font style="vertical-align-align: inherit;">{{ $v->cname }}</font></font></option>
                                 @endforeach
                             </select>

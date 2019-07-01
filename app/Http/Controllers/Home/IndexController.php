@@ -45,13 +45,13 @@ class IndexController extends Controller
         $cids = DB::table('goods')->pluck('cid','gid')->toArray();
 
         // dump( $cids );
-        //顶级分类 id
+        // 三级分类 id
         $categoods = DB::table('cates')->whereIn('cid',$cids)->get();
         // dump( $categoods ); 
-        $cates_top = [];
+
         foreach ($categoods as $k => $v) {
             $v->sub1 = Goods::where('cid',$v->cid )->get();
-            $v->sub2 = $cates_top[] = explode(',', $v->path)[1];
+            $v->sub2 = explode(',', $v->path)[1];
              // substr_count($v->path,',');
              // $cates_three[] = explode(',', $v->path)[3];
 
@@ -75,6 +75,8 @@ class IndexController extends Controller
         $banners_data = Banners::where('status','1')->get();
         $data = Goods::get();
         $categoods = self::getCateGoods();
+        
+
         return view('home.index.index',['categoods'=>$categoods,'data'=>$data,'actives_not_commend'=>$actives_not_commend,'actives_commend'=>$actives_commend,'works_data'=>$works_data,'banners_data'=>$banners_data]);        
     }
 
