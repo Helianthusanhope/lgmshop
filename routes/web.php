@@ -38,7 +38,7 @@ Route::get('admin/rbac',function(){
 	// 后台 管理员
 	Route::resource(' admin/adminusers','Admin\AdminuserController');
 	// 后台  角色
-	Route::resource('admin/roles','Admin\RolesController');
+	Route::resource('admin/roles','Admin\RolesController');  
 	// 后台 权限
 	Route::resource('admin/nodes','Admin\NodesController');
 	
