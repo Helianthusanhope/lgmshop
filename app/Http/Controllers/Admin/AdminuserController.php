@@ -159,7 +159,6 @@ class AdminuserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dump($request->all());
         //开启事务
         DB::beginTransaction();
         //把 uname 更新到 Adminusers中

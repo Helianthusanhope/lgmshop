@@ -40,7 +40,7 @@ class NodesController extends Controller
     {
         //
         // dump($request->all());
-
+        //权限名称 user cate ...
         $cname = $request->input('cname');
 
         $controller = $cname.'controller';
@@ -78,7 +78,9 @@ class NodesController extends Controller
      */
     public function edit($id)
     {
-        //
+        //获取该条权限的数据
+        $node_data = DB::table('nodes')->find($id);
+        return view('admin.nodes.edit',['node_data'=>$node_data]);
     }
 
     /**
@@ -90,7 +92,19 @@ class NodesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //控制器名称
+        $cname = $request->input('cname');
+
+        $aname = $request->input('aname');
+        //权限名称
+        $desc = $request->input('desc');
+
+        $res = DB::table('nodes')->where('id',$id)->update(['cname'=>$canme,'aname'=>$aname,'desc'=>$desc]);
+        if($res){
+            return redirect('admin/nodes')->with('success','修改成功');
+        }else{
+            return back()->with('error','修改失败');
+        }
     }
 
     /**
@@ -101,6 +115,17 @@ class NodesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //删除 权限
+        DB::beginTransaction();
+        $res1 = Nodes::destroy($id);
+        $res2 = RolesNodes::where('nid',$id)->delete();
+       
+        if($res1 && $res2){
+            DB::commit();
+            return redirect('admin/roles')->with('success','删除成功');
+        }else{
+            DB::rollBack();
+            return back()->with('error','删除失败');
+        }
     }
 }

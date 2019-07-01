@@ -29,11 +29,11 @@ Route::get('admin/rbac',function(){
 	return view('admin.rbac');
 });
 
+//后台首页
+	Route::resource('admin/index', 'Admin\IndexController');
 
 // Route::group(['middleware'=>['login','nodes']],function(){
 // Route::group(['middleware'=>['login']],function(){
-	//后台首页
-	Route::resource('admin/index', 'Admin\IndexController');
 	
 	// 后台 管理员
 	Route::resource(' admin/adminusers','Admin\AdminuserController');

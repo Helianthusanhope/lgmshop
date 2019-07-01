@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class roles_nodes extends Model
+class RolesNodes extends Model
 {
     // 设置表名
     public $table = 'roles_nodes';
