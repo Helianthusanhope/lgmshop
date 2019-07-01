@@ -68,12 +68,12 @@ Route::get('admin/rbac',function(){
 	
 	// 轮播图
 	Route::resource('admin/banners', 'Admin\BannerController');
-	
-	// 活动快速上推荐位
-	Route::get('admin/actives/status/{id}', 'Admin\ActiveController@status');
+	//快速显示
+	Route::get('admin/banners/status/{id}', 'Admin\BannerController@status');	
 	// 活动
 	Route::resource('admin/actives', 'Admin\ActiveController');
-
+	// 活动快速上推荐位
+	Route::get('admin/actives/status/{id}', 'Admin\ActiveController@status');
 	// 友情链接添加快速操作
 	Route::get('admin/friends/status/{id}', 'Admin\FriendController@status');
 	// 友情链接

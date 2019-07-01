@@ -19,7 +19,7 @@
 <!--商品分类结束-->
 
                     <!--走马灯 -->
-                    <div class="marqueen">
+                <!--     <div class="marqueen">
                         <span class="marqueen-title">商城头条</span>
                         <div class="demo">
                             <ul>
@@ -81,7 +81,7 @@
                             </ul>
                         <div class="advTip"><img src="/ho/images/advTip.jpg"/></div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="clear"></div>
                 </div>
                 <script type="text/javascript">

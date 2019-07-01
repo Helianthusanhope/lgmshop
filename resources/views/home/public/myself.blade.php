@@ -11,7 +11,7 @@
 <!--网站导航结束-->
 
 <!--悬浮搜索框开始-->
-
+<!-- 
 						<div class="nav white">
 							<div class="logoBig">
 								<li><img src="/ho/images/logobig.png" /></li>
@@ -25,18 +25,22 @@
 								</form>
 							</div>
 						</div>
-
+ 
 						<div class="clear"></div>
+ -->
+@include('home.public.search')
+<!--搜索框结束-->
 					</div>
 				</div>
 			</article>
 		</header>
+<!--网站分类开始--->
             <div class="nav-table">
 					  <div class="long-title"><span class="all-goods">全部分类</span></div>
                        <div class="nav-cont">
                             <ul>
                                 <li class="index"><a href="/">首页</a></li>
-                                @foreach( $common_actives_data as $k=>$v )
+                                @foreach( $actives_not_commend as $k=>$v )
                                 <li class="qc"><a href="#">{{ $v->active_name }}</a></li>
                                 @endforeach
                             </ul>
@@ -45,14 +49,10 @@
                                 <i class="am-icon-angle-right" style="padding-left: 10px;"></i>
                             </div>
                         </div>
-		
-<!--搜索框结束-->
-
-
-
-
 
 			</div>
+
+<!--网站分类结束--->
 			<b class="line"></b>
 		<div class="center">
 			<div class="col-main">

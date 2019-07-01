@@ -166,4 +166,32 @@ class BannerController extends Controller
             return back()->with('error','删除失败');
         }
     }
+
+
+    //快速更改轮播图状态   
+    public function status($id)
+    {
+        //获取轮播图的当前状态
+        $banners = Banners::find($id);
+        $old = $banners->status;
+
+        //判断状态并进行赋值
+        if( $old ) {
+
+            $old = '0';          
+        } else {
+
+            $old = '1';           
+        }
+
+        //赋值后保存回数据中并添加到数据库
+        $banners->status = $old ;
+         $res = $banners->save();
+
+         if($res){
+            return back()->with('success','操作成功');
+        }else{
+            return back()->with('error','操作失败');
+        }
+    }
 }
