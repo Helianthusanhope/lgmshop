@@ -36,6 +36,7 @@
 	<hr/>
 
 	<div class="comment-main">
+		@if($orders['good'])
 		@foreach($orders['good'] as $k => $v)
 		<form>
 		<div class="comment-list">
@@ -87,8 +88,29 @@
 		</form>
 
 		@endforeach
-						
-									
+		@else
+		<H4>评论完成</H4>
+		 <p>
+		   <b id="second" >1</b>秒后回到订单页 <a href="javascript:goBack();">返回</a> 
+		 </p>
+		  
+		<script type="text/javascript"> 
+		  
+		  var sec = document.getElementById("second");
+		  var i = 1;
+		  var timer = setInterval(function(){
+		    i--;
+		    sec.innerHTML = i;
+		    if(i==0){
+		      window.location.href = "/home/personal/order";
+		    }
+		  },1000);
+		    
+		 function goBack(){ 
+		  window.history.go(-1);
+		 } 
+		 </script> 		
+		@endif							
 <script type="text/javascript">
 	$(document).ready(function() {
 		$(".comment-list .item-opinion li").click(function() {	

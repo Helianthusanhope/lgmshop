@@ -1,6 +1,5 @@
                 <!--搜索框开始-->
                 <div class="nav white">
-                    <div class="logo"><img src="/ho/images/logo.png" /></div>
                     <div class="logoBig">
                         <li><img src="/ho/images/logobig.png" /></li>
                     </div>
