@@ -29,29 +29,15 @@ class OrderController extends Controller
     public static function getstock($orders,$id)
     {
         
-        // 评论id
-        $comment = explode ( "," ,  $orders->coid_all);
         // 库存id
         $goodstockid = explode ( "," ,  $orders->stid_all);
-        // 发货数量
         
         // 库存详情
         $goodstock = GoodStock::whereIn('stid', $goodstockid)->get()->toArray();
         
-        // 压入评论
-        foreach ($comment as $k => $v) {
-            foreach ($goodstock as $key => $value) {
-                if ($k == $key) {
-                    if ($v != 0) {
-                        $goodstock[$k]['comment'] = GoodComment::find($v)->comment;
-                    }
-                }
-            }
-        }
-        // 压入商品名缩略图
+        // 压入商品名
         foreach ($goodstock as $k => $v) {
             $goods = Goods::find($v['gid']);
-            $goodstock[$k]['thumb'] = $goods->thumb;
             $goodstock[$k]['gname'] = $goods->gname;
         }
         return $goodstock;
@@ -182,9 +168,9 @@ class OrderController extends Controller
         // 修改订单状态
         $orders = Order::find($id);
         $orders->order_status = '2';
-        $res = $orders->save();
-        if (!$res) {
-            return back()->with('error','dingdan修改失败');
+        $res1 = $orders->save();
+        if (!$res1) {
+            return back()->with('error','订单修改失败');
         }
         $number = explode ( "," ,  $orders->number);
         $goodstockid = explode ( "," ,  $orders->stid_all);
@@ -193,21 +179,28 @@ class OrderController extends Controller
         foreach ($goodstock as $k => $v) {
             foreach ($number as $kk => $vv) {
                 if ($k == $kk) {
-                    $stock[$goodstock[$k]['stid']] = $goodstock[$k]['stock'] - $vv;
+                    $stock[$goodstock[$k]['stid']]['stock'] = $goodstock[$k]['stock'] - $vv;
+                    $stock[$goodstock[$k]['stid']]['sale'] = $vv;
                 }
             }
         }
         // 修改剩余的库存
         foreach ($stock as $k => $v) {
             $res2 = GoodStock::find($k);
-            $res2->stock = $v;
+            $res3 = Goods::find($res2->gid);
+            $res2->stock = $v['stock'];
             $res2 = $res2->save();
+            // 修改商品销售量
+            
+            $res3->sale = $res3->sale + $v['sale'];
+            $res3 = $res3->save();
         }
-        if ($res2) {
+        
+        if ($res1 && $res2 && $res3) {
             return back()->with('success','发货成功');
         } else {
             return back()->with('error','修改失败');
-        }
+        }  
     }
     
 }

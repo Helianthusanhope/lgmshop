@@ -251,7 +251,14 @@ class GoodController extends Controller
     {
         //
         DB::beginTransaction();
-            
+
+        if($request->hasFile('picture')){
+            // 创建文件上传对象
+            $file_path = $request->file('picture')->store(date('Ymd'));
+        }else{
+            $file_path = '';
+        }
+        $data['picture'] = $file_path;
         $data['gid'] = $request->input('gid');
         $data['color'] = $request->input('color','');
         $data['size'] = $request->input('size','');

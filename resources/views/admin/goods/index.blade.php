@@ -26,7 +26,7 @@
                 @foreach($goods as $k=>$v)
                 <tr>
                     <td>{{ $v->gid }}</td>
-                    <td>{{ $v->gname }}</td>
+                    <td><div style="width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="{{ $v->gname }}">{{ $v->gname }}</div></td>
                     <td>{{ $v->price }}</td>
                     <td>
                         @foreach($cates as $kk=>$vv)
