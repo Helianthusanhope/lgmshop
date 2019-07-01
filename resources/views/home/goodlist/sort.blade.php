@@ -91,7 +91,7 @@
 																	<dl class="dl-sort">
 																		<dt><a href="/home/goodlist/catetwo/{{ $vv->cid }}"><span title="{{ $vv->cname }}">{{ $vv->cname }}</span></a></dt>
 																		@foreach( $vv->sub as $kkk=>$vvv )
-																		<dd><a title="{{ $vvv->cname }}" href="/home/goodlist/{{ $vvv->cid }}"><span>{{ $vvv->cname }}</span></a></dd>
+																		<dd><a title="{{ $vvv->cname }}" href="/home/goodlist/catesan/{{ $vvv->cid }}"><span>{{ $vvv->cname }}</span></a></dd>
 																		@endforeach
 																	</dl>
 																	@endforeach

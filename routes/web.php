@@ -171,7 +171,7 @@ Route::get('home/goodlist/catetop/{cid}','Home\GoodlistController@catetop');
 //二级分类 显示
 Route::get('home/goodlist/catetwo/{cid}','Home\GoodlistController@catetwo');
 //三级id分类 显示 
-Route::get('home/goodlist/catethree/{cid}','Home\GoodlistController@catethree');
+Route::get('home/goodlist/catesan/{cid}','Home\GoodlistController@catesan');
 //全部分类 显示
 Route::get('home/goodlist/sort','Home\GoodlistController@sort');
 // 三级分类和全局搜索 显示商品详情

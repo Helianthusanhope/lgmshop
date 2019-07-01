@@ -72,7 +72,7 @@ class IndexController extends Controller
         $actives_commend = ActiveController::getActivesCommend();
         $actives_not_commend = ActiveController::getActivesNotcommend();
 
-        $banners_data = Banners::get();
+        $banners_data = Banners::where('status','1')->get();
         $data = Goods::get();
         $categoods = self::getCateGoods();
         return view('home.index.index',['categoods'=>$categoods,'data'=>$data,'actives_not_commend'=>$actives_not_commend,'actives_commend'=>$actives_commend,'works_data'=>$works_data,'banners_data'=>$banners_data]);        

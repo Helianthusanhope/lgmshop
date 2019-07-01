@@ -52,7 +52,7 @@
 			</div>
 				<ol class="am-breadcrumb am-breadcrumb-slash">
 					<li><a href="/">首页</a></li>
-					<li><a href="/home/goodlist/{{ $good->cid }}">{{ $good->goodcates->cname }}</a></li>
+					<li><a href="/home/goodlist/catesan/{{ $good->cid }}">{{ $good->goodcates->cname }}</a></li>
 					<li class="am-active">内容</li>
 				</ol>
 				<script type="text/javascript">

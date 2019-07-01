@@ -16,10 +16,10 @@
                                                                 <div class="sort-side">
                                                                     @foreach( $v->sub as  $kk=>$vv )
                                                                     <dl class="dl-sort">
-                                                                        <dt><span title="{{ $vv->cname }}" href="/home/goodlist/catetwo/{{ $vv->cid }}"
-                                                                            >{{ $vv->cname }}</span></dt>
+                                                                        <dt><a href="/home/goodlist/catetwo/{{ $vv->cid }}"><span title="{{ $vv->cname }}" 
+                                                                            >{{ $vv->cname }}</span></a></dt>
                                                                         @foreach( $vv->sub as $kkk=>$vvv )
-                                                                            <dd><a title="{{$vvv->cname}}" href="/home/goodlist/catethree/{{ $vvv->cid }}"><span>{{$vvv->cname}}</span></a></dd>
+                                                                            <dd><a title="{{$vvv->cname}}" href="/home/goodlist/catesan/{{ $vvv->cid }}"><span>{{$vvv->cname}}</span></a></dd>
                                                                         @endforeach
                                                                     </dl>
                                                                     @endforeach

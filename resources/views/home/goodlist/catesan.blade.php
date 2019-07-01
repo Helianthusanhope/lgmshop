@@ -59,15 +59,8 @@
 						<div class="am-u-sm-12 am-u-md-12">
 	                  	<div class="theme-popover">														
 							<div class="searchAbout">
-								@if( $cate_nav )
 								<span class="font-pale">所在位置：</span>
-								@foreach( $cate_nav as $k=>$v )
-								<a title="{{ $v->cname }}" href="#">>>{{ $v->cname }}</a>
-								@endforeach
-								@else
-								<span class="font-pale">所有结果：</span>
-								<a title="{{ $search }}" href="#">{{ $search }}</a>
-								@endif
+								<a title="" href="#">>>{{ $third_cate->cname }}</a>
 							</div>
 							<ul class="select">
 								<p class="title font-normal">
@@ -129,10 +122,10 @@
                         </div>
 							<div class="search-content">
 								<div class="sort">
-									<li class="<?php if($sort == 1){ echo 'first'; } ?>"><a title="综合" href="/home/goodlist/{{ $cid or '' }}?search={{ $search }}">综合排序</a></li>
-									<li class="<?php if($sort == 'sale'){ echo 'first'; } ?>"><a title="销量" href="/home/goodlist/{{ $cid or '' }}?search={{ $search }}&sort=sale">销量排序</a></li>
-									<li class="<?php if($sort == 'price'){ echo 'first'; } ?>"><a title="价格" href="/home/goodlist/{{ $cid or '' }}?search={{ $search }}&sort=price">价格优先</a></li>
-									<li class="<?php if($sort == 'num'){ echo 'first'; } ?> big"><a title="评价" href="/home/goodlist/{{ $cid or '' }}?search={{ $search }}&sort=num">评价为主</a></li>
+									<li class="<?php if($sort == 1){ echo 'first'; } ?>"><a title="综合" href="/home/goodlist/catesan/{{ $cid or '' }}?search={{ $search }}">综合排序</a></li>
+									<li class="<?php if($sort == 'sale'){ echo 'first'; } ?>"><a title="销量" href="/home/goodlist/catesan/{{ $cid or '' }}?search={{ $search }}&sort=sale">销量排序</a></li>
+									<li class="<?php if($sort == 'price'){ echo 'first'; } ?>"><a title="价格" href="/home/goodlist/catesan/{{ $cid or '' }}?search={{ $search }}&sort=price">价格优先</a></li>
+									<li class="<?php if($sort == 'num'){ echo 'first'; } ?> big"><a title="评价" href="/home/goodlist/catesan/{{ $cid or '' }}?search={{ $search }}&sort=num">评价为主</a></li>
 								</div>
 								<div class="clear"></div>
 

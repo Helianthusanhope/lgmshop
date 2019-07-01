@@ -103,15 +103,15 @@ class GoodlistController extends Controller
 	}
 
 
-	// 一级分类跳转到对应商品
+	// 二级分类跳转到对应商品
 	public function catetwo(Request $request,$id)
 	{
-		//获取商品所对应的的 第三级分类
+		//获取商品所对应的的 第二级分类
     	$two_cid = $id;
     	$two_cid_name = DB::table('cates')->select('cname')->where('cid',$two_cid)->first();
     	//所有的 分类id 和路径
     	$cid_paths = DB::table('cates')->select('cid','path')->get()->toArray();
-    	//获取 顶级分类 对应的所有 三级分类
+    	//获取 二级分类 对应的所有 三级分类
     	$cids = [];
 
     	foreach( $cid_paths as $k=>$v ){
@@ -137,10 +137,13 @@ class GoodlistController extends Controller
 
 	
 
-	// 分类id 显示商品列表页
-    public function catethree(Request $request, $id)
+	// 三级分类id 显示商品列表页
+    public function catesan(Request $request, $id)
     {
-    	$cid = $id;
+    	//获取商品所对应的的 第三级分类
+    	$third_cid = $id;
+    	$third_cate = DB::table('cates')->select('cname')->where('cid',$third_cid)->first();
+
     	if ($request->input('sort','')) {
     		$sort = $request->input('sort','');
     		if ($sort == 'price') {
@@ -148,13 +151,12 @@ class GoodlistController extends Controller
     		} else {
     			$desc = 'desc';
     		}
-    		$goods = Goods::where('cid',$cid)->where('good_status','1')->orderBy($sort,$desc)->select('gid','gname','price','cid','thumb','active_id','sale')->paginate(50);
+    		$goods = Goods::where('cid',$third_cid)->where('good_status','1')->orderBy($sort,$desc)->select('gid','gname','price','cid','thumb','active_id','sale')->paginate(50);
     	} else {
     		$sort = 1;
-    		$goods = Goods::where('cid',$cid)->where('good_status','1')->orderBy('sale','desc')->orderBy('collect','desc')->select('gid','gname','price','cid','thumb','active_id','sale')->paginate(50);
+    		$goods = Goods::where('cid',$third_cid)->where('good_status','1')->orderBy('sale','desc')->orderBy('collect','desc')->select('gid','gname','price','cid','thumb','active_id','sale')->paginate(50);
     	}
-    	$cate_nav = self::getCateNav($id);
-    	return view('home.goodlist.catethree',['data'=>$goods,'cate_nav'=>$cate_nav,'search'=>'','cid'=>$id,'sort'=>$sort]);
+    	return view('home.goodlist.catesan',['third_cate'=>$third_cate,'data'=>$goods,'search'=>'','cid'=>$id,'sort'=>$sort]);
     }
 
 
