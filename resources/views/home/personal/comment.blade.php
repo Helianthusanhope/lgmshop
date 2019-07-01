@@ -73,11 +73,11 @@
 
 			
 			<div class="item-opinion">
-				<li><i class="op1 active" stars="5"></i>好评</li>
-				<li><i class="op2" stars="4"></i>中评</li>
-				<li><i class="op3" stars="3"></i>差评</li>
+				<li><i class="op1 active" stars="5"></i>完美</li>
+				<li><i class="op2" stars="4"></i>好评</li>
+				<li><i class="op3" stars="3"></i>中评</li>
 				<li><i class="op4" stars="2"></i>差评</li>
-				<li><i class="op5" stars="1"></i>差评</li>
+				<li><i class="op5" stars="1"></i>极差</li>
 			</div>
 			
 		</div>
