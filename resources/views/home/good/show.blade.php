@@ -45,7 +45,7 @@
 			</div>
 				<ol class="am-breadcrumb am-breadcrumb-slash">
 					<li><a href="/">首页</a></li>
-					<li><a href="/home/goodlist/{{ $good->cid }}">{{ $good->goodcates->cname }}</a></li>
+					<li><a href="/home/goodlist/catesan/{{ $good->cid }}">{{ $good->goodcates->cname }}</a></li>
 					<li class="am-active">内容</li>
 				</ol>
 				<script type="text/javascript">
@@ -127,7 +127,7 @@
 							<!--销量-->
 							<ul class="tm-ind-panel">
 								<li class="tm-ind-item tm-ind-sellCount canClick">
-									<div class="tm-indcon"><span class="tm-label">月销量</span><span class="tm-count">{{ $good->moonsale }}</span></div>
+									<div class="tm-indcon"><span class="tm-label" >累计收藏</span><span class="tm-count" id="collects">{{ $good->collect }}</span></div>
 								</li>
 								<li class="tm-ind-item tm-ind-sumCount canClick">
 									<div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">{{ $good->sale }}</span></div>
@@ -238,6 +238,11 @@
 									<a id="LikBasket" title="加入购物车" stid="{{ $stid }}" href="#"><i></i>加入购物车</a>
 								</div>
 							</li>
+							<li>
+								<div class="clearfix tb-btn tb-btn-buy theme-login" style="margin-left: 8%;">
+									<a  title="加入收藏夹"  href="javascript:;" onclick="goCollect('{{ $good->gid }}')"><i></i>加入收藏夹</a>
+								</div>
+							</li>
 						</div>
 						
 					</div>
@@ -263,6 +268,18 @@
 							window.location.href = aa+stid+'&number='+num;
 							
 						});
+						function goCollect(gid)
+					        {
+					          	$.get('/home/collect/gocollect',{gid},function(res){
+					            	if(res.msg == 'err'){
+					              		layer.msg(res.info);
+					            	}else{
+					              		layer.msg(res.info);
+					              		let collects = $('#collects').first();
+					              		collects.html(parseInt(collects.html())+1);
+					            	}
+					          	},'json');
+					        }
 					</script>
 					<div class="clear"></div>
 
@@ -342,7 +359,7 @@
 									
                                     <div class="actor-new">
                                     	<div class="rate">                
-                                    		<strong>100<span>%</span></strong><br> <span>好评度</span>            
+                                    		<strong>{{ $num['pro'] }}<span>%</span></strong><br> <span>好评度</span>            
                                     	</div>
                                         
                                     </div>	
@@ -353,6 +370,12 @@
 												<div class="comment-info">
 													<span>全部评价</span>
 													<span class="tb-tbcr-num">({{ $good->num }})</span>
+													<span>好评</span>
+													<span class="tb-tbcr-num">({{ $num['good'] }})</span>
+													<span>中评</span>
+													<span class="tb-tbcr-num">({{ $num['middle'] }})</span>
+													<span>差评</span>
+													<span class="tb-tbcr-num">({{ $num['bad'] }})</span>
 												</div>
 											</li>
 										</ul>
@@ -416,7 +439,7 @@
 											@foreach($like as $k => $v)
 											<li>
 												<div class="i-pic limit">
-													<img src="/uploads/{{ $v->thumb }}" style="width: 100%;height: 220px;" />
+													<a href="/home/goods/{{$v->gid}}"><img src="/uploads/{{ $v->thumb }}" style="width: 100%;height: 220px;" /></a>
 													<p>{{$v->gname}}</p>
 													<p class="price fl">
 														<b>¥</b>
@@ -431,12 +454,6 @@
 											@endforeach
 										</ul>
 									</div>
-									<div class="clear"></div>
-
-									<!--分页 -->
-									
-										<div style="float: right;">{{ $like->links() }}</div>
-									
 									<div class="clear"></div>
 
 								</div>

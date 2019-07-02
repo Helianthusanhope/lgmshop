@@ -158,7 +158,7 @@
 												<li class="td td-item">
 													<div class="item-pic">
 														<a href="#" class="J_MakePoint">
-															<img src="/ho/images/kouhong.jpg_80x80.jpg" class="itempic J_ItemImg"></a>
+															<img src="/uploads/{{ $v['goodstock']['picture'] }}" class="itempic J_ItemImg" style="width: 100%;"></a>
 													</div>
 													<div class="item-info">
 														<div class="item-basic-info">

@@ -106,7 +106,6 @@ class PersonalController extends Controller
         if (empty($order['good'])) {
             $order->order_status = '4';
             $order->save();
-            
         }
         return view('home.personal.comment',['orders'=>$orders,'oid'=>$id]);
     }
@@ -123,7 +122,10 @@ class PersonalController extends Controller
         $res->uname = session('home_user')->uname;
         $res->oid = $request->input('oid','');
         $res->uid = session('home_user')->uid;
-        $res = $res->save();
+        $res = $res->save(); 
+        $good = Goods::find($gid);
+        $good->num = $good->num + 1;
+        $good->save();
         if ($res) {
             echo json_encode(['msg'=>'ok','info'=>'评论成功']);
         } else {
@@ -131,5 +133,4 @@ class PersonalController extends Controller
         }
         
     }
-
 }
