@@ -55,11 +55,6 @@ class PersonalController extends Controller
     	 //获取订单数据
         $uid = session('home_user')->uid;
         $orders = Order::where('uid',$uid)->orderBy('created_at','desc')->get()->toArray();
-        // 收获地址
-        foreach($orders as $k => $v){
-            $useraddr[$k] = UserAddr::find($v['aid']);
-        }
-        
         $orders = self::getOrders($orders);
         // 订单内商品详情
         
@@ -111,6 +106,7 @@ class PersonalController extends Controller
         if (empty($order['good'])) {
             $order->order_status = '4';
             $order->save();
+            
         }
         return view('home.personal.comment',['orders'=>$orders,'oid'=>$id]);
     }

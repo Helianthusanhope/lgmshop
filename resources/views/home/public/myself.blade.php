@@ -13,6 +13,7 @@
 <!--悬浮搜索框开始-->
 @include('home.public.search')
 <!--搜索框结束-->
+
 					</div>
 				</div>
 			</article>
@@ -32,7 +33,6 @@
                                 <i class="am-icon-angle-right" style="padding-left: 10px;"></i>
                             </div>
                         </div>
-
 			</div>
 
 <!--网站分类结束--->

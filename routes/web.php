@@ -188,7 +188,7 @@ Route::resource('home/orders','Home\OrderController');
 
 
 
-
+Route::get('home/orders/gobuy', 'Home\OrderController@ordergo');
 
 
 
