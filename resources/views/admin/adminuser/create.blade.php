@@ -7,7 +7,7 @@
     	<span>Inline Form</span>
     </div>
     <div class="mws-panel-body no-padding">
-    	<form class="mws-form" action="/admin/adminusers" method="post" enctype="multipart/form-data">
+    	<form class="mws-form" action="/admin/adminuser" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
     		<div class="mws-form-inline">
     			<div class="mws-form-row">

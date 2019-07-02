@@ -52,6 +52,19 @@ layui.use(['layer', 'form'], function(){
   
 });
 </script> 
+<script type="text/javascript">
+ function changeUser()
+    {
+        //iframe层-禁滚动条
+        layer.open({
+          type: 2,
+          title: '修改个人信息',
+          area: ['500px', '450px'],
+          skin: 'layui-layer-rim', //加上边框
+          content: ['/admin/adminuser/show', 'no']
+        });
+    }
+</script>
 <body>
 
 
@@ -79,7 +92,7 @@ layui.use(['layer', 'form'], function(){
                 @if(session('admin_user'))
             	<!-- User Photo -->
             	<div id="mws-user-photo">
-                	<img src="{{ session('admin_user')->profile }}" alt="User Photo">
+                	<img src="/uploads/{{ session('admin_user')->profile }}" alt="User Photo">
                 </div>
                 <!-- Username and Functions -->
                 <div id="mws-user-functions">
@@ -87,7 +100,7 @@ layui.use(['layer', 'form'], function(){
                         Hello, {{ session('admin_user')->uname }} 
                     </div>
                     <ul>
-                        <li><a href="#">修改密码</a></li>
+                        <li><a href="javascript:;" onclick="changeUser()">修改密码</a></li>
                         <li><a href="/admin/outlogin">退出</a></li>
                     </ul>
                 </div>
@@ -136,8 +149,8 @@ layui.use(['layer', 'form'], function(){
                     <li class="active">
                         <a href="#"><i class="icon-users"></i> 管理员</a>
                         <ul style="display: none;">
-                            <li><a href="/admin/adminusers">管理员列表</a></li>
-                            <li><a href="/admin/adminusers/create">管理员添加</a></li>
+                            <li><a href="/admin/adminuser">管理员列表</a></li>
+                            <li><a href="/admin/adminuser/create">管理员添加</a></li>
                         </ul>
                     </li>
 

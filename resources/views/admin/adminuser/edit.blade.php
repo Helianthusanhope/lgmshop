@@ -7,7 +7,7 @@
         <span>管理员修改</span>
     </div>
     <div class="mws-panel-body no-padding">
-        <form class="mws-form" action="/admin/adminusers/{{ $adminusers->id }}" method="post" enctype="multipart/form-data">
+        <form class="mws-form" action="/admin/adminuser/{{ $adminusers->id }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             {{ method_field('PUT') }}
             <div class="mws-form-inline">

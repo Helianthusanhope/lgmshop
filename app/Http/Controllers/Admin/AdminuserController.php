@@ -117,14 +117,29 @@ class AdminuserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 修改密码
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show() 
     {
-        //
+        return view('admin.adminuser.show');
+    }
+
+    public function changeInfo(Request $request,$id) 
+    {
+        // dd($request->all());
+        $id = session('admin_user')->id;
+        // 接收值
+        $data['uname'] = $request->input('uname','');
+        $data['upass'] = Hash::make($request->input('upass',''));
+        // 执行添加
+        $res = DB::table('adminusers')->where('id',$id)->update($data);
+        if($res){
+            //注册
+            echo json_encode(['msg'=>'ok','info'=>'修改成功']);
+        }
     }
 
     /**
@@ -172,7 +187,7 @@ class AdminuserController extends Controller
 
         if($res1 && $res2){
             DB::commit();
-            return redirect('admin/adminusers')->with('success','修改成功');
+            return redirect('admin/adminuser')->with('success','修改成功');
         }else{
             DB::rollBack();
             return back()->with('error','修改失败');
@@ -194,7 +209,7 @@ class AdminuserController extends Controller
        
         if($res1 && $res2){
             DB::commit();
-            return redirect('admin/Adminusers')->with('success','删除成功');
+            return redirect('admin/adminuser')->with('success','删除成功');
         }else{
             DB::rollBack();
             return back()->with('error','删除失败');

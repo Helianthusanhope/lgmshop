@@ -22,8 +22,8 @@
                     <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ $adminuser_roles[$v->id] }}</font></font></td>
                     <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ $v->uname }}</font></font></td>
                     <td>
-						 <a href="/admin/adminusers/{{ $v->id }}/edit" class="btn btn-warning">修改角色</a>
-                        <form action="/admin/adminusers/{{ $v->id }}" method="post" style="display: inline-block;">
+						 <a href="/admin/adminuser/{{ $v->id }}/edit" class="btn btn-warning">修改角色</a>
+                        <form action="/admin/adminuser/{{ $v->id }}" method="post" style="display: inline-block;">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <input type="submit" value="删除" class="btn btn-danger">

@@ -29,6 +29,13 @@
                     <td>
                         <a href="/admin/friends/{{ $v->id }}/edit" class="btn btn-warning" onclick="return checkForm()">修改</a>
                         <a href="/admin/friends/status/{{ $v->id }}" onclick="status()" class="btn btn-danger">{!! $v->status == 0 ? '开启' : '<p style="color: #D34011">关闭</p>' !!}</a>
+                         @if( $v->status == 0 )
+                        <form action="/admin/friends/{{ $v->id }}" method="post" style="display: inline-block;" onsubmit="return checkForm()">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <input type="submit" value="删除" class="btn btn-danger">
+                        </form>
+                        @endif
                     </td>
                 </tr>
                 @endforeach

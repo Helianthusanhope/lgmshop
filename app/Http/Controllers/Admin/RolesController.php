@@ -24,6 +24,15 @@ class RolesController extends Controller
             'indexcontroller'=>'首页显示',
             'adminusercontroller'=>'管理员管理',
             'rolescontroller'=>'角色管理',
+            'nodescontroller'=>'权限管理',
+            'catecontroller'=>'分区管理',
+            'goodcontroller'=>'商品管理',
+            'ordercontroller'=>'订单管理',
+            'bannercontroller'=>'轮播图管理',
+            'activecontroller'=>'活动管理',
+            'friendcontroller'=>'友情链接管理',
+            'webconfigcontroller'=>'网站配置管理',
+            'workcontroller'=>'新闻(文章)管理',
         ];
     }
 
@@ -146,6 +155,9 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+
+        DB::beginTransaction();
         //该角色id 
         $rid  = $id;
         // 添加角色表
@@ -153,12 +165,22 @@ class RolesController extends Controller
         $roles->rname = $request->input('rname','');
         $res1 = $roles->save();
 
+        $nids = $request->input('nids');
 
-        if($res1){
-            return redirect('admin/roles')->with('success','修改成功');
-        }else{
-             return back()->with('error','修改失败');
+        // 添加角色关系表
+        foreach ($nids as $k => $v) {
+           $res2 =  RolesNodes::where('rid',$rid)->update(['rid'=>$rid,'nid'=>$v]);  
         }
+
+
+        if($res1 && $res2){
+            DB::commit();
+            return redirect('admin/roles')->with('success','添加成功');
+        }else{
+            DB::rollBack();
+             return back()->with('error','添加失败');
+        }
+
     }
 
     /**

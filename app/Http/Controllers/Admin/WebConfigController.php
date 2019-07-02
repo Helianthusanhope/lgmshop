@@ -137,6 +137,28 @@ class WebConfigController extends Controller
     }
 
     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $res = Webconfig::destroy($id);
+        // 删除用户头像
+        /*
+            use Illuminate\Support\Facades\Storage;
+            Storage::delete('file.jpg');
+            Storage::delete(['file1.jpg', 'file2.jpg']);
+         */
+        if ($res) {
+            return redirect('admin/webconfigs')->with('success','删除成功');
+        } else {
+            return back()->with('error','删除失败');
+        }
+    }
+
+    /**
      * 快速开启
      *
      * @param  int  $id

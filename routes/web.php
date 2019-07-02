@@ -31,12 +31,15 @@ Route::get('admin/rbac',function(){
 
 //后台首页
 	Route::resource('admin/index', 'Admin\IndexController');
+	
 
 // Route::group(['middleware'=>['login','nodes']],function(){
 // Route::group(['middleware'=>['login']],function(){
-	
+
+	//修改密码
+	Route::post('admin/adminuser/{id}','Admin\AdminuserController@changeInfo');
 	// 后台 管理员
-	Route::resource(' admin/adminusers','Admin\AdminuserController');
+	Route::resource(' admin/adminuser','Admin\AdminuserController');
 	// 后台  角色
 	Route::resource('admin/roles','Admin\RolesController');  
 	// 后台 权限
@@ -115,25 +118,22 @@ Route::post('/home/dologin', 'Home\LoginController@dologin');
 Route::get('home/loginout', 'Home\LoginController@loginout');
 
 //个人中心
-// 验证是否进入个人中心
+// 验证是否在登录状态
 Route::get('home/login/myself', 'Home\LoginController@myself');
-//验证能否入收藏中心
-Route::get('home/login/collect', 'Home\LoginController@collect');
 //显示个人中心首页
 Route::get('home/personal', 'Home\PersonalController@index');
 
-// 显示个人的订单页面
+//显示个人的订单页面
 Route::get('home/personal/order', 'Home\PersonalController@order');
-// 确认收货
+//确认收货
 Route::get('home/personal/orderconfirm/{id}', 'Home\PersonalController@orderConfirm');
-// 显示评论页
+//显示评论页
 Route::get('home/personal/comment/{id}', 'Home\PersonalController@comment');
-// 评论添加
+//评论添加
 Route::post('home/personal/gocomment', 'Home\PersonalController@goComment');
-// 显示订单详情
+//显示待评价
 Route::get('home/personal/orderinfo/{id}', 'Home\PersonalController@orderInfo');
-// 显示我的评论
-Route::get('home/personal/commentlist', 'Home\CommentController@index');
+
 
 //显示个人信息修改页面页面
 Route::get('home/information/edit', 'Home\InformationController@edit');
@@ -159,11 +159,8 @@ Route::post('home/safety/doupass', 'Home\SafetyController@doupass');
 Route::get('home/safety/email', 'Home\SafetyController@email');
 //显示手机变更密码
 Route::get('home/safety/phone', 'Home\SafetyController@phone');
-// 订单页
-Route::get('home/orders/buy', 'Home\OrderController@buy');
-// 付款成功
-Route::get('home/orders/success', 'Home\OrderController@success');
-Route::resource('home/orders','Home\OrderController');
+
+
 
 
 
@@ -186,7 +183,10 @@ Route::get('home/goodlist/sort','Home\GoodlistController@sort');
 Route::resource('home/goodlist','Home\GoodlistController');
 // 显示商品
 Route::resource('home/goods','Home\GoodController');
-
+// 订单页
+Route::get('home/orders/buy', 'Home\OrderController@buy');
+Route::get('home/orders/success', 'Home\OrderController@success');
+Route::resource('home/orders','Home\OrderController');
 
 
 
@@ -194,10 +194,7 @@ Route::resource('home/goods','Home\GoodController');
 
 // 增加收藏
 Route::get('home/collect/gocollect', 'Home\CollectController@goCollect');
-//显示个人收藏
-Route::get('home/myself/collect', 'Home\CollectController@index');
-//移除收藏
-Route::get('home/collect/edit', 'Home\CollectController@edit');
+
 
 
 

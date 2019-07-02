@@ -18,6 +18,19 @@
                     </div>
                 </div>
             </div>
+            <div class="mws-form-row">
+                    <label class="mws-form-label">角色权限</label>
+                    <div class="mws-form-item clearfix">
+                        <ul class="mws-form-list inline small">
+                            @foreach($list as $k=>$v)
+                            <h3>{{ $conall[$k] }} <small>{{ $k }}</small> </h3>
+                                @foreach($v as $kk=>$vv)
+                                <li><input type="checkbox" name="nids[]" {{ in_array( $vv['id'], (array)$nodes_id ) ? 'checked' : '' }} value="{{ $vv['id'] }}"> <label>{{ $vv['desc'] }}</label></li>
+                                @endforeach
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             <div class="mws-button-row">
                 <input type="submit" value="Submit" class="btn btn-danger">
                 <input type="reset" value="Reset" class="btn ">
