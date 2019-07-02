@@ -9,18 +9,30 @@ use App\Models\Userinfo;
 use Hash;
 class LoginController extends Controller
 {   
-    //进去个人中心的验证
+    //进入个人中心的验证
     public function myself()
     {
         //检测是否在登录状态
         if ( !session('home_login') ){
 
             echo json_encode(['msg'=>'err','info'=>'请先登录']);;
-           exit;
+            exit;
         }
         echo json_encode(['msg'=>'ok','info'=>'']);;
     }
 
+    //进去收藏夹验证
+    public function collect()
+    {
+        //检测是否在登录状态
+        if ( !session('home_login') ){
+
+            echo json_encode(['msg'=>'err','info'=>'请先登录']);;
+            exit;
+        }
+        echo json_encode(['msg'=>'ok','info'=>'']);;
+
+    }
 
     //显示登录页面
     public function login()

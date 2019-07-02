@@ -115,8 +115,10 @@ Route::post('/home/dologin', 'Home\LoginController@dologin');
 Route::get('home/loginout', 'Home\LoginController@loginout');
 
 //个人中心
-// 验证是否在登录状态
+// 验证是否进入个人中心
 Route::get('home/login/myself', 'Home\LoginController@myself');
+//验证能否入收藏中心
+Route::get('home/login/collect', 'Home\LoginController@collect');
 //显示个人中心首页
 Route::get('home/personal', 'Home\PersonalController@index');
 
@@ -191,7 +193,10 @@ Route::resource('home/orders','Home\OrderController');
 
 // 增加收藏
 Route::get('home/collect/gocollect', 'Home\CollectController@goCollect');
-
+//显示个人收藏
+Route::get('home/myself/collect', 'Home\CollectController@index');
+//移除收藏
+Route::get('home/collect/edit', 'Home\CollectController@edit');
 
 
 

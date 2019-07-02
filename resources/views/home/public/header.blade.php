@@ -41,9 +41,10 @@
                         <div class="menu-hd"><a id="mc-menu-hd" href="/home/car/index" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">({{ $car_count }})</strong></a></div>
                     </div>
                     <div class="topMessage favorite">
-                        <div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+                        <div class="menu-hd"><a href="JavaScript:;" onclick="collect()" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
                 </ul>
             </div>
+<!--个人中心的提示信息-->
             <script type="text/javascript">
                 function myself(){
                     $.get('/home/login/myself',function(res){
@@ -59,3 +60,21 @@
 
                 }
             </script>
+<!---个人中心的提示信息结束-->
+<!--收藏夹提示信息-->
+             <script type="text/javascript">
+                function collect(){
+                $.get('/home/login/collect',function(res){
+
+                    if(res.msg == 'err'){
+                            layer.msg(res.info);
+                        }else {
+                             window.location.href='/home/myself/collect';
+                        
+                        }
+
+                },'json')
+         
+                }
+            </script>
+<!--收藏夹提示信息结束-->
