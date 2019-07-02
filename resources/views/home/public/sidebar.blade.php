@@ -1,3 +1,14 @@
+     <!--引用弹窗-->
+  <link rel="stylesheet" href="/layui-v2.4.5/layui/css/layui.css">
+    <script src="/layui-v2.4.5/layui/layui.js"></script>
+    <script>
+    layui.use(['layer', 'form'], function(){
+
+      var layer = layui.layer;
+      
+     
+    });
+    </script>
  <div class=tip>
             <div id="sidebar">
                 <div id="wrap">
@@ -15,7 +26,7 @@
                             </div>
                             <div class="login_btnbox ">
                                 <a href="# " class="login_order ">我的订单</a>
-                                <a href="# " class="login_favorite ">我的收藏</a>
+                                <a href="# "  class="login_favorite" onclick="collect()">我的收藏</a>
                             </div>
                             <i class="icon_arrow_white "></i>
                         </div>
@@ -47,7 +58,7 @@
                         <a href="#">
                             <span class="wdsc "><img src="/ho/images/wdsc.png " /></span>
                         </a>
-                        <div class="mp_tooltip ">
+                        <div class="mp_tooltip " onclick="collect()">
                             我的收藏
                             <i class="icon_arrow_right_black "></i>
                         </div>
@@ -135,3 +146,22 @@
                 </div>
             </div>
         </div>
+
+
+<!--收藏夹提示信息-->
+             <script type="text/javascript">
+                function collect(){
+                $.get('/home/login/collect',function(res){
+
+                    if(res.msg == 'err'){
+                            layer.msg(res.info);
+                        }else {
+                             window.location.href='/home/myself/collect';
+                        
+                        }
+
+                },'json')
+         
+                }
+            </script>
+<!--收藏夹提示信息结束-->

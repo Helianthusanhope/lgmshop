@@ -38,13 +38,19 @@ class PersonalController extends Controller
     {
 
  
-        //获取用户的个人信息,收货地址,活动推介
+        //获取用户的个人信息,收货地址,活动推介,个人收藏
         $userinfo = AddressController::userinfo();
         $address  = AddressController::address();
         $actives  = ActiveController::getActivesCommend();
+        $collect  = CollectController::collect();
+        $uid = session('home_user')->uid;
+        $order = Order::where('uid',$uid)->get();
+        $orders['1'] = $order->where('order_status','0')->count();
+        $orders['2'] = $order->where('order_status','1')->count();
+        $orders['3'] = $order->where('order_status','2')->count();
+        $orders['4'] = $order->where('order_status','3')->count();
 
-
-        return view('home.personal.index',['userinfo'=>$userinfo,'address'=>$address,'actives'=>$actives]);
+        return view('home.personal.index',['userinfo'=>$userinfo,'address'=>$address,'actives'=>$actives,'collect'=>$collect,'orders'=>$orders]);
 
 
     }
@@ -54,7 +60,7 @@ class PersonalController extends Controller
     {
     	 //获取订单数据
         $uid = session('home_user')->uid;
-        $orders = Order::where('uid',$uid)->orderBy('created_at','desc')->get()->toArray();
+        $orders = Order::where('uid',$uid)->orderBy('updated_at','desc')->get()->toArray();
         $orders = self::getOrders($orders);
         // 订单内商品详情
         
