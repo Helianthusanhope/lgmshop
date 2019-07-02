@@ -46,9 +46,13 @@
 							<div class="s-bar">
 								我的收藏
 								<a class="am-badge am-badge-danger am-round"></a>
-								<a class="am-badge am-badge-danger am-round">下架</a>
+								<!-- <a class="am-badge am-badge-danger am-round">下架</a> -->
 							</div>
 							<div class="s-content">
+								@if(!$good)
+								<img src="/ho/images/c6ac03e15f4b5efc7e2a268970ce660baab1ba21.jpg_320x200.jpg">
+
+								@else
 								@foreach($good as $k=>$v)
 								<div class="s-item-wrap">
 									<div class="s-item">
@@ -74,9 +78,9 @@
 											</div>
 										</div>
 										<div class="s-tp">
-											<span class="ui-btn-loading-before" onclick="edit('{{$v->gid}}')">移除收藏</span>
-											<i class="am-icon-shopping-cart"></i>
-											<span class="ui-btn-loading-before buy">加入购物车</span>
+											<span class="ui-btn-loading-before" onclick="edit('{{$v->gid}}')">取消收藏</span>
+											<!-- <i class="am-icon-shopping-cart"></i>
+											<span class="ui-btn-loading-before buy"></span> -->
 											<p>
 												<a href="javascript:;" class="c-nodo J_delFav_btn">取消收藏</a>
 											</p>
@@ -85,6 +89,7 @@
 
 								</div>
 								@endforeach
+								@endif
 							</div>
 
 							<div class="s-more-btn i-load-more-item" data-screen="0"><i class="am-icon-refresh am-icon-fw"></i></div>

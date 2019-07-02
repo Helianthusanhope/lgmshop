@@ -69,11 +69,7 @@
                                 @foreach( $actives_not_commend as $k=>$v )
                                 <li class="qc"><a href="#">{{ $v->active_name }}</a></li>
                                 @endforeach
-                            </ul>
-                            <div class="nav-extra">
-                                <i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
-                                <i class="am-icon-angle-right" style="padding-left: 10px;"></i>
-                            </div>
+                            </ul>             
                         </div>
                 <!--分类结束-->
 
@@ -93,14 +89,9 @@
 											<img src="/uploads/{{$userinfo->profile}}">
 										</a>
 										<em class="s-name">{{session('home_user')->uname}}<span class="vip1"></em>
-										<div class="s-prestige am-btn am-round">
-											</span>会员福利</div>
 									</div>
 									<div class="m-right">
-										<div class="m-new">
-											<a href="#"><i class="am-icon-bell-o"></i>消息</a>
-										</div>
-
+										
 										<div class="m-address">
 											
 											@foreach($address as $k=>$v)
@@ -115,44 +106,7 @@
 								</div>
 
 								<!--个人资产-->
-								<div class="m-userproperty">
-									<div class="s-bar">
-										<i class="s-icon"></i>个人资产
-									</div>
-									<p class="m-bonus">
-										<a href="bonus.html">
-											<i><img src="/ho/images/bonus.png"/></i>
-											<span class="m-title">红包</span>
-											<em class="m-num">2</em>
-										</a>
-									</p>
-									<p class="m-coupon">
-										<a href="coupon.html">
-											<i><img src="/ho/images/coupon.png"/></i>
-											<span class="m-title">优惠券</span>
-											<em class="m-num">2</em>
-										</a>
-									</p>
-									<p class="m-bill">
-										<a href="bill.html">
-											<i><img src="/ho/images/wallet.png"/></i>
-											<span class="m-title">钱包</span>
-											<em class="m-num">2</em>
-										</a>
-									</p>
-									<p class="m-big">
-										<a href="#">
-											<i><img src="/ho/images/day-to.png"/></i>
-											<span class="m-title">签到有礼</span>
-										</a>
-									</p>
-									<p class="m-big">
-										<a href="#">
-											<i><img src="/ho/images/72h.png"/></i>
-											<span class="m-title">72小时发货</span>
-										</a>
-									</p>
-								</div>
+								
 							</div>
 							<div class="box-container-bottom"></div>
 
@@ -163,11 +117,10 @@
 									<a class="i-load-more-item-shadow" href="/home/personal/order">全部订单</a>
 								</div>
 								<ul>
-									<li><a href="order.html"><i><img src="/ho/images/pay.png"/></i><span>待付款</span></a></li>
-									<li><a href="order.html"><i><img src="/ho/images/send.png"/></i><span>待发货<em class="m-num">1</em></span></a></li>
-									<li><a href="order.html"><i><img src="/ho/images/receive.png"/></i><span>待收货</span></a></li>
-									<li><a href="order.html"><i><img src="/ho/images/comment.png"/></i><span>待评价<em class="m-num">3</em></span></a></li>
-									<li><a href="change.html"><i><img src="/ho/images/refund.png"/></i><span>退换货</span></a></li>
+									<li><a href="/home/personal/order"><i><img src="/ho/images/pay.png"/></i><span>待付款<em class="m-num">{{ $orders['1'] }}</em></span></a></li>
+									<li><a href="/home/personal/order"><i><img src="/ho/images/send.png"/></i><span>待发货<em class="m-num">{{ $orders['2'] }}</em></span></a></li>
+									<li><a href="/home/personal/order"><i><img src="/ho/images/receive.png"/></i><span>待收货<em class="m-num">{{ $orders['3'] }}</em></span></a></li>
+									<li><a href="/home/personal/order"><i><img src="/ho/images/comment.png"/></i><span>待评价<em class="m-num">{{ $orders['4'] }}</em></span></a></li>
 								</ul>
 							</div>
 							<!--九宫格-->
@@ -185,79 +138,36 @@
 								</ul>
 							</div>
 							<!--物流 -->
-							<div class="m-logistics">
-
-								<div class="s-bar">
-									<i class="s-icon"></i>我的物流
-								</div>
-								<div class="s-content">
-									<ul class="lg-list">
-
-										<li class="lg-item">
-											<div class="item-info">
-												<a href="#">
-													<img src="/ho/images/65.jpg_120x120xz.jpg" alt="抗严寒冬天保暖隔凉羊毛毡底鞋垫超薄0.35厘米厚吸汗排湿气舒适">
-												</a>
-
-											</div>
-											<div class="lg-info">
-
-												<p>快件已从 义乌 发出</p>
-												<time>2015-12-20 17:58:05</time>
-
-												<div class="lg-detail-wrap">
-													<a class="lg-detail i-tip-trigger" href="logistics.html">查看物流明细</a>
-													<div class="J_TipsCon hide">
-														<div class="s-tip-bar">中通快递&nbsp;&nbsp;&nbsp;&nbsp;运单号：373269427686</div>
-														<div class="s-tip-content">
-															<ul>
-																<li>快件已从 义乌 发出2015-12-20 17:58:05</li>
-																<li>义乌 的 义乌总部直发车 已揽件2015-12-20 17:54:49</li>
-																<li class="s-omit"><a data-spm-anchor-id="a1z02.1.1998049142.3" target="_blank" href="#">··· 查看全部</a></li>
-																<li>您的订单开始处理2015-12-20 08:13:48</li>
-
-															</ul>
-														</div>
-													</div>
-												</div>
-
-											</div>
-											<div class="lg-confirm">
-												<a class="i-btn-typical" href="#">确认收货</a>
-											</div>
-										</li>
-										<div class="clear"></div>
-
-									</ul>
-
-								</div>
-
-							</div>
-
 							<!--收藏夹 -->
 							<div class="you-like">
 								<div class="s-bar">我的收藏
-									<a class="am-badge am-badge-danger am-round">降价</a>
+									<!-- <a class="am-badge am-badge-danger am-round">降价</a>
 									<a class="am-badge am-badge-danger am-round">下架</a>
-									<a class="i-load-more-item-shadow" href="#"><i class="am-icon-refresh am-icon-fw"></i>换一组</a>
+									<a class="i-load-more-item-shadow" href="#"><i class="am-icon-refresh am-icon-fw"></i>换一组</a> -->
 								</div>
 								<div class="s-content">
-									
+								@if(!$collect)
+								<img src="/ho/images/c6ac03e15f4b5efc7e2a268970ce660baab1ba21.jpg_320x200.jpg">
 								<!--收藏的内容-->
+								@else
+								@foreach($collect as $k=>$v)
 									<div class="s-item-wrap">
 										<div class="s-item">
 
 											<div class="s-pic">
 												<a href="#" class="s-pic-link">
-													<img src="/ho/images/-0-saturn_solar.jpg_220x220.jpg" alt="4折抢购!十二生肖925银女戒指,时尚开口女戒" title="4折抢购!十二生肖925银女戒指,时尚开口女戒" class="s-pic-img s-guess-item-img">
+													<img src="/uploads/{{$v->thumb}}" alt="{{ $v->gname}}" title="{{ $v->gname}}" class="s-pic-img s-guess-item-img">
 												</a>
 											</div>
 											<div class="s-price-box">
-												<span class="s-price"><em class="s-price-sign">¥</em><em class="s-value">378.00</em></span>
-												<span class="s-history-price"><em class="s-price-sign">¥</em><em class="s-value">1888.00</em></span>
-
+												@if($v->active_id)
+												<span class="s-price"><em class="s-price-sign">¥</em><em class="s-value">{{ $v->price *$v->active_id->discount /10}}</em></span>
+												<span class="s-history-price"><em class="s-price-sign">¥</em><em class="s-value">{{$v->price}}</em></span>
+												@else
+												<span class="s-price"><em class="s-price-sign">¥</em><em class="s-value">{{ $v->price}}</em></span>
+												@endif
 											</div>
-											<div class="s-title"><a href="#" title="4折抢购!十二生肖925银女戒指,时尚开口女戒">4折抢购!十二生肖925银女戒指,时尚开口女戒</a></div>
+											<div class="s-title"><a href="/home/goods/{{ $v->gid}}" title="{{ $v->gname}}">{{ $v->gname}}</a></div>
 											<div class="s-extra-box">
 												<span class="s-comment">好评: 99.93%</span>
 												<span class="s-sales">月销: 278</span>
@@ -265,6 +175,8 @@
 											</div>
 										</div>
 									</div>
+								@endforeach
+								@endif
 								<!--收藏内容结束-->
 								</div>
 
@@ -277,37 +189,20 @@
 					<div class="wrap-right">
 
 						<!-- 日历-->
-						<div class="day-list">
+					<div class="day-list">
 							<div class="s-bar">
 								<a class="i-history-trigger s-icon" href="#"></a>我的日历
-								<a class="i-setting-trigger s-icon" href="#"></a>
+								
 							</div>
 							<div class="s-care s-care-noweather">
 								<div class="s-date">
-									<em>21</em>
-									<span>星期一</span>
-									<span>2015.12</span>
+									<em>{{ date('d') }}</em>
+									<span>星期{{ date('w') }}</span>
+									<span>{{ date('Y').'年'.date('m').'月' }}</span>
 								</div>
 							</div>
 						</div>
-						<!--新品 -->
-					<!-- 	<div class="new-goods">
-							<div class="s-bar">
-								<i class="s-icon"></i>今日新品
-								<a class="i-load-more-item-shadow">15款新品</a>
-							</div>
-							<div class="new-goods-info">
-								<a class="shop-info" href="#" target="_blank">
-									<div class="face-img-panel">
-										<img src="/ho/images/imgsearch1.jpg" alt="">
-									</div>
-									<span class="new-goods-num ">4</span>
-									<span class="shop-title">剥壳松子</span>
-								</a>
-								<a class="follow " target="_blank">关注</a>
-							</div>
-						</div>
- -->
+					
 						<!--热卖推荐 -->
 						<div class="new-goods">
 							<div class="s-bar">
@@ -347,25 +242,13 @@
 						<a href="#">我的交易</a>
 						<ul>
 							<li><a href="/home/personal/order">订单管理</a></li>
-							<li> <a href="change.html">退款售后</a></li>
 						</ul>
 					</li>
-					<li class="person">
-						<a href="#">我的资产</a>
-						<ul>
-							<li> <a href="coupon.html">优惠券 </a></li>
-							<li> <a href="bonus.html">红包</a></li>
-							<li> <a href="bill.html">账单明细</a></li>
-						</ul>
-					</li>
-
 					<li class="person">
 						<a href="#">我的小窝</a>
 						<ul>
-							<li> <a href="collection.html">收藏</a></li>
-							<li> <a href="foot.html">足迹</a></li>
-							<li> <a href="comment.html">评价</a></li>
-							<li> <a href="news.html">消息</a></li>
+							<li> <a href="/home/myself/collect">收藏</a></li>
+							<li> <a href="/home/personal/commentlist">评价</a></li>
 						</ul>
 					</li>
 

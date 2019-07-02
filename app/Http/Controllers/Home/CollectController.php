@@ -9,7 +9,29 @@ use App\Models\Goods;
 use DB;
 class CollectController extends Controller
 {
-    //
+    //封装查询收藏方法
+    static function collect()
+    {
+        //查询现在用户的所有的收藏
+        $collect = GoodCollect::where('uid',session('home_user')->uid)->get();
+        //通过商品ID找到商品数据
+        $good = [];
+        foreach($collect as $k=>$v){
+
+            //将所有的收藏压入到数组           
+            $good[$k] = DB::table('goods')->where('gid',$v->gid)->first();
+
+        } 
+        foreach($good as $k=>$v){
+
+            $good[$k]->active_id = DB::table('actives')->where('id',$v->active_id)->first();
+        }
+
+        return $good;
+    }    
+
+
+
     public function goCollect(Request $request)
     {
     	$gid = $request->input('gid',0);
@@ -48,21 +70,9 @@ class CollectController extends Controller
     //显示收藏中心
     public function index()
     {
-        //查询现在用户的所有的收藏
-        $collect = GoodCollect::where('uid',session('home_user')->uid)->get();
-        //通过商品ID找到商品数据
-        $good = [];
-        foreach($collect as $k=>$v){
-
-            //将所有的收藏压入到数组           
-            $good[$k] = DB::table('goods')->where('gid',$v->gid)->first();
-
-        } 
-        foreach($good as $k=>$v){
-
-            $good[$k]->active_id = DB::table('actives')->where('id',$v->active_id)->first();
-        }
-          
+        
+        //获取收藏数据并且分配给页面
+        $good = self::collect();
         return view('home.personal.collect',['good'=>$good]);
     }
 
@@ -76,10 +86,10 @@ class CollectController extends Controller
 
         if($res) {
 
-           echo json_encode( ['msg'=>'ok','info'=>'移除收藏成功'] );
+           echo json_encode( ['msg'=>'ok','info'=>'取消成功'] );
             exit;
         } else {
-               echo json_encode( ['msg'=>'err','info'=>'移除收藏失败'] );
+               echo json_encode( ['msg'=>'err','info'=>'取消失败'] );
             exit;
         }
     }
