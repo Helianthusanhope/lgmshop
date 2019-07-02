@@ -19,26 +19,21 @@
 <!--商品分类结束-->
 
                     <!--走马灯 -->
-                <!--     <div class="marqueen">
+                    <div class="marqueen">
                         <span class="marqueen-title">商城头条</span>
                         <div class="demo">
                             <ul>
-                                @foreach( $works_data as $k=>$v )                              
-                                <li><a target="_blank" href="/home/work/{{ $v->wid }}">{{ $v->wtitle }}</a></li>
-                                @endforeach
-                                <div class="mod-vip">
+                               <!--  <div class="mod-vip">
                                     @if(session('home_login')) 
                                     <div class="m-baseinfo">
                                         <a href="person/index.html">
-                                            <img src="/ho/images/getAvatar.do.jpg">
+                                            <img src="/uploads/{{session('home_userinfo')->profile}}">
                                         </a>
                                         <em>
                                             Hi,<span class="s-name">
                                             {{session('home_user')->uname}}
-                                    
-                                            
                                             </span>
-                                            <a href="#"><p>点击更多优惠活动</p></a>
+                                            <a href="/home/active"><p>点击更多优惠活动</p></a>
                                         </em>
                                     </div>
                                     <div>
@@ -67,7 +62,7 @@
                                         <em>
                                             Hi,<span class="s-name">小叮当                                    
                                             </span>
-                                            <a href="#"><p>点击更多优惠活动</p></a>
+                                            <a href="/home/active"><p>点击更多优惠活动</p></a>
                                         </em>
                                     </div>
                                             
@@ -77,11 +72,13 @@
                                     </div>
                                     @endif
                                     <div class="clear"></div>   
-                                </div>
+                                </div> -->
+                                @foreach( $works_data as $k=>$v )                              
+                                <li><a target="_blank" href="/home/work/{{ $v->wid }}">{{ $v->wtitle }}</a></li>
+                                @endforeach
                             </ul>
-                        <div class="advTip"><img src="/ho/images/advTip.jpg"/></div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="clear"></div>
                 </div>
                 <script type="text/javascript">
@@ -131,7 +128,7 @@
                             <h4>活动</h4>
                             <h3>每期活动 优惠享不停 </h3>
                             <span class="more ">
-                              <a href="/home/active ">全部活动<i class="am-icon-angle-right" style="padding-left:10px ;" ></i></a>
+                              <a href="/home/active">全部活动<i class="am-icon-angle-right" style="padding-left:10px ;" ></i></a>
                         </span>
                         </div>
                       <div class="am-g am-g-fixed ">
@@ -165,7 +162,7 @@
                                 @endforeach
                             </div>
                             <span class="more ">
-                        <a href="# ">更多<i class="am-icon-angle-right" style="padding-left:10px ;" ></i></a>
+                        <a href="/home/goodlist/catetop/{{ $v->cid }}">更多<i class="am-icon-angle-right" style="padding-left:10px ;" ></i></a>
                         </span>
                         </div>
                     </div>

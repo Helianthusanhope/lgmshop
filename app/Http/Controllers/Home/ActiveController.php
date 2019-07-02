@@ -40,4 +40,9 @@ class ActiveController extends Controller
     	$active_name = Actives::where('id',$id)->select('active_name')->first();
     	return view('home.active.index',['active_name'=>$active_name,'active_goods_data'=>$active_goods_data]);
     }
+
+    public function show()
+    {
+    	return view('home.active.show');
+    }
 }

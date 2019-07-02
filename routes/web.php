@@ -162,8 +162,10 @@ Route::get('home/safety/phone', 'Home\SafetyController@phone');
 
 
 
-//显示活动界面
+//显示 指定活动界面
 Route::get('home/active/{id}', 'Home\ActiveController@index');
+//显示所有活动页面
+Route::get('home/active', 'Home\ActiveController@show');
 //显示新闻详情页
 Route::get('home/work/{id}', 'Home\WorkController@index');
 //一级分类 显示
