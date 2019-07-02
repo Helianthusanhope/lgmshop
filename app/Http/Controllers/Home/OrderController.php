@@ -74,7 +74,7 @@ class OrderController extends Controller
         $oname = time().session('home_user')->uid;
         $orders = new Order;
         $orders->uid = session('home_user')->uid;
-        $orders->oname = str_pad($oname,15,rand(0,9),STR_PAD_RIGHT);
+        $orders->oname = str_pad($oname,15,rand(0,9999),STR_PAD_RIGHT);
         $orders->aid = $aid;
         $orders->price_all = $price_all;
         $orders->price = $price;
@@ -84,7 +84,7 @@ class OrderController extends Controller
         $res = $orders->save();
         if ($res) {
             $_SESSION['car'] = null;
-            echo json_encode(['msg'=>'ok','info'=>'提交订单成功']);
+            echo json_encode(['msg'=>'ok','info'=>'提交订单成功','oid'=>$orders->id]);
             exit;
         } else {
             echo json_encode(['msg'=>'err','info'=>'提交订单失败']);
@@ -146,7 +146,8 @@ class OrderController extends Controller
     {
         $useraddr = UserAddr::find($request->input('aid', ''));
         $price_all = $request->input('price_all', '');
-        return view('home.order.success',['useraddr'=>$useraddr,'price_all'=>$price_all]);
+        $oid = $request->input('oid', '');
+        return view('home.order.success',['useraddr'=>$useraddr,'price_all'=>$price_all,'oid'=>$oid]);
     }
 
     // 计算订单信息

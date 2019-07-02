@@ -14,7 +14,7 @@
                                 </ul>
                             </div>
                             <div class="login_btnbox ">
-                                <a href="# " class="login_order ">我的订单</a>
+                                <a href="/home/personal/order" class="login_order ">我的订单</a>
                                 <a href="# " class="login_favorite ">我的收藏</a>
                             </div>
                             <i class="icon_arrow_white "></i>
@@ -35,13 +35,15 @@
                         </div>
                         @endif
                     </div>
-                    <div id="shopCart " class="item ">
-                        <a href="/home/car/index"></a>
+                    <div id="shopCart shopCart-aabbcc" class="item ">
+                        <a href="/home/car/index">
                             <span class="message "></span>
+                        </a>
                         <p>
                             购物车
                         </p>
                         <p class="cart_num ">{{ $car_count }}</p>
+
                     </div>
                     <div id="brand " class="item ">
                         <a href="#">

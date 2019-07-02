@@ -26,17 +26,17 @@
                     <td>{{ $v->id }}</td>
                     <td>{{ $v->uid }}</td>
                     <td>{{ $v->oname }}</td>
-                    <td>{{ $v->addr->address }}</td>
+                    <td>{{ $v->addr->area }}{{ $v->addr->address }}</td>
                     @if($v->order_status == 0)
                     <td>未付款</td>
                     @elseif($v->order_status == 1)
-                    <td>未发货</td>
+                    <td style="color: orange;">未发货</td>
                     @elseif($v->order_status == 2)
                     <td>已发货</td>
                     @elseif($v->order_status == 3)
                     <td>待评价</td>
                     @else
-                    <td>已完成</td>
+                    <td style="color:#D12B20">已完成</td>
                     @endif
                     <td>{{ $v->price_all }}</td>
                     <td>{{ $v->created_at}}</td>

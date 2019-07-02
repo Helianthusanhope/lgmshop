@@ -144,9 +144,7 @@
 													@endif
 												</p>
 												<p class="order-info"><a href="/home/personal/orderinfo/{{ $v['id'] }}">订单详情</a></p>
-												@if($v['order_status'] > 1)
-												<p class="order-info"><a href="logistics.html">查看物流</a></p>
-												@endif
+												
 											</div>
 										</li>
 										<li class="td td-change">
@@ -156,7 +154,7 @@
 											</a>
 											@elseif($v['order_status'] > 3)
 											<a href=""><div class="am-btn am-btn-danger anniu">
-												删除订单</div>
+												交易完成</div>
 											</a>
 											@elseif($v['order_status'] == 1)
 											<a href=""><div class="am-btn am-btn-danger anniu">
@@ -278,9 +276,7 @@
 													@endif
 												</p>
 												<p class="order-info"><a href="/home/personal/orderinfo/{{ $v['id'] }}">订单详情</a></p>
-												@if($v['order_status'] > 1)
-												<p class="order-info"><a href="logistics.html">查看物流</a></p>
-												@endif
+												
 											</div>
 										</li>
 										<li class="td td-change">
@@ -290,7 +286,7 @@
 											</a>
 											@elseif($v['order_status'] > 3)
 											<a href=""><div class="am-btn am-btn-danger anniu">
-												删除订单</div>
+												交易完成</div>
 											</a>
 											@elseif($v['order_status'] == 1)
 											<a href=""><div class="am-btn am-btn-danger anniu">
@@ -408,9 +404,7 @@
 													@endif
 												</p>
 												<p class="order-info"><a href="/home/personal/orderinfo/{{ $v['id'] }}">订单详情</a></p>
-												@if($v['order_status'] > 1)
-												<p class="order-info"><a href="logistics.html">查看物流</a></p>
-												@endif
+												
 											</div>
 										</li>
 										<li class="td td-change">
@@ -420,7 +414,7 @@
 											</a>
 											@elseif($v['order_status'] > 3)
 											<a href=""><div class="am-btn am-btn-danger anniu">
-												删除订单</div>
+												交易完成</div>
 											</a>
 											@elseif($v['order_status'] == 1)
 											<a href=""><div class="am-btn am-btn-danger anniu">
@@ -537,9 +531,7 @@
 													@endif
 												</p>
 												<p class="order-info"><a href="/home/personal/orderinfo/{{ $v['id'] }}">订单详情</a></p>
-												@if($v['order_status'] > 1)
-												<p class="order-info"><a href="logistics.html">查看物流</a></p>
-												@endif
+												
 											</div>
 										</li>
 										<li class="td td-change">
@@ -549,7 +541,7 @@
 											</a>
 											@elseif($v['order_status'] > 3)
 											<a href=""><div class="am-btn am-btn-danger anniu">
-												删除订单</div>
+												交易完成</div>
 											</a>
 											@elseif($v['order_status'] == 1)
 											<a href=""><div class="am-btn am-btn-danger anniu">
@@ -668,9 +660,7 @@
 													@endif
 												</p>
 												<p class="order-info"><a href="/home/personal/orderinfo/{{ $v['id'] }}">订单详情</a></p>
-												@if($v['order_status'] > 1)
-												<p class="order-info"><a href="logistics.html">查看物流</a></p>
-												@endif
+												
 											</div>
 										</li>
 										<li class="td td-change">
@@ -680,7 +670,7 @@
 											</a>
 											@elseif($v['order_status'] > 3)
 											<a href=""><div class="am-btn am-btn-danger anniu">
-												删除订单</div>
+												交易完成</div>
 											</a>
 											@elseif($v['order_status'] == 1)
 											<a href=""><div class="am-btn am-btn-danger anniu">
