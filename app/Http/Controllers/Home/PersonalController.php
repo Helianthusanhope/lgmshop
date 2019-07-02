@@ -12,6 +12,7 @@ use App\Models\GoodComment;
 use DB;
 class PersonalController extends Controller
 {
+    // 获取每个订单包含的商品信息
     public static function getOrders($orders)
     {
          foreach ($orders as $k => $v) {
@@ -33,6 +34,7 @@ class PersonalController extends Controller
         }
         return $orders;
     }
+
     //个人中心首页
     public function index()
     {
@@ -61,6 +63,7 @@ class PersonalController extends Controller
         
         return view('home.personal.order',['orders'=>$orders]);
     }
+
     // 确认收货
     public function orderConfirm($id)
     {
@@ -74,11 +77,18 @@ class PersonalController extends Controller
         }
 
     }
-    // 订单详情
-    public function orderInfo()
-    {
 
+    // 订单详情
+    public function orderInfo($id)
+    {
+        $orders = Order::where('id',$id)->get()->toArray();
+        $orders = self::getOrders($orders);
+        $addr = UserAddr::find($orders['0']['aid']);
+
+        
+        return view('home.personal.orderinfo',['orders'=>$orders,'addr'=>$addr]);
     }
+
     // 添加评价
     public function comment($id)
     {
@@ -87,6 +97,7 @@ class PersonalController extends Controller
         $comment = GoodComment::where('oid',$id)->get()->toArray();
         $stid = explode ( "," ,  $orders['stid_all']);
         $orders['price'] = explode ( "," ,  $orders['price']);
+        // 去掉已经评论的商品
         foreach ($stid as $k => $v) {
             foreach ($comment as $kk => $vv) {
                 if ($v == $vv['stid']) {
@@ -95,20 +106,26 @@ class PersonalController extends Controller
                 }
             }
         }
+
         $stid = array_values($stid);
+        // 重新为未评论的商品信息建立下标
         $orders['price'] = array_values($orders['price']);
         $orders['good'] = GoodStock::whereIn('stid', $stid)->get()->toArray();
-        
+
+        // 压入每个商品名称和每个商品的价格
         foreach ($orders['good'] as $k => $v) {
             $orders['good'][$k]['gname'] = Goods::find($v['gid'])->gname;
             $orders['good'][$k]['price'] = $orders['price'][$k];
         }
-        if (empty($order['good'])) {
+
+        // 如果没有一个商品没有被评价就将订单状态改为完成
+        if (empty($orders['good'])) {
             $order->order_status = '4';
             $order->save();
         }
         return view('home.personal.comment',['orders'=>$orders,'oid'=>$id]);
     }
+
     // 添加操作
     public function gocomment(Request $request)
     {

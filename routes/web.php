@@ -120,17 +120,18 @@ Route::get('home/login/myself', 'Home\LoginController@myself');
 //显示个人中心首页
 Route::get('home/personal', 'Home\PersonalController@index');
 
-//显示个人的订单页面
+// 显示个人的订单页面
 Route::get('home/personal/order', 'Home\PersonalController@order');
-//确认收货
+// 确认收货
 Route::get('home/personal/orderconfirm/{id}', 'Home\PersonalController@orderConfirm');
-//显示评论页
+// 显示评论页
 Route::get('home/personal/comment/{id}', 'Home\PersonalController@comment');
-//评论添加
+// 评论添加
 Route::post('home/personal/gocomment', 'Home\PersonalController@goComment');
-//显示待评价
+// 显示订单详情
 Route::get('home/personal/orderinfo/{id}', 'Home\PersonalController@orderInfo');
-
+// 显示我的评论
+Route::get('home/personal/commentlist', 'Home\CommentController@index');
 
 //显示个人信息修改页面页面
 Route::get('home/information/edit', 'Home\InformationController@edit');
@@ -156,8 +157,11 @@ Route::post('home/safety/doupass', 'Home\SafetyController@doupass');
 Route::get('home/safety/email', 'Home\SafetyController@email');
 //显示手机变更密码
 Route::get('home/safety/phone', 'Home\SafetyController@phone');
-
-
+// 订单页
+Route::get('home/orders/buy', 'Home\OrderController@buy');
+// 付款成功
+Route::get('home/orders/success', 'Home\OrderController@success');
+Route::resource('home/orders','Home\OrderController');
 
 
 
@@ -180,10 +184,7 @@ Route::get('home/goodlist/sort','Home\GoodlistController@sort');
 Route::resource('home/goodlist','Home\GoodlistController');
 // 显示商品
 Route::resource('home/goods','Home\GoodController');
-// 订单页
-Route::get('home/orders/buy', 'Home\OrderController@buy');
-Route::get('home/orders/success', 'Home\OrderController@success');
-Route::resource('home/orders','Home\OrderController');
+
 
 
 

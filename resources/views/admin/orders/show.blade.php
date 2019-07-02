@@ -98,7 +98,7 @@
                 @if(($status == 1) && ($orders->order_status == 1))
                 <a href="/admin/orders/deliver/{{ $orders->id }}"  onclick="return checkForm()" class="btn btn-success" style="width: 100%">发货</a>
                 @elseif($orders->order_status == 2)
-                <a class="btn btn-success">物流详情</a>
+                <a class="btn btn-success">正在路上</a>
                 @elseif($orders->order_status == 3)
                 <button type="button" class="btn" disabled="disabled">待评价</button>
                 @elseif($orders->order_status == 4)

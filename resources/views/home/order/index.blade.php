@@ -289,13 +289,13 @@
 								    data:{price_all,aid},
 								    type:"POST",
 								    success:function(res){
-										layer.msg('提交成功');
+										layer.msg(res.info);
 								        setTimeout(function(){
-						                    window.location.href = '/home/orders/success?aid='+aid+'&price_all='+price_all;
+						                    window.location.href = '/home/orders/success?aid='+aid+'&price_all='+price_all+'&oid='+res.oid;
 						                },600);
 								    },
 								    error:function(){
-								        layer.msg('提交失败');
+								        layer.msg(res.info);
 								    }
 								});
 						    }
