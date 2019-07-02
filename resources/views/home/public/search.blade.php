@@ -1,7 +1,9 @@
                 <!--搜索框开始-->
                 <div class="nav white">
                     <div class="logoBig">
-                        <li><img src="/ho/images/logobig.png" /></li>
+                        @foreach( $commoon_Webconfigs_data as $k=>$v )
+                        <li><img src="/uploads/{{$v->logo}}" /></li>
+                        @endforeach
                     </div>
 
                     <div class="search-bar pr">

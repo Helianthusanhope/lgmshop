@@ -26,6 +26,7 @@
                     <td>{{ $v->cid }}</td>
                     <td>{{ $v->cname }}</td>
                     <td>
+                        @if( substr_count($v->path,',') == 0 )
                         <div class="mws-panel-body" style="width: 60px">
                         <ul class="thumbnails mws-gallery" style="height: 50px;width: 50px">
                             <li>
@@ -36,8 +37,11 @@
                             </li>
                         </ul>
                         </div>
+                        @else
+                        <span>待用~</span>
+                        @endif
                     </td>
-                    <td>{{ $v->desc }}</td>
+                    <td>{{ $v->desc }}<span>{{substr_count($v->path,',') == 0 ? '': '(待用)'}}</span> </td>
                     <td>{{ $v->pid }}</td>
                     <td>{{ $v->created_at }}</td>
                     <td>{{ $v->path }}</td>

@@ -21,6 +21,9 @@ class RolesController extends Controller
         return [
             'usercontroller'=>'用户管理',
             'catecontroller'=>'分类管理',
+            'indexcontroller'=>'首页显示',
+            'adminusercontroller'=>'管理员管理',
+            'rolescontroller'=>'角色管理',
         ];
     }
 

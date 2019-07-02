@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use App\Models\Nodes;
+use App\Models\RolesNodes;
 class NodesController extends Controller
 {
     /**
@@ -99,7 +101,7 @@ class NodesController extends Controller
         //权限名称
         $desc = $request->input('desc');
 
-        $res = DB::table('nodes')->where('id',$id)->update(['cname'=>$canme,'aname'=>$aname,'desc'=>$desc]);
+        $res = DB::table('nodes')->where('id',$id)->update(['cname'=>$cname,'aname'=>$aname,'desc'=>$desc]);
         if($res){
             return redirect('admin/nodes')->with('success','修改成功');
         }else{
@@ -122,7 +124,7 @@ class NodesController extends Controller
        
         if($res1 && $res2){
             DB::commit();
-            return redirect('admin/roles')->with('success','删除成功');
+            return redirect('admin/nodes')->with('success','删除成功');
         }else{
             DB::rollBack();
             return back()->with('error','删除失败');
