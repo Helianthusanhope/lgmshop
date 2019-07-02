@@ -129,7 +129,7 @@ Route::get('home/personal/comment/{id}', 'Home\PersonalController@comment');
 //评论添加
 Route::post('home/personal/gocomment', 'Home\PersonalController@goComment');
 //显示待评价
-Route::get('home/personal/orderinfo', 'Home\PersonalController@orderInfo');
+Route::get('home/personal/orderinfo/{id}', 'Home\PersonalController@orderInfo');
 
 
 //显示个人信息修改页面页面
@@ -187,8 +187,8 @@ Route::resource('home/orders','Home\OrderController');
 
 
 
-
-Route::get('home/orders/gobuy', 'Home\OrderController@ordergo');
+// 增加收藏
+Route::get('home/collect/gocollect', 'Home\CollectController@goCollect');
 
 
 

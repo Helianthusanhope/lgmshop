@@ -66,8 +66,8 @@ class GoodController extends Controller
     {
         //
         $good = Goods::find($id);
-        $like = Goods::where('cid',$good->cid)->Paginate(5);
-        $looks = Goods::where('cid',$good->cid)->skip(0)->take(5)->get();
+        $like = Goods::where('cid',$good->cid)->whereNotIn('gid',[$id])->skip(0)->take(8)->get();
+        $looks = Goods::where('cid',$good->cid)->whereNotIn('gid',[$id])->skip(0)->take(5)->get();
         // 优惠
         if ($good->active_id != 0) {
             $active =  DB::table('actives')->where('id',$good->active_id)->first()->discount;
@@ -75,7 +75,17 @@ class GoodController extends Controller
             $active = 10;
         }
         // 评论
-        $goodcomment = GoodComment::where('gid',$id)->Paginate(5);
+        $comment = GoodComment::where('gid',$id);
+        $goodcomment = $comment->Paginate(5);
+        $num['good'] = $comment->whereIn('stars',['5','4'])->count();
+        $num['middle'] = $comment->where('stars','3')->count();
+        $num['bad'] = $comment->where('stars',['2','1'])->count();
+        if ($good->num == 0) {
+            $num['pro'] = 100;
+        } else {
+            $num['pro'] = round($num['good'] / $good->num, 2) * 100;
+        }
+        
         // 默认库存id
         $stid = $request->input('stid','');
         $stid = self::getstid($good, $stid);
@@ -84,7 +94,7 @@ class GoodController extends Controller
         } else {
             $uid = 0;
         }
-        return view('home.good.show',['good'=>$good,'like'=>$like,'active'=>$active,'goodcomment'=>$goodcomment,'stid'=>$stid,'uid'=>$uid,'looks'=>$looks]);
+        return view('home.good.show',['good'=>$good,'like'=>$like,'active'=>$active,'goodcomment'=>$goodcomment,'stid'=>$stid,'uid'=>$uid,'looks'=>$looks,'num'=>$num]);
     }
 
     /**
