@@ -33,7 +33,7 @@ Route::get('admin/rbac',function(){
 	Route::resource('admin/index', 'Admin\IndexController');
 	
 
-// Route::group(['middleware'=>['login','nodes']],function(){
+Route::group(['middleware'=>['login','nodes']],function(){
 // Route::group(['middleware'=>['login']],function(){
 
 	//修改密码
@@ -92,7 +92,7 @@ Route::get('admin/rbac',function(){
 	// 文章(新闻)
 	Route::resource('admin/works', 'Admin\WorkController');
 
-// });
+});
 
 
 //前台首页
