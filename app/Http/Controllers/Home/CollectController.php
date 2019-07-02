@@ -43,4 +43,44 @@ class CollectController extends Controller
     		exit;
     	}
     }
+
+
+    //显示收藏中心
+    public function index()
+    {
+        //查询现在用户的所有的收藏
+        $collect = GoodCollect::where('uid',session('home_user')->uid)->get();
+        //通过商品ID找到商品数据
+        $good = [];
+        foreach($collect as $k=>$v){
+
+            //将所有的收藏压入到数组           
+            $good[$k] = DB::table('goods')->where('gid',$v->gid)->first();
+
+        } 
+        foreach($good as $k=>$v){
+
+            $good[$k]->active_id = DB::table('actives')->where('id',$v->active_id)->first();
+        }
+          
+        return view('home.personal.collect',['good'=>$good]);
+    }
+
+    //执行移除收藏
+    public function edit(Request $request)
+    {
+        $gid = $request->input('gid',0);
+        $collect = GoodCollect::where('gid',$gid)->first();
+
+        $res = $collect->delete();
+
+        if($res) {
+
+           echo json_encode( ['msg'=>'ok','info'=>'移除收藏成功'] );
+            exit;
+        } else {
+               echo json_encode( ['msg'=>'err','info'=>'移除收藏失败'] );
+            exit;
+        }
+    }
 }
