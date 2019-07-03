@@ -17,7 +17,7 @@
 
     <div class="mws-panel grid_8">
         <div class="mws-panel-header">
-            <span>用户添加</span>
+            <span>商品修改</span>
         </div>
         <div class="mws-panel-body no-padding">
             <form class="mws-form" action="/admin/goods/{{ $good->gid }}" method="post" enctype="multipart/form-data">

@@ -69,9 +69,9 @@
 					<div class="category">
 										<ul class="category-list" id="js_climit_li">
 											@foreach( $common_cates_data as $k=>$v )
-											<li class="appliance js_toggle relative {{ $loop->first ? 'first selected' : '' }} {{ $loop->last ? 'last' : '' }}">
+											<li style="height: 100px;" class="appliance js_toggle relative {{ $loop->first ? 'first selected' : '' }} {{ $loop->last ? 'last' : '' }}">
 												<div class="category-info">
-													<h3 class="category-name b-category-name"><i><img src="/ho/images/cake.png"></i><a class="ml-22" title="{{ $v->cname }}" href="/home/goodlist/catetop/{{ $v->cid }}">{{ $v->cname }}</a></h3>
+													<h3 class="category-name b-category-name"><i><img style="height: 50px;width: 50px;" src="/uploads/{{ $v->thumb }}"></i><a class="ml-22" title="{{ $v->cname }}" href="/home/goodlist/catetop/{{ $v->cid }}">{{ $v->cname }}</a></h3>
 													<em>&gt;</em></div>
 												<div class="menu-item menu-in top">
 													<div class="area-in">
@@ -79,9 +79,8 @@
 															<div class="menu-srot">
 																
 																<div class="brand-side">
-													              <dl class="dl-sort"><dt><span>为您推荐</span></dt>
+													              <dl class="dl-sort"><dt><span>当前分类:{{$v->cname}}</span></dt>
 													              	<a href="/home/goodlist/catetop/{{ $v->cid }}">
-													                <img style="height: 300px;" src="/uploads/{{ $v->thumb }}">
 													                </a>
 													              </dl>
 												                </div>																

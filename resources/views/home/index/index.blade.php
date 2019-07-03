@@ -23,56 +23,6 @@
                         <span class="marqueen-title">商城头条</span>
                         <div class="demo">
                             <ul>
-                               <!--  <div class="mod-vip">
-                                    @if(session('home_login')) 
-                                    <div class="m-baseinfo">
-                                        <a href="person/index.html">
-                                            <img src="/uploads/{{session('home_userinfo')->profile}}">
-                                        </a>
-                                        <em>
-                                            Hi,<span class="s-name">
-                                            {{session('home_user')->uname}}
-                                            </span>
-                                            <a href="/home/active"><p>点击更多优惠活动</p></a>
-                                        </em>
-                                    </div>
-                                    <div>
-                                        <table>
-                                            <tr>
-                                                <td>
-                                                    <a href="order.html"><i><img src="/ho/images/pay.png"/></i><span>待付款[1]</span></a>
-                                                </td>
-                                                <td>
-                                                    <a href="order.html"><i><img src="/ho/images/send.png"/></i><span>待发货[2]</span></a>
-                                                </td>
-                                                <td>
-                                                    <a href="order.html"><i><img src="/ho/images/receive.png"/></i><span>待收货[4]</span></a>
-                                                </td>
-                                                <td>
-                                                    <a href="order.html"><i><img src="/ho/images/comment.png"/></i><span>待评价[1]</span></a>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    @else
-                                    <div class="m-baseinfo">
-                                        <a href="person/index.html">
-                                            <img src="/ho/images/getAvatar.do.jpg">
-                                        </a>
-                                        <em>
-                                            Hi,<span class="s-name">小叮当                                    
-                                            </span>
-                                            <a href="/home/active"><p>点击更多优惠活动</p></a>
-                                        </em>
-                                    </div>
-                                            
-                                    <div class="member-logout">
-                                        <a class="am-btn-warning btn" href="/home/login">登录</a>
-                                        <a class="am-btn-warning btn" href="/home/register">注册</a>
-                                    </div>
-                                    @endif
-                                    <div class="clear"></div>   
-                                </div> -->
                                 @foreach( $works_data as $k=>$v )                              
                                 <li><a target="_blank" href="/home/work/{{ $v->wid }}">{{ $v->wtitle }}</a></li>
                                 @endforeach

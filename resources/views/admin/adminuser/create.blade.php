@@ -4,14 +4,14 @@
 @section('content')
 <div class="mws-panel grid_8">
 	<div class="mws-panel-header">
-    	<span>Inline Form</span>
+    	<span>管理员添加</span>
     </div>
     <div class="mws-panel-body no-padding">
     	<form class="mws-form" action="/admin/adminuser" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
     		<div class="mws-form-inline">
     			<div class="mws-form-row">
-    				<label class="mws-form-label">用户名</label>
+    				<label class="mws-form-label">管理员名</label>
     				<div class="mws-form-item">
     					<input type="text" name="uname" class="small">
     				</div>

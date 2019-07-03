@@ -82,7 +82,7 @@ class CateController extends Controller
         $cate = new Cates;
         $cate->pid = $pid;
         $cate->cname = $request->input('cname','');
-        $cate->thumb = $request->$file_path;
+        $cate->thumb = $file_path;
         $cate->desc = $request->input('desc','');
         $cate->path = $path;
         //将数据压入到数据库

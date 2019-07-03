@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Users;
-use App\Models\Userinfo;
+use App\Models\UserInfo;
 use Hash;
 class LoginController extends Controller
 {   
@@ -52,17 +52,17 @@ class LoginController extends Controller
 
 
             $users_data = Users::where('uname',$uname)->first();
-    		$userinfo_data = Userinfo::where('uid',$users_data->uid)->first();
+    		$UserInfo_data = UserInfo::where('uid',$users_data->uid)->first();
 
     	} else if ( Users::where('email',$uname)->first() ){
 
     		$users_data = Users::where('email',$uname)->first();
-            $userinfo_data = Userinfo::where('uid',$users_data->uid)->first();
+            $UserInfo_data = UserInfo::where('uid',$users_data->uid)->first();
 
     	} else if ( Users::where('phone',$uname)->first() ){
 
     		$users_data = Users::where('phone',$uname)->first();
-            $userinfo_data = Userinfo::where('uid',$users_data->uid)->first();
+            $UserInfo_data = UserInfo::where('uid',$users_data->uid)->first();
     	}
 
 
@@ -84,7 +84,7 @@ class LoginController extends Controller
     	session(['home_login'=>true]);
 
         session(['home_user'=>$users_data]);
-    	session(['home_userinfo'=>$userinfo_data]);
+    	session(['home_userinfo'=>$UserInfo_data]);
     	
      
         echo json_encode( ['msg'=>'ok','info'=>'登录成功'] );

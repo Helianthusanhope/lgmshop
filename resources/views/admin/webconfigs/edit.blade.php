@@ -14,7 +14,7 @@
 	@endif
 	<div class="mws-panel grid_8">
     	<div class="mws-panel-header">
-        	<span>用户添加</span>
+        	<span>网站配置修改</span>
         </div>
         <div class="mws-panel-body no-padding">
         	<form class="mws-form" action="/admin/webconfigs/{{ $webconfig->id }}" method="post" enctype="multipart/form-data" onsubmit="return checkForm()">

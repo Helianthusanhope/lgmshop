@@ -94,14 +94,15 @@ class NodesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $nodes = Nodes::find($id);
         //控制器名称
-        $cname = $request->input('cname');
+        $nodes->cname = $request->input('cname');
 
-        $aname = $request->input('aname');
+        $nodes->aname = $request->input('aname');
         //权限名称
-        $desc = $request->input('desc');
+        $nodes->desc = $request->input('desc');
 
-        $res = DB::table('nodes')->where('id',$id)->update(['cname'=>$cname,'aname'=>$aname,'desc'=>$desc]);
+        $res = $nodes->save();
         if($res){
             return redirect('admin/nodes')->with('success','修改成功');
         }else{

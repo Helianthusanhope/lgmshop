@@ -17,7 +17,7 @@
 
     <div class="mws-panel grid_8">
         <div class="mws-panel-header">
-            <span>活动添加</span>
+            <span>活动修改</span>
         </div>
         <div class="mws-panel-body no-padding">
             <form class="mws-form" action="/admin/actives/{{ $actives->id}}" method="post" enctype="multipart/form-data">

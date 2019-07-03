@@ -4,7 +4,7 @@
 @section('content')
 <div class="mws-panel grid_8">
 	<div class="mws-panel-header">
-    	<span>Inline Form</span>
+    	<span>权限添加</span>
     </div>
     <div class="mws-panel-body no-padding">
     	<form class="mws-form" action="/admin/nodes" method="post">

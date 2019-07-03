@@ -117,6 +117,7 @@ Route::post('/home/dologin', 'Home\LoginController@dologin');
 //登录退出
 Route::get('home/loginout', 'Home\LoginController@loginout');
 
+
 //个人中心
 // 验证是否在登录状态
 Route::get('home/login/myself', 'Home\LoginController@myself');

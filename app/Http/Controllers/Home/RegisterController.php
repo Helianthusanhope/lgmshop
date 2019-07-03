@@ -66,7 +66,7 @@ class RegisterController extends Controller
         }
 
         // 压入默认头像
-        $userinfo = new Userinfo;
+        $userinfo = new UserInfo;
         $userinfo->uid = $user->uid;
         $userinfo->profile = '/20190619/M7RFskFynbNHZX6sbz0mn6wjAB9Lf5iTXHNfaxzv.png';
         $res2 = $userinfo->save();
@@ -92,14 +92,14 @@ class RegisterController extends Controller
         $user = Users::find($id);
         // 验证token
         if($user->token != $token){
-            echo "<script>alert('连接失效');</script>";
+            echo "<script>alert('连接失效')location.href='history.go(-1)';</script>";
         }else {
             $user->status = 1;
             $user->token = str_random(50);
         }
 
         if($user->save()){
-            echo "<script>alert('激活成功');</script>";
+            echo "<script>alert('激活成功');location.href='/home/login'</script>";
         }else{
             echo "<script>alert('激活失败');</script>";
         }
@@ -159,7 +159,7 @@ class RegisterController extends Controller
         }
 
         // 压入默认头像
-        $userinfo = new Userinfo;
+        $userinfo = new UserInfo;
         $userinfo->uid = $uid;
         $userinfo->profile = '/20190619/M7RFskFynbNHZX6sbz0mn6wjAB9Lf5iTXHNfaxzv.png';
         $res2 = $userinfo->save();
