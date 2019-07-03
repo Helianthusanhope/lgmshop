@@ -48,7 +48,7 @@
 								<div class="menu-hd"><a id="mc-menu-hd" href="/home/car/index" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">({{ $car_count }})</strong></a></div>
 							</div>
 							<div class="topMessage favorite">
-								<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+								<div class="menu-hd"><a href="/home/myself/collect" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 						</ul>
 						</div>
 
@@ -163,11 +163,10 @@
 									<a class="i-load-more-item-shadow" href="/home/personal/order">全部订单</a>
 								</div>
 								<ul>
-									<li><a href="order.html"><i><img src="/ho/images/pay.png"/></i><span>待付款</span></a></li>
-									<li><a href="order.html"><i><img src="/ho/images/send.png"/></i><span>待发货<em class="m-num">1</em></span></a></li>
-									<li><a href="order.html"><i><img src="/ho/images/receive.png"/></i><span>待收货</span></a></li>
-									<li><a href="order.html"><i><img src="/ho/images/comment.png"/></i><span>待评价<em class="m-num">3</em></span></a></li>
-									<li><a href="change.html"><i><img src="/ho/images/refund.png"/></i><span>退换货</span></a></li>
+									<li><a href="/home/personal/order"><i><img src="/ho/images/pay.png"/></i><span>待付款<em class="m-num">{{ $orders['1'] }}</em></span></a></li>
+									<li><a href="/home/personal/order"><i><img src="/ho/images/send.png"/></i><span>待发货<em class="m-num">{{ $orders['2'] }}</em></span></a></li>
+									<li><a href="/home/personal/order"><i><img src="/ho/images/receive.png"/></i><span>待收货<em class="m-num">{{ $orders['3'] }}</em></span></a></li>
+									<li><a href="/home/personal/order"><i><img src="/ho/images/comment.png"/></i><span>待评价<em class="m-num">{{ $orders['4'] }}</em></span></a></li>
 								</ul>
 							</div>
 							<!--九宫格-->
@@ -280,34 +279,16 @@
 						<div class="day-list">
 							<div class="s-bar">
 								<a class="i-history-trigger s-icon" href="#"></a>我的日历
-								<a class="i-setting-trigger s-icon" href="#"></a>
+								
 							</div>
 							<div class="s-care s-care-noweather">
 								<div class="s-date">
-									<em>21</em>
-									<span>星期一</span>
-									<span>2015.12</span>
+									<em>{{ date('d') }}</em>
+									<span>星期{{ date('w') }}</span>
+									<span>{{ date('Y').'年'.date('m').'月' }}</span>
 								</div>
 							</div>
 						</div>
-						<!--新品 -->
-					<!-- 	<div class="new-goods">
-							<div class="s-bar">
-								<i class="s-icon"></i>今日新品
-								<a class="i-load-more-item-shadow">15款新品</a>
-							</div>
-							<div class="new-goods-info">
-								<a class="shop-info" href="#" target="_blank">
-									<div class="face-img-panel">
-										<img src="/ho/images/imgsearch1.jpg" alt="">
-									</div>
-									<span class="new-goods-num ">4</span>
-									<span class="shop-title">剥壳松子</span>
-								</a>
-								<a class="follow " target="_blank">关注</a>
-							</div>
-						</div>
- -->
 						<!--热卖推荐 -->
 						<div class="new-goods">
 							<div class="s-bar">
@@ -344,41 +325,22 @@
 						</ul>
 					</li>
 					<li class="person">
-						<a href="#">我的交易</a>
+						<a href="/home/personal/order">我的交易</a>
 						<ul>
 							<li><a href="/home/personal/order">订单管理</a></li>
-							<li> <a href="change.html">退款售后</a></li>
 						</ul>
 					</li>
-					<li class="person">
-						<a href="#">我的资产</a>
-						<ul>
-							<li> <a href="coupon.html">优惠券 </a></li>
-							<li> <a href="bonus.html">红包</a></li>
-							<li> <a href="bill.html">账单明细</a></li>
-						</ul>
-					</li>
-
 					<li class="person">
 						<a href="#">我的小窝</a>
 						<ul>
-							<li> <a href="collection.html">收藏</a></li>
-							<li> <a href="foot.html">足迹</a></li>
-							<li> <a href="comment.html">评价</a></li>
-							<li> <a href="news.html">消息</a></li>
+							<li> <a href="/home/myself/collect">收藏</a></li>
+							<li> <a href="/home/personal/commentlist">评价</a></li>
 						</ul>
 					</li>
 
 				</ul>
 
 			</aside>
-		</div>
-		<!--引导 -->
-		<div class="navCir">
-			<li><a href="home/home.html"><i class="am-icon-home "></i>首页</a></li>
-			<li><a href="home/sort.html"><i class="am-icon-list"></i>分类</a></li>
-			<li><a href="home/shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>	
-			<li class="active"><a href="index.html"><i class="am-icon-user"></i>我的</a></li>					
 		</div>
 	</body>
 

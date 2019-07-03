@@ -76,7 +76,7 @@ class IndexController extends Controller
         $data = Goods::get();
         $categoods = self::getCateGoods();
         
-
+        
         return view('home.index.index',['categoods'=>$categoods,'data'=>$data,'actives_not_commend'=>$actives_not_commend,'actives_commend'=>$actives_commend,'works_data'=>$works_data,'banners_data'=>$banners_data]);        
     }
 
