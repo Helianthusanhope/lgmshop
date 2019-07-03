@@ -52,17 +52,17 @@ class LoginController extends Controller
 
 
             $users_data = Users::where('uname',$uname)->first();
-    		$UserInfo_data = UserInfo::where('uid',$users_data->uid)->first();
+    		$userinfo_data = UserInfo::where('uid',$users_data->uid)->first();
 
     	} else if ( Users::where('email',$uname)->first() ){
 
     		$users_data = Users::where('email',$uname)->first();
-            $UserInfo_data = UserInfo::where('uid',$users_data->uid)->first();
+            $userinfo_data = UserInfo::where('uid',$users_data->uid)->first();
 
     	} else if ( Users::where('phone',$uname)->first() ){
 
     		$users_data = Users::where('phone',$uname)->first();
-            $UserInfo_data = UserInfo::where('uid',$users_data->uid)->first();
+            $userinfo_data = UserInfo::where('uid',$users_data->uid)->first();
     	}
 
 
@@ -84,7 +84,7 @@ class LoginController extends Controller
     	session(['home_login'=>true]);
 
         session(['home_user'=>$users_data]);
-    	session(['home_userinfo'=>$UserInfo_data]);
+    	session(['home_userinfo'=>$userinfo_data]);
     	
      
         echo json_encode( ['msg'=>'ok','info'=>'登录成功'] );

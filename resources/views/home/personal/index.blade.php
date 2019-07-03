@@ -45,7 +45,7 @@
 								<div class="menu-hd MyShangcheng"><a href="/home/personal" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 							</div>
 							<div class="topMessage mini-cart">
-								<div class="menu-hd"><a id="mc-menu-hd" href="/home/car/index" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">({{ $car_count }})</strong></a></div>
+								<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
 							</div>
 							<div class="topMessage favorite">
 								<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
@@ -62,12 +62,12 @@
             <div class="nav-table">
 
             	<!--分类开始--->
-					  <div class="long-title  "><a href="/home/goodlist/sort"><span class="all-goods">全部分类</span></a></div>
+					  <div class="long-title"><span class="all-goods">全部分类</span></div>
                        <div class="nav-cont">
-                            <ul> 
+                            <ul>
                                 <li class="index"><a href="/">首页</a></li>
                                 @foreach( $actives_not_commend as $k=>$v )
-                                <li class="qc"><a href="/home/active/{{ $v->id }}">{{ $v->active_name }}</a></li>
+                                <li class="qc"><a href="#">{{ $v->active_name }}</a></li>
                                 @endforeach
                             </ul>             
                         </div>

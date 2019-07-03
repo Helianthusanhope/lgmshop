@@ -36,9 +36,9 @@
 								
 								{{ csrf_field() }}
 								<div class="am-form-group">
-									<label for="user-name" class="am-form-label">昵称</label>
+									<label for="user-name" class="am-form-label">用户名</label>
 									<div class="am-form-content">
-										<input type="text" name="nikename" value="{{ $data->nikename ? $data->nikename : '' }}">
+										<input type="text" name="uname" value="{{ $user->uname ? $user->uname : '' }}">
 
 									</div>
 								</div>
