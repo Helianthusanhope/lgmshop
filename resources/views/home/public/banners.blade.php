@@ -5,7 +5,7 @@
                                 <?php $a = 0; ?>
                                 @foreach( $banners_data as $k=>$v )
                                 <?php $a++; ?>
-                                <li class="banner<?php echo "$a"; ?>"><a href="/home/active/{{ $v->id }}"><img style="height: 100%" src="/uploads/{{ $v->url }}" /></a></li></a>
+                                <li class="banner<?php echo "$a"; ?>"><a href="/home/active/{{ $v->active_id }}"><img style="height: 100%" src="/uploads/{{ $v->url }}" /></a></li></a>
                                 @endforeach
                             </ul>
                         </div>

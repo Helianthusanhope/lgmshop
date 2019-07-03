@@ -163,22 +163,25 @@ class RolesController extends Controller
         // 添加角色表
         $roles = Roles::find($rid);
         $roles->rname = $request->input('rname','');
+
         $res1 = $roles->save();
 
         $nids = $request->input('nids');
 
-        // 添加角色关系表
-        foreach ($nids as $k => $v) {
-           $res2 =  RolesNodes::where('rid',$rid)->update(['rid'=>$rid,'nid'=>$v]);  
+        $roles_nodes_data = RolesNodes::where('rid',$id)->get();
+        
+        foreach ($roles_nodes_data as $k => $v) {
+            $v->nid = $nids[$k];
         }
+        $data = $roles_nodes_data->toArray();
 
-
+        $res2 = app(RolesNodes::class)->updateBatch($data);
         if($res1 && $res2){
             DB::commit();
-            return redirect('admin/roles')->with('success','添加成功');
+            return redirect('admin/roles')->with('success','修改成功');
         }else{
             DB::rollBack();
-             return back()->with('error','添加失败');
+             return back()->with('error','修改失败');
         }
 
     }

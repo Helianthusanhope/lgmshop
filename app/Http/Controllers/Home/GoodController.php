@@ -64,9 +64,9 @@ class GoodController extends Controller
      */
     public function show(Request $request, $id)
     {
-        //
+        // 商品信息
         $good = Goods::find($id);
-        $like = Goods::where('cid',$good->cid)->whereNotIn('gid',[$id])->skip(0)->take(8)->get();
+        $like = Goods::where('cid',$good->cid)->whereNotIn('gid',[$id])->orderBy('sale','desc')->skip(0)->take(8)->get();
         $looks = Goods::where('cid',$good->cid)->whereNotIn('gid',[$id])->skip(0)->take(5)->get();
         // 优惠
         if ($good->active_id != 0) {
@@ -75,11 +75,16 @@ class GoodController extends Controller
             $active = 10;
         }
         // 评论
-        $comment = GoodComment::where('gid',$id);
-        $goodcomment = $comment->Paginate(5);
+        $goodcomment = GoodComment::where('gid',$id)->Paginate(5);
+
+
+        // 评论计数
+        $comment = GoodComment::where('gid',$id)->get();
         $num['good'] = $comment->whereIn('stars',['5','4'])->count();
         $num['middle'] = $comment->where('stars','3')->count();
-        $num['bad'] = $comment->where('stars',['2','1'])->count();
+        $num['bad'] = $comment->whereIn('stars',['2','1'])->count();
+
+
         if ($good->num == 0) {
             $num['pro'] = 100;
         } else {

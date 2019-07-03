@@ -1,4 +1,4 @@
-.<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
@@ -28,21 +28,22 @@
 			<!--悬浮搜索框-->
 @include('home.public.search')
 			
-            <b class="line"></b>
-			<div class="listMain">
 
+			<div class="listMain">
 				<!--分类-->
 			<div class="nav-table">
-					   <div class="long-title"><span class="all-goods">全部分类</span></div>
-					   <div class="nav-cont">
-							<ul>
-								@foreach( $actives_not_commend as $k=>$v )
-                                <li class="qc"><a href="/home/active/{{ $v->id }}">{{ $v->active_name }}</a></li>
-                                @endforeach
-							</ul>
-						    
-						</div>
+			   <div class="long-title  "><a href="/home/goodlist/sort"><span class="all-goods">全部分类</span></a></div>
+               <div class="nav-cont">
+                    <ul>
+                        <li class="index"><a href="/">首页</a></li>
+                        @foreach( $actives_not_commend as $k=>$v )
+                        <li class="qc"><a href="/home/active/{{ $v->id }}">{{ $v->active_name }}</a></li>
+                        @endforeach
+                    </ul>
+                   
+                </div>
 			</div>
+	            <b class="line"></b>
 				<ol class="am-breadcrumb am-breadcrumb-slash">
 					<li><a href="/">首页</a></li>
 					<li><a href="/home/goodlist/catesan/{{ $good->cid }}">{{ $good->goodcates->cname }}</a></li>

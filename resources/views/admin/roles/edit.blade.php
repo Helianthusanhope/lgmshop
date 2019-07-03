@@ -25,7 +25,7 @@
                             @foreach($list as $k=>$v)
                             <h3>{{ $conall[$k] }} <small>{{ $k }}</small> </h3>
                                 @foreach($v as $kk=>$vv)
-                                <li><input type="checkbox" name="nids[]" {{ in_array( $vv['id'], (array)$nodes_id ) ? 'checked' : '' }} value="{{ $vv['id'] }}"> <label>{{ $vv['desc'] }}</label></li>
+                                <li><input type="checkbox" name="nids[]" {{ in_array( $vv['id'], $nodes_id ) ? 'checked' : '' }} value="{{ $vv['id'] }}"> <label>{{ $vv['desc'] }}</label></li>
                                 @endforeach
                             @endforeach
                         </ul>

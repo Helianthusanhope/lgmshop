@@ -8,8 +8,10 @@
   <!--热门商品 开始-->
     <div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
         <ul class="am-slides" >
+            <?php $a = 0; ?>
             @foreach( $active_goods_data as $k=>$v)
-            <li style="width: 100%" class="banner2"><a href="/home/goods/{{ $v->gid }}"><img style="width:auto;height: 100%" src="/uploads/{{ $v->thumb }}" />
+            <?php $a++; ?>
+            <li style="width: 100%" class="banner<?php echo "$a"; ?>"><a href="/home/goods/{{ $v->gid }}"><img style="width:auto;height: 100%" src="/uploads/{{ $v->thumb }}" />
             </a>
             <div  class="am-slider-desc text-center" style="font-size: 40px" >{{ $v->gname }}</div>
             </li>

@@ -44,15 +44,15 @@ class PersonalController extends Controller
         $userinfo = AddressController::userinfo();
         $address  = AddressController::address();
         $actives  = ActiveController::getActivesCommend();
-
-
+        $collect  = CollectController::collect();
         $uid = session('home_user')->uid;
         $order = Order::where('uid',$uid)->get();
         $orders['1'] = $order->where('order_status','0')->count();
         $orders['2'] = $order->where('order_status','1')->count();
         $orders['3'] = $order->where('order_status','2')->count();
         $orders['4'] = $order->where('order_status','3')->count();
-        return view('home.personal.index',['userinfo'=>$userinfo,'address'=>$address,'actives'=>$actives,'orders'=>$orders]);
+
+        return view('home.personal.index',['userinfo'=>$userinfo,'address'=>$address,'actives'=>$actives,'collect'=>$collect,'orders'=>$orders]);
 
 
 
