@@ -57,7 +57,7 @@
 
                     </div>
                     <div id="brand " class="item ">
-                        <a href="#">
+                        <a href="/home/car/index">
                             <span class="wdsc "><img src="/ho/images/wdsc.png " /></span>
                         </a>
                         <div class="mp_tooltip " onclick="collect()">

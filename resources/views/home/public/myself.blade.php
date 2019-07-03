@@ -70,7 +70,7 @@
 						</ul>
 					</li>
 					<li class="person">
-						<a href="#">我的小窝</a>
+						<a href="/home/myself/collect">我的小窝</a>
 						<ul>
 							<li> <a href="/home/myself/collect">收藏</a></li>
 							<li> <a href="/home/personal/commentlist">评价</a></li>

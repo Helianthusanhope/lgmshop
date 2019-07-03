@@ -48,7 +48,7 @@
 								<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
 							</div>
 							<div class="topMessage favorite">
-								<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+								<div class="menu-hd"><a href="/home/myself/collect" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 						</ul>
 						</div>
 
@@ -202,7 +202,7 @@
 								</div>
 							</div>
 						</div>
-					
+						
 						<!--热卖推荐 -->
 						<div class="new-goods">
 							<div class="s-bar">
@@ -239,7 +239,7 @@
 						</ul>
 					</li>
 					<li class="person">
-						<a href="#">我的交易</a>
+						<a href="/home/personal/order">我的交易</a>
 						<ul>
 							<li><a href="/home/personal/order">订单管理</a></li>
 						</ul>
@@ -255,13 +255,6 @@
 				</ul>
 
 			</aside>
-		</div>
-		<!--引导 -->
-		<div class="navCir">
-			<li><a href="home/home.html"><i class="am-icon-home "></i>首页</a></li>
-			<li><a href="home/sort.html"><i class="am-icon-list"></i>分类</a></li>
-			<li><a href="home/shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>	
-			<li class="active"><a href="index.html"><i class="am-icon-user"></i>我的</a></li>					
 		</div>
 	</body>
 

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Goods;
 use App\Models\GoodStock;
+use App\Models\GoodComment;
+use App\Models\GoodCollect;
 use DB;
 use App\Models\Actives;
 use App\Http\Controllers\Admin\CateController;
@@ -201,6 +203,8 @@ class GoodController extends Controller
             Storage::delete($thumb);
             $res1 = Goods::destroy($id);
             $res2 = GoodStock::where('gid',$id)->delete();
+            $res3 = GoodComment::where('gid',$id)->delete();
+            $res3 = GoodCollect::where('gid',$id)->delete();
             if ($res1 && $res2) {
                 $res = 1;
             } else {
