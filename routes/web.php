@@ -120,6 +120,8 @@ Route::get('home/loginout', 'Home\LoginController@loginout');
 //个人中心
 // 验证是否在登录状态
 Route::get('home/login/myself', 'Home\LoginController@myself');
+//验证能否入收藏中心
+Route::get('home/login/collect', 'Home\LoginController@collect');
 //显示个人中心首页
 Route::get('home/personal', 'Home\PersonalController@index');
 
@@ -129,6 +131,8 @@ Route::get('home/personal/order', 'Home\PersonalController@order');
 Route::get('home/personal/orderconfirm/{id}', 'Home\PersonalController@orderConfirm');
 //显示评论页
 Route::get('home/personal/comment/{id}', 'Home\PersonalController@comment');
+// 显示我的评论
+Route::get('home/personal/commentlist', 'Home\CommentController@index');
 //评论添加
 Route::post('home/personal/gocomment', 'Home\PersonalController@goComment');
 //显示待评价
@@ -194,9 +198,10 @@ Route::resource('home/orders','Home\OrderController');
 
 // 增加收藏
 Route::get('home/collect/gocollect', 'Home\CollectController@goCollect');
-
-
-
+//显示个人收藏
+Route::get('home/myself/collect', 'Home\CollectController@index');
+//移除收藏
+Route::get('home/collect/edit', 'Home\CollectController@edit');
 
 
 
